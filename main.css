@@ -1,0 +1,14 @@
+body{
+    
+    height: 100vh;
+    background: linear-gradient(359.54deg, rgba(0, 0, 0, 0.94) 8.17%, rgba(0, 0, 0, 0.893) 45.74%, rgba(1, 1, 1, 0.846) 71.8%);
+}
+.nav-link span img{
+    
+    /* color: black;
+    -webkit-text-fill-color: black; */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: white;
+    
+    
+}
