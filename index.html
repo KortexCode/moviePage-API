@@ -21,37 +21,45 @@
 </head>
 <body>
     <header>
-        <nav id="header-navbar" class="navbar navbar-expand-md p-0">
+        <nav id="header-navbar" class="container-fluid navbar navbar-expand-md p-0 position-fixed">
             <div id="nav-container" class="container-fluid d-flex p-0">
-                <button id="btn-mobile" class="custom-toggler navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button id="btn-mobile" class="custom-toggler navbar-toggler py-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 id="nav-title" class="navbar-brand">Akai Movies</h1>
-                <div class="collapse navbar-collapse navbarSupported" id="navbarSupportedContent">                  
-                    <p class="pt-2 mb-1 ">Category</p>
+                <div class="collapse navbar-collapse navbarSupported d-md-flex justify-content-md-end pb-3" id="navbarSupportedContent">                  
+                    <p class="pt-2 mb-1 d-md-none">Category</p>
+                    <hr class="border border-dark border-1">
                     <ul class="navbar-nav">
-                      <li class="nav-item">
-                        <a class="nav-link" href="#"><span><i class="fa-solid fa-circle text-dark"></i></span> Action</a>
+                      <li class="nav-item d-none d-md-block pe-2">
+                        <a class="nav-link" href="#"><span></span> Home</a>
+                      </li><li class="nav-item d-none d-md-block pe-2">
+                        <a class="nav-link" href="#"><span></span> Favorites</a>
+                      </li><li class="nav-item d-none d-md-block pe-2">
+                        <a class="nav-link" href="#"><span></span> User</a>
                       </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="#"><span><i class="fa-solid fa-circle  text-dark"></i></span> Anime</a>
+                      <li class="nav-item d-md-none">
+                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Action</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link"><span><i class="fa-solid fa-circle text-dark"></i></span> Adventure</a>
+                      <li class="nav-item d-md-none">
+                        <a class="nav-link" d-flex align-items-center href="#"><i class="fa-solid fa-circle  text-dark"></i>Anime</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link"><span><i class="fa-solid fa-circle text-dark"></i></span> Comedy</a>
+                      <li class="nav-item d-md-none">
+                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Adventure</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link "><span><i class="fa-solid fa-circle text-dark"></i></span> Drama</a>
+                      <li class="nav-item d-md-none">
+                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Comedy</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link"><span><i class="fa-solid fa-circle text-dark"></i></span> Science fiction</a>
+                      <li class="nav-item d-md-none">
+                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Drama</a>
+                      </li>
+                      <li class="nav-item d-md-none">
+                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Science fiction</a>
                       </li>
                     </ul>
-                    <form class="d-lg-flex d-none" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form class="d-md-flex align-items-center d-none ms-3" role="search">
+                      <input class="form-control form-control-lg me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
               </div>
             </div>
@@ -59,12 +67,33 @@
     </header>
     
     <main>
-        <section id="trending">
-          
-        </section>
-        <section id="popular">
+      <div class="mx-4 my-4 main-search-container row justify-content-center">
+        <div class="col col-sm-8 p-0">
+          <form class="d-flex align-items-center d-md-none" role="search">
+            <div class="container-fluid d-flex justify-content-between p-0">
+              <input class="form-control form-control-lg me-3" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-danger me-0 d-flex align-items-center" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+          </form>
+        </div>     
+      </div>
+        
+      <section id="trending">
+        <div class="trending-cards__container container overflow-scroll d-flex">
+          <div class=""></div>
+          <div class=""></div>
+          <div class=""></div>
+          <div class=""></div>
+          <div class=""></div>
+          <div class=""></div>
+          <div class=""></div>
+          <div class=""></div>
+          <div class=""></div>
 
-        </section>
+        </div>
+      </section>
+      <section id="popular">
+      </section>
     </main>
     <div id="mobile-tag-bar">
 
