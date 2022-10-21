@@ -10,18 +10,27 @@
     --text14:1.4rem;
     /* Text Color */
     --title:-webkit-linear-gradient(180deg, #C72B2B 0%, rgba(244, 8, 8, 0.33) 279.41%);
+    --subtitle:linear-gradient(180deg, #C72B2B 0%, rgba(244, 8, 8, 0.33) 279.41%);
+}
+*{
+    padding: 0;
+    margin: 0;
 }
 html{
     font-size: 62.5%;
+    
 }
 body{
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
     background: var(--Background);
 }
 /* NAVIGATION BAR */
 header{
     height: 44.8px;
+}
+#header-navbar{
+    background: var(--menu-mobile-background);
 }
 #header-navbar button{
     margin: 8px 0 8px 16px;
@@ -32,7 +41,7 @@ header{
 }
 .navbar-toggler-icon{
     font-size: 16px;
-    background-image: url("./Assets/Hamburguer\ icon.svg");
+    /* background-image: url("./Assets/Hamburguer\ icon.svg"); */
 }
 /* app title */
 #nav-title{
@@ -46,13 +55,13 @@ header{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     /* Bordes al texto */
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 1.2px;
     -webkit-text-stroke-color: black;
 } 
 .navbarSupported{
     padding: 0 16px 0 16px;
+    border: 1px solid black;
     border-radius: 0 0 12px 12px;
-    background: var(--menu-mobile-background);
     box-shadow: 0px 8px 4px #000000;
 }
 .navbarSupported p{
@@ -81,6 +90,7 @@ header{
 }
 
 /* MAIN */
+/* Serching bar */
 .main-search-container form input{
     border: none;
     background: var(--menu-mobile-background);  
@@ -88,18 +98,48 @@ header{
 .main-search-container i{
     font-size: 16px;
 }
+/* Trendings and Popular sections*/
+#trending h2, #popular h2{
+    font-size: var(--text24);
+    font-weight: 700;
+    color: var(--subtitle);
 
-/* Trendings */
-#trending .trending-cards__container{
-    height: 300px;
-    width: auto;
+    /* Color de fondo */
+    background: var(--subtitle);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Bordes al texto */
+    -webkit-text-stroke-width: 0.3px;
+    -webkit-text-stroke-color: black;
+    
 }
-#trending .trending-cards__container div{
-    width: 100px;
-    height: 100px;
-    border: 1px solid red;
-    background-color: white;
+#trending .trending__cards-container, #popular .popular__cards-container{
+    height: 250px;
+    width: 100%;
+    min-width: 288px;
+    overflow-x: scroll;
+    overscroll-behavior-x:contain;
+    scroll-snap-type: x mandatory;
+   
 }
+#trending .trending__cards-container div, #popular .popular__cards-container div{
+    min-width:156px;
+    height: 168px;
+    border-radius: 8px;
+    background: url("./Assets/Kimetsu_no_Yaiba.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    scroll-snap-align: center;
+    filter: drop-shadow(4px 4px 5px #090707);
+}
+.trending__cards-container--sidebar::-webkit-scrollbar{
+    -webkit-appearance: none;
+}
+.popular__cards-container--sidebar::-webkit-scrollbar{
+    -webkit-appearance: none;
+}
+
 
 
 
@@ -109,6 +149,7 @@ header{
         box-shadow: 0px 8px 4px #000000;
     }
     .navbarSupported{ 
+        border: none;
         border-radius: none;
         background: none;
         box-shadow: none;

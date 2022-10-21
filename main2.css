@@ -1,0 +1,20 @@
+/* Trendings */
+#tredings{
+    width: 100%;
+}
+.trending-cards__container{
+    display: flex;
+    gap: 10px;
+    height: 300px;
+    width: 100%;
+    background: blue;
+   /*  overflow-x: scroll;
+    overscroll-behavior-x:contain;
+    scroll-snap-type: x mandatory; */
+}
+.trending-cards__container div{
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    background-color: white;
+}
