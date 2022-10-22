@@ -1,0 +1,19 @@
+{
+  "name": "moviepage-api",
+  "version": "1.0.0",
+  "description": "Aplicación web para consultar y visualizar información de películas por categorías distintas haciendo uso de una API",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maeno323/moviePage-API.git"
+  },
+  "author": "César Cortés",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Maeno323/moviePage-API/issues"
+  },
+  "homepage": "https://github.com/Maeno323/moviePage-API#readme"
+}
