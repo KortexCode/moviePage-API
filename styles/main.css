@@ -63,13 +63,14 @@ main{
     scroll-snap-type: x mandatory;
    
 }
-#trending .trending__cards-container a, #popular .popular__cards-container a{
-    min-width:156px;
+#trending .trending__cards-container img, #popular .popular__cards-container img{
+    width:156px;
     height: 168px;
     border-radius: 8px;
-    background: url("../Assets/Kimetsu_no_Yaiba.png");
+    object-fit: cover;
+   /*  background: url("../Assets/Kimetsu_no_Yaiba.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     scroll-snap-align: center;
     filter: drop-shadow(4px 4px 5px #090707);
     transition: all;
