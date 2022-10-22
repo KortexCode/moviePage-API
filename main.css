@@ -30,6 +30,7 @@ header{
     height: 44.8px;
 }
 #header-navbar{
+    z-index: 1;
     background: var(--menu-mobile-background);
 }
 #header-navbar button{
@@ -58,11 +59,15 @@ header{
     -webkit-text-stroke-width: 1.2px;
     -webkit-text-stroke-color: black;
 } 
+hr{
+    border: black;
+}
 .navbarSupported{
     padding: 0 16px 0 16px;
     border: 1px solid black;
     border-radius: 0 0 12px 12px;
     box-shadow: 0px 8px 4px #000000;
+    
 }
 .navbarSupported p{
     font-size: var(--text24);
@@ -139,8 +144,15 @@ header{
 .popular__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
-
-
+#mobile-tag-bar{
+    width: 200px;
+    height: 200px;
+}
+#mobile-tag-bar .col-4{
+    width: 50px;
+    height: 50px;
+    background: aqua;
+}
 
 
 @media(min-width:768px) {
