@@ -56,27 +56,24 @@ main{
     -webkit-text-stroke-color: black;
 }
 #trending .trending__cards-container, #popular .popular__cards-container{
-    height: 220px;
+    height: 350px;
     width: 100%;
     overflow-x: scroll;
-    overscroll-behavior-x:contain;
+    overscroll-behavior-x:auto;
     scroll-snap-type: x mandatory;
    
 }
 #trending .trending__cards-container img, #popular .popular__cards-container img{
-    width:156px;
-    height: 168px;
+    width:250px;
+    height: 270px;
     border-radius: 8px;
     object-fit: cover;
-   /*  background: url("../Assets/Kimetsu_no_Yaiba.png");
-    background-repeat: no-repeat;
-    background-size: cover; */
     scroll-snap-align: center;
     filter: drop-shadow(4px 4px 5px #090707);
     transition: all;
     transition-duration: 0.5s; 
 }
-#trending .trending__cards-container a:hover, #popular .popular__cards-container a:hover{
+#trending .trending__cards-container img:hover, #popular .popular__cards-container img:hover{
     cursor: pointer; 
     transform: translateY(-5px);
 }
