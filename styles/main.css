@@ -24,7 +24,7 @@ html{
 body{
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background: var(--Background);
+   background: var(--Background);
 }
 
 /*HOME*/
@@ -59,7 +59,8 @@ main{
     height: 350px;
     width: 100%;
     overflow-x: scroll;
-    overscroll-behavior-x:auto;
+    overflow-y: hidden;
+    overscroll-behavior-x:none;
     scroll-snap-type: x mandatory;
    
 }
