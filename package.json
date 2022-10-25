@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Maeno323/moviePage-API/issues"
   },
-  "homepage": "https://github.com/Maeno323/moviePage-API#readme"
+  "homepage": "https://github.com/Maeno323/moviePage-API#readme",
+  "dependencies": {
+    "axios": "^1.1.3"
+  }
 }

@@ -21,7 +21,7 @@ header{
 #nav-title{
     margin: 8px 0;
     padding: 0 16px 0 16px;
-    font-size: var(--text24);
+    font-size: 2rem;
     font-weight: 600;
     color: red;
     /* Color de fondo */
@@ -70,6 +70,12 @@ hr{
     /* Bordes al texto */
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: black;
+    transform: color;
+    transition: all 200ms;
+}
+.nav-item span:hover{
+   color: black;
+   cursor: pointer;
 }
 .nav-item a i{
     padding-right: 4px;
@@ -96,17 +102,4 @@ hr{
 }
 #dropdown-mobile-items li{
     width: 50%;
-}
-@media(min-width:768px) {
-    #header-navbar{
-        background: var(--menu-mobile-background);
-        box-shadow: 0px 8px 4px #000000;
-    }
-    .navbarSupported{ 
-        border: none;
-        border-radius: none;
-        background: none;
-        box-shadow: none;
-    }
-
 }
