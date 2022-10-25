@@ -13,8 +13,10 @@
     <!--Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- CSS -->
-    <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/desktop.css" media="(min-width: 768px)">
+   
     <!-- <link rel="stylesheet" href="./styles/navbar.css"> -->
     <!-- JS -->
     
@@ -32,19 +34,16 @@
                 <div class="collapse navbar-collapse navbarSupported z-2 d-md-flex justify-content-md-end pb-3 pb-md-0" id="navbarSupportedContent">                  
                     <p class="pt-2 mb-1 d-md-none">Category</p>
                     <hr class="border border-dark border-1">
-                    <ul class="navbar-nav d-md-flex align-items-md-center">
+                    <ul id="category-mobile-menu" class="navbar-nav d-md-flex align-items-md-center">
                       <li class="nav-item d-none d-md-block pe-3">
                         <div class="dropdown">
                           <span class="dropdown-toggle" type="text" data-bs-toggle="dropdown" aria-expanded="false">
                             Categories
                           </span>
                           <ul id="category-desktop-menu" class="dropdown-menu mt-3">
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Action</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Anime</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Adventure</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Comedy</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Drama</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Science fiction</a></li>
+                            <div id="dropdown-items-container" class="container-fluid d-flex flex-wrap flex-column">
+
+                            </div>
                           </ul>
                         </div>
                       </li>
@@ -57,24 +56,10 @@
                       <li class="nav-item d-none d-md-block pe-2">
                         <a class="nav-link" href="#">User</a>
                       </li>
-                      <li class="nav-item d-md-none">
-                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Action</a>
-                      </li>
-                      <li class="nav-item d-md-none">
-                        <a class="nav-link" d-flex align-items-center href="#"><i class="fa-solid fa-circle  text-dark"></i>Anime</a>
-                      </li>
-                      <li class="nav-item d-md-none">
-                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Adventure</a>
-                      </li>
-                      <li class="nav-item d-md-none">
-                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Comedy</a>
-                      </li>
-                      <li class="nav-item d-md-none">
-                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Drama</a>
-                      </li>
-                      <li class="nav-item d-md-none">
-                        <a class="nav-link d-flex align-items-center" href="#"><i class="fa-solid fa-circle text-dark"></i>Science fiction</a>
-                      </li>
+                      <div id="dropdown-mobile-items" class="container-fluid d-flex flex-column d-md-none flex-wrap gap-2">
+
+                      </div>
+                      
                     </ul>
                     <form class="d-md-flex align-items-center d-none ms-3" role="search">
                       <input class="form-control form-control-lg me-2" type="search" placeholder="Search" aria-label="Search">
@@ -97,16 +82,22 @@
         </div>     
       </div>
         
-      <section id="trending" class="mx-4 mt-md-4">
+      <section id="trending" class="mx-4 mt-md-4 d-none">
         <h2>Trending</h2>
         <div class="trending__cards-container trending__cards-container--sidebar d-flex align-items-center gap-4">
          
         </div>
       </section>
-      <section id="categories" class="mx-4 mt-md-4 d-none">
-        <h2>Category</h2>
-        <div class="category__cards-container g-col-2" style="--bs-gap:2">
-         
+      <section id="categories" class="px-4 mt-md-5">
+        <div id="categories__title-container" class="d-flex gap-2 align-items-center pb-4">
+          <i id="categories__arrow-icon" class="pe-4"><img src="./Assets/chevron-left.svg" alt="back arrow"></i>
+          <h2 class="mb-0">Category</h2>
+        </div>
+        <div class="category__cards-container category__cards-container--sidebar">
+          <img src="./Assets/Kimetsu_no_Yaiba.png" alt="">
+          <img src="./Assets/Kimetsu_no_Yaiba.png" alt="">
+          <img src="./Assets/Kimetsu_no_Yaiba.png" alt="">
+          <img src="./Assets/Kimetsu_no_Yaiba.png" alt="">
         </div>
       </section>
     <!--   <section id="popular" class="mx-4">
@@ -117,7 +108,7 @@
       </section> -->
     </main>
     <div id="mobile-tag-bar" class="position-fixed bottom-0 d-md-none container-fluid d-flex align-items-center justify-content-around">
-      <i class="fa-solid fa-house"></i>
+      <a href=""><i class="fa-solid fa-house"></i></a>
       <i class="fa-solid fa-heart"></i>
       <i class="fa-solid fa-user"></i>
     </div>

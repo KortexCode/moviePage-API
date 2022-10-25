@@ -41,7 +41,7 @@ main{
     font-size: 16px;
 }
 /* Trendings and Popular sections*/
-#trending h2, #popular h2{
+#trending h2, #popular h2, #categories h2{
     font-size: var(--text24);
     font-weight: 700;
     color: var(--subtitle);
@@ -55,8 +55,11 @@ main{
     -webkit-text-stroke-width: 0.3px;
     -webkit-text-stroke-color: black;
 }
-#trending .trending__cards-container, #popular .popular__cards-container{
-    height: 350px;
+#trending .trending__cards-container, #popular .popular__cards-container, #categories .category__cards-container{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    height: 320px;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -64,7 +67,8 @@ main{
     scroll-snap-type: x mandatory;
    
 }
-#trending .trending__cards-container img, #popular .popular__cards-container img{
+#trending .trending__cards-container img, 
+#popular .popular__cards-container img, #categories .category__cards-container img{
     width:250px;
     height: 270px;
     border-radius: 8px;
@@ -74,7 +78,8 @@ main{
     transition: all;
     transition-duration: 0.5s; 
 }
-#trending .trending__cards-container img:hover, #popular .popular__cards-container img:hover{
+#trending .trending__cards-container img:hover, #popular .popular__cards-container img:hover,
+#categories .category__cards-container img:hover{
     cursor: pointer; 
     transform: translateY(-5px);
 }
@@ -84,6 +89,17 @@ main{
 .popular__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
+.category__cards-container--sidebar::-webkit-scrollbar{
+    -webkit-appearance: none;
+}
+
+/* Category section */
+#categories__title-container #categories__arrow-icon img{
+   width: 24px;
+   height: 24px;   
+} 
+
+/* MOBILE TAG BAR*/
 #mobile-tag-bar{
     height: 48px;
     background: var(--background-bars);

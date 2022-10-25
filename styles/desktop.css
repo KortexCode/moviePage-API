@@ -1,0 +1,10 @@
+#categories .category__cards-container{
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+    gap: 16px;
+    height: auto;
+    overflow: none;
+    
+}
