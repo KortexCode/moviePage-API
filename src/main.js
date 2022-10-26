@@ -1,14 +1,15 @@
 
 //AXIOS INSTANCE
-const axiosInstance = require('axios').default;
 /* Se crea la instancia de axios con tres propiedades */
-axiosInstance = axios.create({
-    baseURL: "https://api.themoviedb.org/3",
-    headers:{"Content-Type": "application/json;charset=utf-8"},
-    params:{
-        "apiKey" : API_KEY,
-    }
-})
+const api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3/',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    params: {
+      'api_key': API_KEY,
+    },
+  });
 
 async function trendingMovieView(){
     try{
@@ -34,6 +35,7 @@ async function trendingMovieView(){
     
 
 }
+
 //Cargar las categorías en el menú Desktop, Desktop dropdown button.
 async function categoryMovieView(){
    /*  Se realiza consulta por genéros de películas */
@@ -41,9 +43,8 @@ async function categoryMovieView(){
     const data = await res.json();
     console.log("data", data); */
  try{
-     const {data} = await axiosInstance("/genre/movie/list");
-     console.log(await axiosInstance("/genre/movie/list"));
- 
+     const {data} = await api("genre/movie/list");//El resultado no necesita de json()
+     
      const categoryDesktop = document.getElementById("category-desktop-menu");
      const categoryMobile = document.getElementById("category-mobile-menu");
      const dropItemsContainer = document.getElementById("dropdown-items-container");
@@ -86,7 +87,7 @@ async function categoryMovieView(){
 
  }
  catch(error){
-    console.log("sorry"+error);
+    console.log("sorry "+ error);
  }
        
        
