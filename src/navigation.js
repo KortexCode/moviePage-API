@@ -1,9 +1,18 @@
+location.hash = "#home";
 /* Aquí se reciben los eventos que generan un cambio de vista en el DOM */
-location.hash = "#trends";
+searchingArrowBack.addEventListener("click", ()=>{
+    location.hash = "#trends";    
+}, false);
+categoriesArrowBack.addEventListener("click", ()=>{
+    location.hash = "#trends";    
+}, false);
+
+
 /* Se decta el cambio en el hash y la primera carga del Dom al iniciar la aplicación */
 window.addEventListener("DOMContentLoaded", navigator, false);
 window.addEventListener("hashchange", navigator, false);
 
+//Aquí se verifica si cual fue el cambio que sufrió el hash para mandar a llamar la vista deseada
 function navigator(){
 
     location.hash.startsWith("#trends") ? homePage() :  location.hash.startsWith("#search=") ? searchPage()
@@ -13,18 +22,32 @@ function navigator(){
 
 function homePage(){
     console.log("Home");
-    categories.classList.add("d-none");
-    trendingMovieView();
+    category.classList.add("d-none");
+    searching.classList.add("d-none");
+    searchBar.classList.remove("d-none");
+    trending.classList.remove("d-none");
+
+    
+    if(!(trendingCardsContainer.children.length > 0)){
+        trendingMovieView();
+    }
+    
+    /* console.log(Array.from(trendingCardsContainer.children)) */
 }
 function categoryhPage(){
-    cat
     console.log("Category");
+    trending.classList.add("d-none");
+    searchBar.classList.add("d-none");
+    category.classList.remove("d-none");
+    
     
 }
-/* function searchPage(){
+function searchPage(){
     console.log("Search");
+    trending.classList.add("d-none");
+    searchBar.classList.add("d-none");
+    searching.classList.remove("d-none");
 }
 function moviePage(){
     console.log("Movie");
 }
- */

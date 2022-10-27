@@ -1,0 +1,4 @@
+#trending .trending__cards-container img:hover, #popular .popular__cards-container img:hover,
+#categories .category__cards-container img:hover, #searching .searching__cards-container img:hover{
+    transform: none;
+}

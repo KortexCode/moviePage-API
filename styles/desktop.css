@@ -1,4 +1,4 @@
-#categories .category__cards-container{
+#categories .category__cards-container, #searching .searching__cards-container{
     
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
