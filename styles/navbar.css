@@ -56,7 +56,8 @@ hr{
 #header-navbar .form-control{
     height: 5px;
 }
-.nav-item a{
+.nav-item h3, .nav-item a{
+
     font-size: var(--text16);
     font-weight: 600;
     color: White;
@@ -64,6 +65,10 @@ hr{
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: black;
 }
+.nav-item h3:hover, .nav-item a:hover{
+    cursor: pointer;
+}
+
 .nav-item span{
     font-size: var(--text16);
     font-weight: 600;
@@ -78,7 +83,7 @@ hr{
    color: black;
    cursor: pointer;
 }
-.nav-item a i{
+.nav-item a i, .nav-item h3 i{
     padding-right: 4px;
     font-size: 8px;
 }

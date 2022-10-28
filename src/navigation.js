@@ -1,4 +1,3 @@
-location.hash = "#movie";
 /* Aquí se reciben los eventos que generan un cambio de vista en el DOM */
 searchingArrowBack.addEventListener("click", ()=>{
     location.hash = "#trends";    
