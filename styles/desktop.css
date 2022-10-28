@@ -1,14 +1,15 @@
-#categories .category__cards-container, #searching .searching__cards-container{
+/* CATEGORY AND SEARCHING SECTION */
+#categories .category__cards-container, #searching .searching__cards-container,
+#related-movies .related-movie__cards-container{
     
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
-    justify-content: center;
     gap: 16px;
     height: auto;
     overflow: none;
     
 }
-
+/* NAV BAR */
 #header-navbar{
     background: var(--menu-mobile-background);
     box-shadow: 0px 8px 4px #000000;
@@ -18,4 +19,10 @@
     border-radius: none;
     background: none;
     box-shadow: none;
+}
+/* DETAIL SECTION */
+/* RELATED MOVIES */
+#movie-detail #related-movies{
+    height: 270px;
+    
 }

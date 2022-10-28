@@ -1,8 +1,9 @@
 /* NAVIGATION BAR */
 header{
-    height: 44.8px;
+    height: 52px;
 }
 #header-navbar{
+   /*  height: 52px; */
     z-index: 1;
     background: var(--background-bars);
 }

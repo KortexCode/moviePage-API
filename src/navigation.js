@@ -1,9 +1,12 @@
-location.hash = "#home";
+location.hash = "#movie";
 /* Aquí se reciben los eventos que generan un cambio de vista en el DOM */
 searchingArrowBack.addEventListener("click", ()=>{
     location.hash = "#trends";    
 }, false);
 categoriesArrowBack.addEventListener("click", ()=>{
+    location.hash = "#trends";    
+}, false);
+movieDetailArrowBacK .addEventListener("click", ()=>{
     location.hash = "#trends";    
 }, false);
 
@@ -16,7 +19,7 @@ window.addEventListener("hashchange", navigator, false);
 function navigator(){
 
     location.hash.startsWith("#trends") ? homePage() :  location.hash.startsWith("#search=") ? searchPage()
-    : location.hash.startsWith("#movie") ?  moviePage() : location.hash.startsWith("#category") ? categoryhPage() 
+    : location.hash.startsWith("#movie") ?  movieDetailPage() : location.hash.startsWith("#category") ? categoryhPage() 
     : homePage();
 }
 
@@ -24,6 +27,7 @@ function homePage(){
     console.log("Home");
     category.classList.add("d-none");
     searching.classList.add("d-none");
+    movieDetail.classList.add("d-none");
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
 
@@ -38,6 +42,8 @@ function categoryhPage(){
     console.log("Category");
     trending.classList.add("d-none");
     searchBar.classList.add("d-none");
+    searching.classList.add("d-none");
+    movieDetail.classList.add("d-none");
     category.classList.remove("d-none");
     
     
@@ -46,8 +52,16 @@ function searchPage(){
     console.log("Search");
     trending.classList.add("d-none");
     searchBar.classList.add("d-none");
+    category.classList.add("d-none");
+    movieDetail.classList.add("d-none");
     searching.classList.remove("d-none");
 }
-function moviePage(){
+function movieDetailPage(){
     console.log("Movie");
+    trending.classList.add("d-none");
+    searchBar.classList.add("d-none");
+    searching.classList.add("d-none");
+    category.classList.add("d-none");
+    movieDetail.classList.remove("d-none");
+
 }

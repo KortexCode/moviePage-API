@@ -6,12 +6,14 @@
     --mobile-search-input: rgba(160, 65, 65, 0.74); 
     /* fonts*/
     --text24:2.4rem;
+    --text20:2rem;
     --text18:1.8rem;
     --text16:1.6rem;
     --text14:1.4rem;
     /* Text Color */
     --title:-webkit-linear-gradient(180deg, #C72B2B 0%, rgba(244, 8, 8, 0.33) 279.41%);
     --subtitle:linear-gradient(180deg, #C72B2B 0%, rgba(244, 8, 8, 0.33) 279.41%);
+    --white: rgba(255, 255, 255, 1);
 }
 *{
     padding: 0;
@@ -28,21 +30,14 @@ body{
 }
 
 /*HOME*/
-/* main */
+/* MAIN*/
 main{
-    padding-bottom: 48px;
+   /*  padding-bottom: 48px; */
 }
-/* Serching bar */
-.main-search-container form input{
-    border: none;
-    background: var(--mobile-search-input);  
-}
-.main-search-container i{
-    font-size: 16px;
-}
-/* Trendings and Popular sections*/
-#section-title{
-    font-size: var(--text24);
+
+/*Every section title*/
+.section-title{
+    font-size: var(--text20);
     font-weight: 700;
     color: var(--subtitle);
 
@@ -55,6 +50,17 @@ main{
     -webkit-text-stroke-width: 0.3px;
     -webkit-text-stroke-color: black;
 }
+
+/* Serching bar */
+.main-search-container form input{
+    border: none;
+    background: var(--mobile-search-input);  
+}
+.main-search-container i{
+    font-size: 16px;
+}
+
+/* Trendings, Popular and searching sections*/
 #trending .trending__cards-container, #popular .popular__cards-container, #categories .category__cards-container,
 #searching .searching__cards-container{
     display: flex;
@@ -96,6 +102,54 @@ main{
 .searching__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
+
+/* MOVIE DETAIL SECTION */
+#movie-detail h2{
+    margin:0;
+}
+#movie-detail__container{
+    height: 280px;
+    background-image: url("../Assets/Kimetsu_no_Yaiba.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#movie-detail__article-details #movie-detail__description{
+    font-size: var(--text14);
+    font-weight:300;
+    line-height: 2.1rem;
+    color: var(--white);
+}
+/*Movide-detail - related-movies*/
+#related-movies .related-movie__cards-container{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    height: 225px;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overscroll-behavior-x:none;
+    scroll-snap-type: x mandatory;
+   
+}
+#related-movies .related-movie__cards-container img{
+    width:170px;
+    height: 180px;
+    border-radius: 8px;
+    object-fit: cover;
+    scroll-snap-align: center;
+    filter: drop-shadow(4px 4px 5px #090707);
+    transition: all;
+    transition-duration: 0.5s; 
+}
+#related-movies .related-movie__cards-container img:hover{
+    cursor: pointer; 
+    transform: translateY(-5px);
+}
+.related-movie__cards-container--sidebar::-webkit-scrollbar{
+    -webkit-appearance: none;
+}
+
 
 /* Arrow Button styles*/
 .section-arrow-icon img{
