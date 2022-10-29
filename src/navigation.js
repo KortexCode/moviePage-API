@@ -23,32 +23,33 @@ function navigator(){
 }
 
 function homePage(){
-    console.log("Home");
+    //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
     searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
-
-    
+    //Si ya hay elementos cargados no hará nuevamente la consulta
     if(!(trendingCardsContainer.children.length > 0)){
         trendingMovieView();
     }
-    
-    /* console.log(Array.from(trendingCardsContainer.children)) */
 }
 function categoryhPage(){
-    console.log("Category");
+    //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     searchBar.classList.add("d-none");
     searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
     category.classList.remove("d-none");
-    
-    
+    //Se obtiene el id y nombre de categoría del hash usando split
+    let [vista, categoryIdName] = location.hash.split("=");
+    const [categoryId, categoryName] = categoryIdName.split("_");
+    //manda a construir la vista de categorías con las películas a consultar
+    getMovieByCategory(categoryName, categoryId); 
 }
 function searchPage(){
     console.log("Search");
+    //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     searchBar.classList.add("d-none");
     category.classList.add("d-none");
@@ -57,6 +58,7 @@ function searchPage(){
 }
 function movieDetailPage(){
     console.log("Movie");
+    //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     searchBar.classList.add("d-none");
     searching.classList.add("d-none");

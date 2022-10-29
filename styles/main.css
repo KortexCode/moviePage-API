@@ -5,6 +5,7 @@
     --menu-mobile-background:  linear-gradient(180deg, rgba(182, 43, 43, 0.82) 0%, rgba(244, 8, 8, 0.88) 279.41%);
     --mobile-search-input: rgba(160, 65, 65, 0.74); 
     /* fonts*/
+    --text26:2.6rem;
     --text24:2.4rem;
     --text20:2rem;
     --text18:1.8rem;
@@ -37,7 +38,7 @@ main{
 
 /*Every section title*/
 .section-title{
-    font-size: var(--text20);
+    font-size: var(--text24);
     font-weight: 700;
     color: var(--subtitle);
 
@@ -70,7 +71,7 @@ main{
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
-    overscroll-behavior-x:none;
+    overscroll-behavior-x:auto;
     scroll-snap-type: x mandatory;
    
 }
