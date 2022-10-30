@@ -1,12 +1,16 @@
 /* Aquí se reciben los eventos que generan un cambio de vista en el DOM */
-searchingArrowBack.addEventListener("click", ()=>{
-    location.hash = "#trends";    
-}, false);
-categoriesArrowBack.addEventListener("click", ()=>{
-    location.hash = "#trends";    
-}, false);
-movieDetailArrowBacK .addEventListener("click", ()=>{
-    location.hash = "#trends";    
+//Botones de flecha atrás
+for (const item of arrowBack) {
+    item.addEventListener("click", ()=>{
+        window.history.go(-1);
+        location.hash = "#trends";    
+    }, false);
+}
+//Click a al botón de busqueda en el home de mobile
+btn_Search_HomeMobile.addEventListener("click", ()=>{
+    let InputValue = Input.value.split(" ");
+    InputValue = InputValue.join("-");
+    location.hash = "#search="+InputValue;   
 }, false);
 
 
@@ -25,10 +29,11 @@ function navigator(){
 function homePage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
-    searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
+    searching.classList.add("d-none");
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
+
     //Si ya hay elementos cargados no hará nuevamente la consulta
     if(!(trendingCardsContainer.children.length > 0)){
         trendingMovieView();
@@ -37,7 +42,6 @@ function homePage(){
 function categoryhPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
-    searchBar.classList.add("d-none");
     searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
     category.classList.remove("d-none");
@@ -51,10 +55,14 @@ function searchPage(){
     console.log("Search");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
-    searchBar.classList.add("d-none");
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
     searching.classList.remove("d-none");
+    //Se obtiene el nombre de búsqueda en el hash usando split y join
+    let [vista, searchName] = location.hash.split("=");
+    let query = searchName.split("-");
+    query= query.join(" ");
+    getMovieBySearch(query); 
 }
 function movieDetailPage(){
     console.log("Movie");
@@ -64,5 +72,7 @@ function movieDetailPage(){
     searching.classList.add("d-none");
     category.classList.add("d-none");
     movieDetail.classList.remove("d-none");
-
+    
 }
+
+

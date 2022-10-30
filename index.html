@@ -70,13 +70,14 @@
     </header>
     
     <main>
+     <!--  HOME -->
       <!-- SEARCHING BAR -->
       <div id="home-search" class="d-md-none mx-4 my-5 main-search-container row justify-content-center">
         <div class="col col-sm-8 p-0">
           <form class="d-flex align-items-center" role="search">
             <div class="container-fluid d-flex justify-content-between p-0">
-              <input class="form-control form-control-lg me-3" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-danger me-0 d-flex align-items-center" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <input id="search-Input-Form" class= "form-control form-control-lg me-3" type="search" placeholder="Search" aria-label="Search">
+              <button id="home-search__btn-search" class="btn btn-outline-danger me-0 d-flex align-items-center" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
           </form>
         </div>     
@@ -88,26 +89,19 @@
          
         </div>
       </section>
+      <!--/HOME -->
+
       <!-- CATEGORY SECTION -->
       <section id="categories" class="px-4 mt-5 d-none">
         <div id="categories__title-container" class="d-flex gap-2 align-items-center pb-4">
           <i id="categories__arrow-icon" class="section-arrow-icon"><img src="./Assets/chevron-left.svg" alt="back arrow"></i>
           <h2 class="section-title ps-4 mb-0">Category</h2>
         </div>
-        <div id="category-search" class="d-md-none mx-4 my-3 main-search-container row justify-content-center">
-          <div class="col col-sm-8 p-0">
-            <form class="d-flex align-items-center" role="search">
-              <div class="container-fluid d-flex justify-content-between p-0">
-                <input class="form-control form-control-lg me-3" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-danger me-0 d-flex align-items-center" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-              </div>
-            </form>
-          </div>     
-        </div>
         <div class="category__cards-container category__cards-container--sidebar">
          
         </div>
       </section>
+      <!-- /CATEGORY SECTION -->
 
       <!-- SEARCH SECTION -->
       <section id="searching" class="px-4 mt-5 d-none">
@@ -115,23 +109,12 @@
           <i id="searching__arrow-icon" class="section-arrow-icon"><img src="./Assets/chevron-left.svg" alt="back arrow"></i>
           <h2 class="section-title ps-4 mb-0">Results</h2>
         </div>
-        <div id="searching__search-bar" class="d-md-none mx-4 my-3 main-search-container row justify-content-center">
-          <div class="col col-sm-8 p-0">
-            <form class="d-flex align-items-center" role="search">
-              <div class="container-fluid d-flex justify-content-between p-0">
-                <input class="form-control form-control-lg me-3" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-danger me-0 d-flex align-items-center" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-              </div>
-            </form>
-          </div>     
-        </div>
         <div class="searching__cards-container searching__cards-container--sidebar">
-          <img src="./Assets/Kimetsu_no_Yaiba.png" alt="">
-          <img src="./Assets/Kimetsu_no_Yaiba.png" alt="">
-          <img src="./Assets/Kimetsu_no_Yaiba.png" alt="">
-          <img src="./Assets/Kimetsu_no_Yaiba.png" alt="">
+         
         </div>
       </section>
+      <!-- /SEARCH SECTION -->
+
       <!-- MOVIE DETAIL SECTION -->
       <section id="movie-detail" class="container-fluid px-0 d-none position-relative">
 

@@ -40,7 +40,6 @@ async function categoryMoviePreview(){
      const data = await res.json();*/
     try{
         const {data} = await api("genre/movie/list");//El resultado no necesita de json()
-        console.log("category", data);
         const categoryDesktop = document.getElementById("category-desktop-menu");
         const categoryMobile = document.getElementById("category-mobile-menu");
         const dropItemsContainer = document.getElementById("dropdown-items-container");
@@ -123,6 +122,26 @@ async function getMovieByCategory(name, id){
         categoryTitle.textContent = name;
         const cardsContainer = document.querySelector(".category__cards-container");
          /* se llama a la función que genera las movie cards */   
+        createMoviePosters(res, cardsContainer);
+    }
+    catch(error){
+        console.log("Sorry"+error);
+    }
+}
+//Aquí se genera la insercción de las películas según la consulta realizada por el usuario
+async function getMovieBySearch(query){
+    console.log("la query", query)
+    try{
+         //Consulta a la api axios
+        const res = await api("search/movie",{
+            params: {
+                query,
+            },
+        });
+        //Se obtienen los elementos del html
+        const cardsContainer = document.querySelector(".searching__cards-container");
+        console.log("buscados", res);
+        /* se llama a la función que genera las movie cards */   
         createMoviePosters(res, cardsContainer);
     }
     catch(error){

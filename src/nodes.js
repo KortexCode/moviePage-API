@@ -13,8 +13,11 @@ const searching = node("#searching");
 /* MOVIE DETAIL SECTION */
 const movieDetail = node("#movie-detail");
 /*Buttons*/
-const searchingArrowBack = node("#searching__arrow-icon");
+const arrowBack = document.getElementsByClassName("section-arrow-icon");
+/* const searchingArrowBack = node("#searching__arrow-icon");
 const categoriesArrowBack = node("#categories__arrow-icon");
-const movieDetailArrowBacK = node("#movie-detail__arrow-icon");
-
+const movieDetailArrowBacK = node("#movie-detail__arrow-icon"); */
+const btn_Search_HomeMobile = node("#home-search__btn-search"); 
+/* Inputs */
+const Input = node("#search-Input-Form");
 
