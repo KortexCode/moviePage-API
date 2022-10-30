@@ -22,6 +22,7 @@ async function trendingMovieView(){
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".trending__cards-container");
+        /* cardsContainer.offset({top:0, left:0}) */
         /* se llama a la función que genera las movie cards */
         createMoviePosters(res, cardsContainer);
     }
@@ -45,6 +46,8 @@ async function categoryMoviePreview(){
         const dropItemsContainer = document.getElementById("dropdown-items-container");
         const dropdownMobileItems = document.getElementById("dropdown-mobile-items");
 
+        //TO DO: Crear una sola función, hacer uso dela ncho del windows para saber si es mobile o desktop
+        //el objetivo es dejar un sólo for of. 
         for(const item of data.genres) {
             //Se crean las etiquetas y se agregan atributos y clases
             const li = document.createElement("li");
@@ -125,15 +128,12 @@ async function getMovieByCategory(name, id){
     catch(error){
         console.log("Sorry"+error);
     }
-    
-
 }
 
 function createMoviePosters(res, cardsContainer){
     //Se borra todo lo que halla en la sección contenedora antes de volver a realizar construcción de elementos en el html
     cardsContainer.innerHTML = "";
-    cardsContainer.scrollLeft=0;
-    cardsContainer.scrollTop=0;
+   
     const fragment = [];
     for (const item of res.data.results) {
        
@@ -141,8 +141,8 @@ function createMoviePosters(res, cardsContainer){
         movieImg.setAttribute("alt", item.original_title);
         movieImg.src= "https://image.tmdb.org/t/p/w500"+item.poster_path;
         fragment.push(movieImg);
+        
     }
-
     cardsContainer.append(...fragment);
 }
 

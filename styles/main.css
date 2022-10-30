@@ -69,7 +69,7 @@ main{
     align-items: center;
     height: 320px;
     width: 100%;
-    overflow-x: scroll;
+    overflow: scroll;
     overflow-y: hidden;
     overscroll-behavior-x:auto;
     scroll-snap-type: x mandatory;
@@ -81,7 +81,7 @@ main{
     height: 270px;
     border-radius: 8px;
     object-fit: cover;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     filter: drop-shadow(4px 4px 5px #090707);
     transition: all;
     transition-duration: 0.5s; 
