@@ -76,7 +76,8 @@ main{
    
 }
 #trending .trending__cards-container img, 
-#popular .popular__cards-container img, #categories .category__cards-container img, #searching .searching__cards-container img{
+#popular .popular__cards-container img, #categories .category__cards-container img, #searching .searching__cards-container img,
+#trending-list .trending-list__cards-container img{
     width:250px;
     height: 270px;
     border-radius: 8px;
@@ -87,7 +88,8 @@ main{
     transition-duration: 0.5s; 
 }
 #trending .trending__cards-container img:hover, #popular .popular__cards-container img:hover,
-#categories .category__cards-container img:hover, #searching .searching__cards-container img:hover{
+#categories .category__cards-container img:hover, #searching .searching__cards-container img:hover,
+#trending-list__cards-container img:hover{
     cursor: pointer; 
     transform: translateY(-5px);
 }
@@ -103,7 +105,14 @@ main{
 .searching__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
-
+/*TRENDING LIST SECTION*/
+.trending-list__cards-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+    gap: 16px;
+    height: auto;
+}
 /* MOVIE DETAIL SECTION */
 #movie-detail h2{
     margin:0;
@@ -160,6 +169,11 @@ main{
 .section-arrow-icon:hover{
    cursor: pointer;  
 } 
+/*View more button*/
+#trending__btn-view-more{
+    font-size: var(--text14);
+    font-weight: 600;
+}
 
 /* MOBILE TAG BAR*/
 #mobile-tag-bar{

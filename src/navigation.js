@@ -18,7 +18,10 @@ btn_search_desktop.addEventListener("click", ()=>{
         inputValue = inputValue.join("-");
         location.hash = "#search="+inputValue;              
     }, false);
-
+//Botón de ver más
+btn_view_more.addEventListener("click", ()=>{
+    location.hash = "#more-trends";              
+}, false);
 
 
 
@@ -31,7 +34,7 @@ function navigator(){
 
     location.hash.startsWith("#trends") ? homePage() :  location.hash.startsWith("#search=") ? searchPage()
     : location.hash.startsWith("#movie") ?  movieDetailPage() : location.hash.startsWith("#category") ? categoryhPage() 
-    : homePage();
+    : location.hash.startsWith("#more-trends") ? trendingListPage() : homePage();
 }
 
 function homePage(){
@@ -39,12 +42,27 @@ function homePage(){
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
     searching.classList.add("d-none");
+    trendingList.classList.add("d-none");
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
 
     //Si ya hay elementos cargados no hará nuevamente la consulta
     if(!(trendingCardsContainer.children.length > 0)){
         trendingMovieView();
+    }
+}
+function trendingListPage(){
+    //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
+    category.classList.add("d-none");
+    movieDetail.classList.add("d-none");
+    searching.classList.add("d-none");
+    trending.classList.add("d-none");
+    searchBar.classList.add("d-none");
+    trendingList.classList.remove("d-none");
+   
+    //Si ya hay elementos cargados no hará nuevamente la consulta
+    if(!(trendingCardsContainerList.children.length > 0)){
+        trendingMovieViewMore();
     }
 }
 function categoryhPage(){

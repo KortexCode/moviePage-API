@@ -22,15 +22,26 @@ async function trendingMovieView(){
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".trending__cards-container");
-        /* cardsContainer.offset({top:0, left:0}) */
         /* se llama a la función que genera las movie cards */
         createMoviePosters(res, cardsContainer);
     }
     catch(error){
         console.log("Sorry"+error);
     }
-    
-
+}
+async function trendingMovieViewMore(){
+    try{
+        //Consulta a la api axios
+        const res = await api("trending/movie/day");
+        console.log("data", res); 
+        //Se obtiene el contenedor de la sección de trending
+        const cardsContainer = document.querySelector(".trending-list__cards-container");
+        /* se llama a la función que genera las movie cards */
+        createMoviePosters(res, cardsContainer);
+    }
+    catch(error){
+        console.log("Sorry"+error);
+    }
 }
 
 //Cargar las categorías en el menú Desktop y el menú Mobile

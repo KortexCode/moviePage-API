@@ -6,6 +6,9 @@ const searchBar = node("#home-search");
 /* TRENDING SECTION */
 const trending = node("#trending");
 const trendingCardsContainer = node(".trending__cards-container");
+/* TRENDING LIST SECTION */
+const trendingList = node("#trending-list");
+const trendingCardsContainerList = node(".trending-list__cards-container");
 /* CATEGORY SECTION*/
 const category = node("#categories");
 /* SEARCHING SECTION*/
@@ -16,6 +19,7 @@ const movieDetail = node("#movie-detail");
 const arrowBack = document.getElementsByClassName("section-arrow-icon");
 const btn_search_mobile = node("#btn-search-Mobile");
 const btn_search_desktop = node("#btn-search-Desktop");
+const btn_view_more = node("#trending__btn-view-more");
 /* Inputs */
 const inputMobile = node("#home-search__input-mobile");
 const inputDesktop = node("#home-search__input-desktop");
