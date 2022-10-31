@@ -1,6 +1,5 @@
 /* CATEGORY AND SEARCHING SECTION */
-#categories .category__cards-container, #searching .searching__cards-container,
-#related-movies .related-movie__cards-container{
+#categories .category__cards-container, #searching .searching__cards-container{
     
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
@@ -27,4 +26,9 @@
 #movie-detail #related-movies{
     height: 270px;
     
+}
+@media(min-width:1028px){
+    #movie-detail__dark-layer{
+        height: 55%;           
+    }
 }
