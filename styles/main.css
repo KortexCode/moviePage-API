@@ -118,16 +118,31 @@ main{
     margin:0;
 }
 #movie-detail__container{
-    height: 280px;
+    min-height: 280px;
+    width: 100%;
     background-image: url("../Assets/Kimetsu_no_Yaiba.png");
     background-repeat: no-repeat;
     background-size: cover;
+}
+#movie-detail__arrow-icon{
+    padding-bottom: 113px;
+}
+#movie-detail__article-details{
+    z-index: 1;
+    height: auto;
+    
 }
 #movie-detail__article-details #movie-detail__description{
     font-size: var(--text14);
     font-weight:300;
     line-height: 2.1rem;
     color: var(--white);
+}
+#movie-detail__dark-layer{
+    height: 170px;
+    box-shadow: 0px -6px 20px 30px rgba(6, 6, 6, 0.56);
+    background-color: rgba(6, 6, 6, 0.56);
+   
 }
 /*Movide-detail - related-movies*/
 #related-movies .related-movie__cards-container{

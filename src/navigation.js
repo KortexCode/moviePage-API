@@ -68,6 +68,7 @@ function trendingListPage(){
 function categoryhPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
+    trendingList.classList.add("d-none");
     searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
     category.classList.remove("d-none");
@@ -81,6 +82,7 @@ function searchPage(){
     console.log("Search");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
+    trendingList.classList.add("d-none");
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
     searching.classList.remove("d-none");
@@ -94,6 +96,7 @@ function movieDetailPage(){
     console.log("Movie");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
+    trendingList.classList.add("d-none");
     searchBar.classList.add("d-none");
     searching.classList.add("d-none");
     category.classList.add("d-none");

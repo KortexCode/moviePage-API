@@ -168,6 +168,9 @@ function createMoviePosters(res, cardsContainer){
     for (const item of res.data.results) {
        
         const movieImg = document.createElement("img");
+        movieImg.addEventListener("click", () =>{
+            location.hash ="#movie";
+        },false)
         movieImg.setAttribute("alt", item.original_title);
         movieImg.src= "https://image.tmdb.org/t/p/w500"+item.poster_path;
         fragment.push(movieImg);
