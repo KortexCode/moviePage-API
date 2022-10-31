@@ -101,6 +101,11 @@ function movieDetailPage(){
     searching.classList.add("d-none");
     category.classList.add("d-none");
     movieDetail.classList.remove("d-none");
+
+    let [vista, movieId] = location.hash.split("=");
+    let id = movieId.split("-");
+    id = id.join(" ");
+    getMovieById(id); 
     
 }
 

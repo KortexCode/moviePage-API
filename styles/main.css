@@ -139,6 +139,16 @@ main{
     line-height: 2.1rem;
     color: var(--white);
 }
+#movie-detail__category{
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    
+}
+#movie-detail__category-container{
+    height: 70px;
+    width: 300px;
+}
 #movie-detail__dark-layer{
     top: 40%;
     width: 100%;

@@ -159,17 +159,48 @@ async function getMovieBySearch(query){
         console.log("Sorry"+error);
     }
 }
+//Aquí se genera la insercción de detalles de una película en la sección de detalles.
+async function getMovieById(id){
+    console.log("El id", id)
+    try{
+         //Consulta a la api axios
+        const movie = await api("movie/"+id);
+        console.log("película clikeada", movie);
+        //Se obtienen los elementos del html
+        const node = (node) => document.querySelector(node);
+        const title = node("#movie-detail__title");
+        const description = node("#movie-detail__description");
+        //Se agrega información de título y descripción
+        title.textContent = movie.data.title;
+
+        description.textContent = movie.data.overview;
+        
+
+        
+
+        const categoryContainer = document.querySelector("#movie-detail__category-container");
+        console.log("buscados", movie);
+        /* Se guarda el array con las categorías de la película  */
+        const genresArray = movie.data.genres;
+        /* Esta función creará las categorías y las introducirá en el contenedor */
+        createCategoryContainer(genresArray, categoryContainer)
+    }
+    catch(error){
+        console.log("Sorry"+error);
+    }
+}
+
 
 function createMoviePosters(res, cardsContainer){
     //Se borra todo lo que halla en la sección contenedora antes de volver a realizar construcción de elementos en el html
     cardsContainer.innerHTML = "";
-   
+    console.log(res);
     const fragment = [];
     for (const item of res.data.results) {
        
         const movieImg = document.createElement("img");
         movieImg.addEventListener("click", () =>{
-            location.hash ="#movie";
+            location.hash ="#movie="+item.id;
         },false)
         movieImg.setAttribute("alt", item.original_title);
         movieImg.src= "https://image.tmdb.org/t/p/w500"+item.poster_path;
@@ -177,6 +208,28 @@ function createMoviePosters(res, cardsContainer){
         
     }
     cardsContainer.append(...fragment);
+}
+
+function createCategoryContainer(genresArray, categoryContainer){
+    const fragment = new DocumentFragment();
+    categoryContainer.innerHTML = "";
+    for (const genre of genresArray) {
+        
+        //Se crean las categorías de la película
+        const li = document.createElement("li");
+        const h3 = document.createElement("h3");
+        const i = document.createElement("i");
+        //Se agregan algunas clases de bootstrap y también atributos 
+        h3.classList.add("d-flex", "align-items-center");
+        i.classList.add("fa-solid", "fa-circle", "text-dark");
+        li.classList.add("nav-item");
+        //Inserción 
+        h3.append(i);
+        h3.append(genre.name);
+        li.append(h3);
+        fragment.appendChild(li);
+    }
+    categoryContainer.append(fragment);
 }
 
 
