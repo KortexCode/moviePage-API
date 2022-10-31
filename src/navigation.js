@@ -1,17 +1,25 @@
-/* Aquí se reciben los eventos que generan un cambio de vista en el DOM */
+/* Aquí se reciben algunos de los eventos que generan un cambio de vista en el DOM */
 //Botones de flecha atrás
 for (const item of arrowBack) {
     item.addEventListener("click", ()=>{
-        window.history.go(-1);
+        history.go(-1);
         location.hash = "#trends";    
     }, false);
 }
 //Click a al botón de busqueda en el home de mobile
-btn_Search_HomeMobile.addEventListener("click", ()=>{
-    let InputValue = Input.value.split(" ");
-    InputValue = InputValue.join("-");
-    location.hash = "#search="+InputValue;   
-}, false);
+btn_search_mobile.addEventListener("click", ()=>{
+        let inputValue = inputMobile.value.split(" ");
+        inputValue = inputValue.join("-");
+        location.hash = "#search="+inputValue;              
+    }, false);
+//Click a al botón de busqueda en el home de desktop
+btn_search_desktop.addEventListener("click", ()=>{
+        let inputValue = inputDesktop.value.split(" ");
+        inputValue = inputValue.join("-");
+        location.hash = "#search="+inputValue;              
+    }, false);
+
+
 
 
 /* Se decta el cambio en el hash y la primera carga del Dom al iniciar la aplicación */

@@ -14,10 +14,9 @@ const searching = node("#searching");
 const movieDetail = node("#movie-detail");
 /*Buttons*/
 const arrowBack = document.getElementsByClassName("section-arrow-icon");
-/* const searchingArrowBack = node("#searching__arrow-icon");
-const categoriesArrowBack = node("#categories__arrow-icon");
-const movieDetailArrowBacK = node("#movie-detail__arrow-icon"); */
-const btn_Search_HomeMobile = node("#home-search__btn-search"); 
+const btn_search_mobile = node("#btn-search-Mobile");
+const btn_search_desktop = node("#btn-search-Desktop");
 /* Inputs */
-const Input = node("#search-Input-Form");
+const inputMobile = node("#home-search__input-mobile");
+const inputDesktop = node("#home-search__input-desktop");
 
