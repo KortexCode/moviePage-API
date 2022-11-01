@@ -28,7 +28,7 @@ html{
 body{
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-   background: var(--Background);
+    background: var(--Background);
 }
 
 /*HOME*/
@@ -194,14 +194,18 @@ main{
     -webkit-appearance: none;
 }
 
-
 /* Arrow Button styles*/
 #movie-detail__arrow-icon{
-    width: 30px;
+    width: 35px;
+    padding: 5px 7px 5px 3px;
+    border-radius: 50%;
+    background-color: #090707;
 }
 #movie-detail__arrow-icon.section-arrow-icon img{
     width: 24px;
     height: 24px;   
+    
+   
 }
 
 .section-arrow-icon img{

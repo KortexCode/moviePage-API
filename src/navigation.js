@@ -42,6 +42,7 @@ function homePage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
+    movieDetail.classList.add("d-md-none");
     searching.classList.add("d-none");
     trendingList.classList.add("d-none");
     searchBar.classList.remove("d-none");
@@ -56,6 +57,7 @@ function trendingListPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
+    movieDetail.classList.add("d-md-none");
     searching.classList.add("d-none");
     trending.classList.add("d-none");
     searchBar.classList.add("d-none");
@@ -72,6 +74,7 @@ function categoryhPage(){
     trendingList.classList.add("d-none");
     searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
+    movieDetail.classList.add("d-md-none");
     category.classList.remove("d-none");
     //Se obtiene el id y nombre de categoría del hash usando split
     let [vista, categoryIdName] = location.hash.split("=");
@@ -86,6 +89,7 @@ function searchPage(){
     trendingList.classList.add("d-none");
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
+    movieDetail.classList.add("d-md-none");
     searching.classList.remove("d-none");
     //Se obtiene el nombre de búsqueda en el hash usando split y join
     let [vista, searchName] = location.hash.split("=");
@@ -102,6 +106,7 @@ function movieDetailPage(){
     searching.classList.add("d-none");
     category.classList.add("d-none");
     movieDetail.classList.remove("d-none");
+    movieDetail.classList.remove("d-md-none");
 
     let [vista, movieId] = location.hash.split("=");
     let id = movieId.split("-");

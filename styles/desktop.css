@@ -21,7 +21,9 @@
     box-shadow: none;
 }
 /* DETAIL SECTION */
-
+#movie-detail__container img{
+    object-position: center;
+}
 /* RELATED MOVIES */
 #movie-detail #related-movies{
     height: 270px;
