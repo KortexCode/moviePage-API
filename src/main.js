@@ -163,27 +163,28 @@ async function getMovieBySearch(query){
 async function getMovieById(id){
     console.log("El id", id)
     try{
-         //Consulta a la api axios
+        const node = (node) => document.querySelector(node);
+        //Consulta a la api axios
         const movie = await api("movie/"+id);
         console.log("película clikeada", movie);
         //Se obtienen los elementos del html
-        const node = (node) => document.querySelector(node);
+        const movieDetailImg = node("#movie-detail__img");
         const title = node("#movie-detail__title");
         const description = node("#movie-detail__description");
+        const categoryContainer = node("#movie-detail__category-container");
+        //Se agrega el src de la imágen 
+        movieDetailImg.src = "https://image.tmdb.org/t/p/w500"+movie.data.poster_path;
+        movieDetailImg.alt = movie.data.original_title;
         //Se agrega información de título y descripción
         title.textContent = movie.data.title;
-
+        //Se agrega descripción
         description.textContent = movie.data.overview;
-        
-
-        
-
-        const categoryContainer = document.querySelector("#movie-detail__category-container");
-        console.log("buscados", movie);
-        /* Se guarda el array con las categorías de la película  */
+        /* Se crea un array con las categorías de la película  */
         const genresArray = movie.data.genres;
         /* Esta función creará las categorías y las introducirá en el contenedor */
         createCategoryContainer(genresArray, categoryContainer)
+       
+   
     }
     catch(error){
         console.log("Sorry"+error);
@@ -197,7 +198,6 @@ function createMoviePosters(res, cardsContainer){
     console.log(res);
     const fragment = [];
     for (const item of res.data.results) {
-       
         const movieImg = document.createElement("img");
         movieImg.addEventListener("click", () =>{
             location.hash ="#movie="+item.id;

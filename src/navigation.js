@@ -3,6 +3,7 @@
 for (const item of arrowBack) {
     item.addEventListener("click", ()=>{
         history.go(-1);
+        window.scrollTo(0, 0);
         location.hash = "#trends";    
     }, false);
 }

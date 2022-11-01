@@ -83,6 +83,7 @@ main{
     height: 270px;
     border-radius: 8px;
     object-fit: cover;
+    object-position: top;
     scroll-snap-align: start;
     filter: drop-shadow(4px 4px 5px #090707);
     transition: all;
@@ -121,12 +122,19 @@ main{
 #movie-detail__container{
     min-height: 280px;
     width: 100%;
-    background-image: url("../Assets/Kimetsu_no_Yaiba.png");
+    /* background-image: url("../Assets/Kimetsu_no_Yaiba.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 }
-#movie-detail__arrow-icon{
-    padding-bottom: 113px;
+#movie-detail__container img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+#icon-article-container{
+    width: 100%;
+    gap: 80px;
 }
 #movie-detail__article-details{
     z-index: 1;
@@ -147,7 +155,8 @@ main{
 }
 #movie-detail__category-container{
     height: 70px;
-    width: 300px;
+    min-width: 280px;
+    max-width: 250px;
 }
 #movie-detail__dark-layer{
     top: 40%;
@@ -187,6 +196,14 @@ main{
 
 
 /* Arrow Button styles*/
+#movie-detail__arrow-icon{
+    width: 30px;
+}
+#movie-detail__arrow-icon.section-arrow-icon img{
+    width: 24px;
+    height: 24px;   
+}
+
 .section-arrow-icon img{
    width: 24px;
    height: 24px;   
