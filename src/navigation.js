@@ -1,10 +1,29 @@
+
+window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+        // Agregando un estado de carga inical
+        window.history.pushState({ loadUrl: window.location.href }, "", "");
+        console.log(window.history.state);
+    },
+    false,
+);
+
 /* Aquí se reciben algunos de los eventos que generan un cambio de vista en el DOM */
 //Botones de flecha atrás
 for (const item of arrowBack) {
     item.addEventListener("click", ()=>{
-        history.go(-1);
-        window.scrollTo(0, 0);
-        location.hash = "#trends";    
+        //Se guarda el estado de carga inicial en stateLoad y se pregunta si incluye un #, esto se hace para
+        //cuando se viene de un sitio web distinto al ir atrás en la navegación, los botones arrowback se
+        //dirijan al home 
+        const stateLoad = window.history.state ? window.history.state.loadUrl : '';
+        if (stateLoad.includes('#')) {
+            location.hash = '';
+        } else {
+            history.go(-1);
+        }
+        window.scrollTo(0, 0);  
+
     }, false);
 }
 //Click a al botón de busqueda en el home de mobile
@@ -52,6 +71,7 @@ function homePage(){
     if(!(trendingCardsContainer.children.length > 0)){
         trendingMovieView();
     }
+    window.scrollTo(0, 0); 
 }
 function trendingListPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
@@ -81,6 +101,7 @@ function categoryhPage(){
     const [categoryId, categoryName] = categoryIdName.split("_");
     //manda a construir la vista de categorías con las películas a consultar
     getMovieByCategory(categoryName, categoryId); 
+    window.scrollTo(0, 0); 
 }
 function searchPage(){
     console.log("Search");
@@ -96,6 +117,7 @@ function searchPage(){
     let query = searchName.split("-");
     query= query.join(" ");
     getMovieBySearch(query); 
+    window.scrollTo(0, 0); 
 }
 function movieDetailPage(){
     console.log("Movie");
@@ -111,6 +133,7 @@ function movieDetailPage(){
     let [vista, movieId] = location.hash.split("=");
     let id = movieId.split("-");
     id = id.join(" ");
+    console.log(history);
     getMovieById(id); 
     
 }
