@@ -102,7 +102,7 @@ async function categoryMoviePreview(){
             h3.setAttribute("aria-controls", "navbarSupportedContent");
           
             i.classList.add("fa-solid", "fa-circle", "text-dark");
-            li.classList.add("nav-item", "d-md-none");
+            li.classList.add("nav-item", "d-md-none", "align-self-baseline");
             h3.append(i);
             h3.append(item.name);
             li.append(h3);
@@ -118,7 +118,6 @@ async function categoryMoviePreview(){
     }
        
 }
-
 //Aquí se genera la insercción de las películas según la categoría seleccionada
 async function getMovieByCategory(name, id){
     try{
@@ -182,7 +181,11 @@ async function getMovieById(id){
         /* Se crea un array con las categorías de la película  */
         const genresArray = movie.data.genres;
         /* Esta función creará las categorías y las introducirá en el contenedor */
-        createCategoryContainer(genresArray, categoryContainer)
+        createCategoryContainer(genresArray, categoryContainer);
+        //Se obtiene la url con el id de la pelicula clickeada
+        const url =`/movie/${movie.data.id}/similar`;
+        //Se llama a la función que crea los poster de las películas relacionadas
+        createMovieRelatedPoster(url);
        
    
     }
@@ -190,11 +193,19 @@ async function getMovieById(id){
         console.log("Sorry"+error);
     }
 }
+//Se consulta cuales son las películas relacionadas y se llama a la función que crea los posters
+async function createMovieRelatedPoster(url){
+    const res = await api(url);
+    const cardsContainer = document.querySelector(".related-movie__cards-container");
+    cardsContainer.scrollTo(0, 0);
+    createMoviePosters(res, cardsContainer);
+}
 
-
+//Se crean las imágenes en cada contenedor de cada sección
 function createMoviePosters(res, cardsContainer){
     //Se borra todo lo que halla en la sección contenedora antes de volver a realizar construcción de elementos en el html
     cardsContainer.innerHTML = "";
+    cardsContainer.scrollTo(0, 0);
     console.log(res);
     const fragment = [];
     for (const item of res.data.results) {
@@ -209,7 +220,7 @@ function createMoviePosters(res, cardsContainer){
     }
     cardsContainer.append(...fragment);
 }
-
+//Crea las categorías de la sección de detalles de peliculas
 function createCategoryContainer(genresArray, categoryContainer){
     const fragment = new DocumentFragment();
     categoryContainer.innerHTML = "";
@@ -223,6 +234,14 @@ function createCategoryContainer(genresArray, categoryContainer){
         h3.classList.add("d-flex", "align-items-center");
         i.classList.add("fa-solid", "fa-circle", "text-dark");
         li.classList.add("nav-item");
+        //Evento para cambio de vista
+        h3.addEventListener("click", () => {
+            //Se usa split y join para solucionar el nombre errado tv%20Movie de la categoría Tv-Movie
+            let movieCatgegoryName = genre.name.split(" ");
+            movieCatgegoryName = movieCatgegoryName.join("-");
+            //Las demás categoría no serán afectadas si son de una sola palabra.
+            location.hash =`#category=${genre.id}_${movieCatgegoryName}`;
+        }, false);
         //Inserción 
         h3.append(i);
         h3.append(genre.name);

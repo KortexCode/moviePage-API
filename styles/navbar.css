@@ -60,7 +60,7 @@ hr{
     height: 5px;
 }
 .nav-item h3, .nav-item a{
-
+   
     font-size: var(--text16);
     font-weight: 600;
     color: White;
