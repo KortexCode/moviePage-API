@@ -2,7 +2,7 @@
 #categories .category__cards-container, #searching .searching__cards-container{
     
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
+    grid-template-columns: repeat(auto-fill, 220px);
     justify-content: center;
     gap: 16px;
     height: auto;

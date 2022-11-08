@@ -67,24 +67,21 @@ main{
 #searching .searching__cards-container{
     display: flex;
     gap: 16px;
-    align-items: center;
-    height: 320px;
+    align-items: flex-start;
+    height: 350px;
     width: 100%;
     overflow: scroll;
     overflow-y: hidden;
-    overscroll-behavior-x:auto;
-    scroll-snap-type: x mandatory;
    
 }
 #trending .trending__cards-container img, 
 #popular .popular__cards-container img, #categories .category__cards-container img, #searching .searching__cards-container img,
 #trending-list .trending-list__cards-container img{
-    width:250px;
-    height: 270px;
+    width:220px;
+    height: 250px;
     border-radius: 8px;
     object-fit: cover;
     object-position: top;
-    scroll-snap-align: start;
     filter: drop-shadow(4px 4px 5px #090707);
     transition: all;
     transition-duration: 0.5s; 
@@ -95,22 +92,55 @@ main{
     cursor: pointer; 
     transform: translateY(-5px);
 }
-.trending__cards-container--sidebar::-webkit-scrollbar{
+.trending__cards-container--sidebar::-webkit-scrollbar,  .popular__cards-container--sidebar::-webkit-scrollbar, .category__cards-container--sidebar::-webkit-scrollbar, .searching__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
-.popular__cards-container--sidebar::-webkit-scrollbar{
-    -webkit-appearance: none;
+
+
+#popular .popular__cards-container{
+    height: 350px;
+    overflow: scroll;
+    overflow-y: hidden;
+    /* overscroll-behavior-x:auto;
+    scroll-snap-type: x mandatory; */
 }
-.category__cards-container--sidebar::-webkit-scrollbar{
-    -webkit-appearance: none;
+#section-article__title{
+    font-size: var(--text14);
+    color: white;
 }
-.searching__cards-container--sidebar::-webkit-scrollbar{
-    -webkit-appearance: none;
+#section-article__container{
+  height: 45px;
 }
+#section-article__detail, #section-article__score{
+    font-size: 15px;
+    color: white;
+}
+
+#section-article__detail i{
+    padding-top:3.25px;
+    font-size: var(--text14);
+    color: red;
+}
+#popular .popular__cards-container article img{
+    width:220px;
+    height: 250px;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: top;
+    /* scroll-snap-align: start; */
+    filter: drop-shadow(4px 4px 5px #090707);
+    transition: all;
+    transition-duration: 0.5s; 
+}
+#popular .popular__cards-container article img:hover{
+    cursor: pointer; 
+    transform: translateY(-5px);
+}
+
 /*TRENDING LIST SECTION*/
 .trending-list__cards-container{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
+    grid-template-columns: repeat(auto-fill, 220px);
     justify-content: center;
     gap: 16px;
     height: auto;

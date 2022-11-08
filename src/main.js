@@ -207,15 +207,49 @@ function createMoviePosters(res, cardsContainer){
     cardsContainer.innerHTML = "";
     cardsContainer.scrollTo(0, 0);
     console.log(res);
+
     const fragment = [];
+
     for (const item of res.data.results) {
+        //Creando artículo contenedor de imagen e información de película
+        const article = document.createElement("article");
+        article.classList.add("section-article", "d-flex", "flex-column");
+        //Creando etiqueta de imagen
         const movieImg = document.createElement("img");
         movieImg.addEventListener("click", () =>{
             location.hash ="#movie="+item.id;
-        },false)
+        },false);
         movieImg.setAttribute("alt", item.original_title);
         movieImg.src= "https://image.tmdb.org/t/p/w500"+item.poster_path;
-        fragment.push(movieImg);
+        //Creando contenedor de título de película y puntaje
+        const div = document.createElement("div");
+        div.classList.add("container-fluid", "mt-3","px-0", "d-flex", "justify-content-between");
+        div.setAttribute('id', "section-article__container");
+        //Crenado contendor de puntaje e icono de puntaje
+        const scoreContainer = document.createElement("div");
+        scoreContainer.classList.add("d-flex");
+        scoreContainer.setAttribute('id', "section-article__detail");
+        //Creando etiqueta de titulo de película
+        const title = document.createElement("p");
+        title.classList.add("my-0");
+        title.setAttribute('id', "section-article__title");
+        title.innerText=item.original_title;
+        //Creando etiqueta de ícono de puntaje
+        const i = document.createElement("i");
+        i.classList.add("fa-solid", "fa-star", "ms-2", "me-1");
+        //Creando etiqueta de puntaje de película
+        const score = document.createElement("p");
+        score.classList.add("my-0", "ms-1");
+        score.setAttribute('id', "section-article__score");
+        let scores = parseInt(item.vote_average); 
+        scores = scores.toFixed(1);
+        score.innerText = `${scores}`;
+
+        //Agregando cada componenete dentro de su padre
+        scoreContainer.append(i, score)
+        div.append(title, scoreContainer);
+        article.append(movieImg, div);
+        fragment.push(article);
         
     }
     cardsContainer.append(...fragment);
