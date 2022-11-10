@@ -42,6 +42,9 @@ btn_search_desktop.addEventListener("click", ()=>{
 btn_view_more.addEventListener("click", ()=>{
     location.hash = "#more-trends";              
 }, false);
+btn_view_more2.addEventListener("click", ()=>{
+    location.hash = "#more-popular";              
+}, false);
 
 
 
@@ -54,9 +57,11 @@ function navigator(){
 
     location.hash.startsWith("#trends") ? homePage() :  location.hash.startsWith("#search=") ? searchPage()
     : location.hash.startsWith("#movie") ?  movieDetailPage() : location.hash.startsWith("#category") ? categoryhPage() 
-    : location.hash.startsWith("#more-trends") ? trendingListPage() : homePage();
+    : location.hash.startsWith("#more-trends") ? trendingListPage() : location.hash.startsWith("#more-popular") ? popularListPage()
+    : homePage();
 }
-
+//Las suientes funciones habilitan e inhabilitan las vistas según se quiera ver u ocultar una
+//También desde aquí se manda a llamar a las funciones constructoras de cada sección en el archivo main.js
 function homePage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
@@ -66,10 +71,12 @@ function homePage(){
     trendingList.classList.add("d-none");
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
+    popular.classList.remove("d-none");
 
     //Si ya hay elementos cargados no hará nuevamente la consulta
-    if(!(trendingCardsContainer.children.length > 0)){
+    if(!(trendingCardsContainer.children.length > 0 || popularCardsContainer.children.length > 0)){
         trendingMovieView();
+        popularMovieView();
     }
     window.scrollTo(0, 0); 
 }
@@ -80,6 +87,7 @@ function trendingListPage(){
     movieDetail.classList.add("d-md-none");
     searching.classList.add("d-none");
     trending.classList.add("d-none");
+    popular.classList.add("d-none");
     searchBar.classList.add("d-none");
     trendingList.classList.remove("d-none");
    
@@ -88,10 +96,29 @@ function trendingListPage(){
         trendingMovieViewMore();
     }
 }
+function popularListPage(){
+    //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
+    category.classList.add("d-none");
+    movieDetail.classList.add("d-none");
+    movieDetail.classList.add("d-md-none");
+    searching.classList.add("d-none");
+    trending.classList.add("d-none");
+    popular.classList.add("d-none");
+    searchBar.classList.add("d-none");
+    trendingList.classList.add("d-none");
+    popularList.classList.remove("d-none");
+    
+   
+    //Si ya hay elementos cargados no hará nuevamente la consulta
+    if(!(popularCardsContainerList.children.length > 0)){
+        popularMovieViewMore();
+    }
+}
 function categoryhPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
+    popular.classList.add("d-none");
     searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
@@ -108,6 +135,7 @@ function searchPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
+    popular.classList.add("d-none");
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
@@ -124,6 +152,7 @@ function movieDetailPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
+    popular.classList.add("d-none");
     searchBar.classList.add("d-none");
     searching.classList.add("d-none");
     category.classList.add("d-none");

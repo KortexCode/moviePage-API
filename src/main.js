@@ -10,7 +10,7 @@ const api = axios.create({
       'api_key': API_KEY,
     },
   });
-
+//Se crea la vista de trending en el home
 async function trendingMovieView(){
     try{
         /* Ejemplo de consulta por fecth
@@ -29,6 +29,7 @@ async function trendingMovieView(){
         console.log("Sorry"+error);
     }
 }
+//Se crean la vista en formato grilla al dar click al botón view more
 async function trendingMovieViewMore(){
     try{
         //Consulta a la api axios
@@ -43,7 +44,35 @@ async function trendingMovieViewMore(){
         console.log("Sorry"+error);
     }
 }
-
+//Se crea la vista de trending en el home
+async function popularMovieView(){
+    try{
+        //Consulta a la api axios
+        const res = await api("movie/popular");
+        console.log("data", res); 
+        //Se obtiene el contenedor de la sección de trending
+        const cardsContainer = document.querySelector(".popular__cards-container");
+        /* se llama a la función que genera las movie cards */
+        createMoviePosters(res, cardsContainer);
+    }
+    catch(error){
+        console.log("Sorry"+error);
+    }
+}
+async function popularMovieViewMore(){
+    try{
+        //Consulta a la api axios
+        const res = await api("movie/popular");
+        console.log("data", res); 
+        //Se obtiene el contenedor de la sección de trending
+        const cardsContainer = document.querySelector(".popular-list__cards-container");
+        /* se llama a la función que genera las movie cards */
+        createMoviePosters(res, cardsContainer);
+    }
+    catch(error){
+        console.log("Sorry"+error);
+    }
+}
 //Cargar las categorías en el menú Desktop y el menú Mobile
 async function categoryMoviePreview(){
     /*  Se realiza consulta por genéros de películas usando fetch*/

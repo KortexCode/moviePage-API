@@ -76,7 +76,7 @@ main{
 }
 #trending .trending__cards-container img, 
 #popular .popular__cards-container img, #categories .category__cards-container img, #searching .searching__cards-container img,
-#trending-list .trending-list__cards-container img{
+#trending-list .trending-list__cards-container img, .popular-list__cards-container article img{
     width:220px;
     height: 250px;
     border-radius: 8px;
@@ -88,26 +88,20 @@ main{
 }
 #trending .trending__cards-container img:hover, #popular .popular__cards-container img:hover,
 #categories .category__cards-container img:hover, #searching .searching__cards-container img:hover,
-#trending-list__cards-container img:hover{
+#trending-list__cards-container img:hover, .popular-list__cards-container img:hover{
     cursor: pointer; 
     transform: translateY(-5px);
 }
-.trending__cards-container--sidebar::-webkit-scrollbar,  .popular__cards-container--sidebar::-webkit-scrollbar, .category__cards-container--sidebar::-webkit-scrollbar, .searching__cards-container--sidebar::-webkit-scrollbar{
+.trending__cards-container--sidebar::-webkit-scrollbar,  .popular__cards-container--sidebar::-webkit-scrollbar,
+.category__cards-container--sidebar::-webkit-scrollbar, .searching__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
-
-
-#popular .popular__cards-container{
-    height: 350px;
-    overflow: scroll;
-    overflow-y: hidden;
-    /* overscroll-behavior-x:auto;
-    scroll-snap-type: x mandatory; */
-}
+/* Estilos para los detalles de cada poster de película*/
 #section-article__title{
     font-size: var(--text14);
     color: white;
 }
+
 #section-article__container{
   height: 45px;
 }
@@ -121,24 +115,24 @@ main{
     font-size: var(--text14);
     color: red;
 }
-#popular .popular__cards-container article img{
+/* #popular .popular__cards-container article img{
     width:220px;
     height: 250px;
     border-radius: 8px;
     object-fit: cover;
     object-position: top;
-    /* scroll-snap-align: start; */
+    scroll-snap-align: start;
     filter: drop-shadow(4px 4px 5px #090707);
     transition: all;
     transition-duration: 0.5s; 
-}
-#popular .popular__cards-container article img:hover{
+} */
+/* #popular .popular__cards-container article img:hover{
     cursor: pointer; 
     transform: translateY(-5px);
-}
+} */
 
 /*TRENDING LIST SECTION*/
-.trending-list__cards-container{
+.trending-list__cards-container, .popular-list__cards-container{
     display: grid;
     grid-template-columns: repeat(auto-fill, 220px);
     justify-content: center;
@@ -237,7 +231,6 @@ main{
     
    
 }
-
 .section-arrow-icon img{
    width: 24px;
    height: 24px;   
@@ -246,7 +239,7 @@ main{
    cursor: pointer;  
 } 
 /*View more button*/
-#trending__btn-view-more{
+#trending__btn-view-more, #popular__btn-view-more{
     font-size: var(--text14);
     font-weight: 600;
 }
