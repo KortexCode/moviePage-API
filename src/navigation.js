@@ -69,12 +69,14 @@ function homePage(){
     movieDetail.classList.add("d-md-none");
     searching.classList.add("d-none");
     trendingList.classList.add("d-none");
+    popularList.classList.add("d-none");
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
     popular.classList.remove("d-none");
 
     //Si ya hay elementos cargados no hará nuevamente la consulta
     if(!(trendingCardsContainer.children.length > 0 || popularCardsContainer.children.length > 0)){
+        console.log("entró")
         trendingMovieView();
         popularMovieView();
     }
@@ -88,6 +90,7 @@ function trendingListPage(){
     searching.classList.add("d-none");
     trending.classList.add("d-none");
     popular.classList.add("d-none");
+    popularList.classList.add("d-none");
     searchBar.classList.add("d-none");
     trendingList.classList.remove("d-none");
    
@@ -119,6 +122,7 @@ function categoryhPage(){
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
     popular.classList.add("d-none");
+    popularList.classList.add("d-none");
     searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
@@ -136,6 +140,7 @@ function searchPage(){
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
     popular.classList.add("d-none");
+    popularList.classList.add("d-none");
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
@@ -153,6 +158,7 @@ function movieDetailPage(){
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
     popular.classList.add("d-none");
+    popularList.classList.add("d-none");
     searchBar.classList.add("d-none");
     searching.classList.add("d-none");
     category.classList.add("d-none");

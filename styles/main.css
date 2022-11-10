@@ -68,7 +68,7 @@ main{
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    height: 350px;
+    height: 340px;
     width: 100%;
     overflow: scroll;
     overflow-y: hidden;
@@ -115,21 +115,6 @@ main{
     font-size: var(--text14);
     color: red;
 }
-/* #popular .popular__cards-container article img{
-    width:220px;
-    height: 250px;
-    border-radius: 8px;
-    object-fit: cover;
-    object-position: top;
-    scroll-snap-align: start;
-    filter: drop-shadow(4px 4px 5px #090707);
-    transition: all;
-    transition-duration: 0.5s; 
-} */
-/* #popular .popular__cards-container article img:hover{
-    cursor: pointer; 
-    transform: translateY(-5px);
-} */
 
 /*TRENDING LIST SECTION*/
 .trending-list__cards-container, .popular-list__cards-container{
@@ -193,7 +178,7 @@ main{
 /*Movide-detail - related-movies*/
 #related-movies .related-movie__cards-container{
     
-    height: 220px;
+    height: 260px;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;

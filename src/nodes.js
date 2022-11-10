@@ -14,7 +14,7 @@ const popular = node("#popular");
 const popularCardsContainer = node(".popular__cards-container");
 /* POPULAR LIST SECTION */
 const popularList = node("#popular-list");
-const popularCardsContainerList = node(".popular__cards-container");
+const popularCardsContainerList = node(".popular-list__cards-container");
 /* CATEGORY SECTION*/
 const category = node("#categories");
 /* SEARCHING SECTION*/

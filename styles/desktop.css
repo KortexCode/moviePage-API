@@ -24,11 +24,6 @@
 #movie-detail__container img{
     object-position: center;
 }
-/* RELATED MOVIES */
-#movie-detail #related-movies{
-    height: 270px;
-    
-}
 @media(min-width:1028px){
     #movie-detail__dark-layer{
         height: 55%;           
