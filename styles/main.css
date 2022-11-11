@@ -61,7 +61,10 @@ main{
 .main-search-container i{
     font-size: 16px;
 }
-
+/* POPULAR SECTION */
+#popular{
+    margin-bottom: 48px;
+}
 /* Trendings, Popular and searching sections*/
 #trending .trending__cards-container, #popular .popular__cards-container, #categories .category__cards-container,
 #searching .searching__cards-container{
@@ -178,7 +181,7 @@ main{
 /*Movide-detail - related-movies*/
 #related-movies .related-movie__cards-container{
     
-    height: 260px;
+    height: 340px;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -186,10 +189,11 @@ main{
     scroll-snap-type: x mandatory;
 }
 #related-movies .related-movie__cards-container img{
-    width:170px;
-    height: 180px;
+    width:190px;
+    height: 200px;
     border-radius: 8px;
     object-fit: cover;
+    object-position: top;
     scroll-snap-align: center;
     filter: drop-shadow(4px 4px 5px #090707);
     transition: all;
@@ -230,6 +234,19 @@ main{
 }
 footer{
     height: 48px;
+}
+/* mobile tag bar buttons */
+#mobile-tag-bar i{
+    -webkit-text-fill-color: #C72B2B; 
+
+    /* Bordes al texto */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+/* mobile home button */
+#mobile-tag-bar__btn-home:hover{
+    -webkit-text-fill-color: #641c1c; 
+    color: #C72B2B;
 }
 /* MOBILE TAG BAR*/
 #mobile-tag-bar{

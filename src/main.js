@@ -247,6 +247,7 @@ function createMoviePosters(res, cardsContainer){
         const movieImg = document.createElement("img");
         movieImg.addEventListener("click", () =>{
             location.hash ="#movie="+item.id;
+            window.scrollTo(0, 0);
         },false);
         movieImg.setAttribute("alt", item.original_title);
         movieImg.src= "https://image.tmdb.org/t/p/w500"+item.poster_path;

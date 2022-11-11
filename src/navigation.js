@@ -38,14 +38,20 @@ btn_search_desktop.addEventListener("click", ()=>{
         inputValue = inputValue.join("-");
         location.hash = "#search="+inputValue;              
     }, false);
-//Botón de ver más
+//Botones de ver más
 btn_view_more.addEventListener("click", ()=>{
     location.hash = "#more-trends";              
 }, false);
 btn_view_more2.addEventListener("click", ()=>{
     location.hash = "#more-popular";              
 }, false);
-
+//Botón de home para desktop y mobile
+tagbar_btnHome.addEventListener("click", ()=>{
+    location.hash = "#trends";              
+}, false);
+header_btnHome.addEventListener("click", ()=>{
+    location.hash = "#trends";              
+}, false);
 
 
 /* Se decta el cambio en el hash y la primera carga del Dom al iniciar la aplicación */

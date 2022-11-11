@@ -21,7 +21,7 @@
     box-shadow: none;
 }
 /* DETAIL SECTION */
-#movie-detail__container img{
+#movie-detail__container #movie-detail__category-container img{
     object-position: center;
 }
 @media(min-width:1028px){
