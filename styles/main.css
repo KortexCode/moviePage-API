@@ -70,10 +70,10 @@ main{
 #searching .searching__cards-container{
     display: flex;
     gap: 16px;
-    align-items: flex-start;
+    align-items: center;
     height: 340px;
     width: 100%;
-    overflow: scroll;
+    overflow-x: scroll;
     overflow-y: hidden;
    
 }
@@ -206,7 +206,30 @@ main{
 .related-movie__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
-
+/* LOADING SKELETON */
+.trending__cards-container--loading{
+    width:220px;
+    max-width: 220px;
+    min-width: 220px;
+    height: 250px;
+    border-radius: 8px;
+    background: #C72B2B;
+    animation: charge 1.5s infinite;
+}
+@keyframes charge{
+    0%{
+        opacity: 100;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
+}
+.trending__cards-container--loading:nth-child(odd){
+    animation-delay: 0.75s;
+}
 /* Arrow Button styles*/
 #movie-detail__arrow-icon{
     width: 35px;

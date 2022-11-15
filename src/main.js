@@ -233,7 +233,6 @@ async function createMovieRelatedPoster(url){
 //Se crean las imágenes en cada contenedor de cada sección
 function createMoviePosters(res, cardsContainer){
     //Se borra todo lo que halla en la sección contenedora antes de volver a realizar construcción de elementos en el html
-    cardsContainer.innerHTML = "";
     cardsContainer.scrollTo(0, 0);
     console.log(res);
 
@@ -282,6 +281,7 @@ function createMoviePosters(res, cardsContainer){
         fragment.push(article);
         
     }
+    cardsContainer.innerHTML = "";
     cardsContainer.append(...fragment);
 }
 //Crea las categorías de la sección de detalles de peliculas

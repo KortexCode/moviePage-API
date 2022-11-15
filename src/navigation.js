@@ -1,4 +1,10 @@
-
+if(!(location.hash.startsWith("#trens"))){
+    console.log("entró si")
+    const trendingView = document.getElementById("trending");
+    trendingView.classList.add("d-none");
+    const popularView = document.getElementById("popular");
+    popularView.classList.add("d-none");
+}
 window.addEventListener(
     'DOMContentLoaded',
     () => {
@@ -69,6 +75,7 @@ function navigator(){
 //Las suientes funciones habilitan e inhabilitan las vistas según se quiera ver u ocultar una
 //También desde aquí se manda a llamar a las funciones constructoras de cada sección en el archivo main.js
 function homePage(){
+    
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
@@ -80,13 +87,10 @@ function homePage(){
     trending.classList.remove("d-none");
     popular.classList.remove("d-none");
 
-    //Si ya hay elementos cargados no hará nuevamente la consulta
-    if(!(trendingCardsContainer.children.length > 0 || popularCardsContainer.children.length > 0)){
-        console.log("entró")
-        trendingMovieView();
-        popularMovieView();
-    }
-    window.scrollTo(0, 0); 
+    //Se manda a llamar las funciones generadoras de la información  
+    trendingMovieView();
+    popularMovieView(); 
+
 }
 function trendingListPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
@@ -136,6 +140,7 @@ function categoryhPage(){
     //Se obtiene el id y nombre de categoría del hash usando split
     let [vista, categoryIdName] = location.hash.split("=");
     const [categoryId, categoryName] = categoryIdName.split("_");
+
     //manda a construir la vista de categorías con las películas a consultar
     getMovieByCategory(categoryName, categoryId); 
     window.scrollTo(0, 0); 

@@ -1,4 +1,3 @@
-
 const node = id => document.querySelector(id);//Se define una notación más sencilla
 
 /*MAIN - MOBILE SEARCH BAR*/
