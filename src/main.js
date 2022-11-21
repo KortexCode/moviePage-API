@@ -191,26 +191,38 @@ async function getMovieBySearch(query){
 async function getMovieById(id){
     console.log("El id", id)
     try{
+        
         const node = (node) => document.querySelector(node);
         //Consulta a la api axios
         const movie = await api("movie/"+id);
-        console.log("película clikeada", movie);
-        //Se obtienen los elementos del html
+        //Se obtienen los elementos del html como la imagen de fondo y el articulo que encierra los detalles y categorías.
         const movieDetailImg = node("#movie-detail__img");
-        const title = node("#movie-detail__title");
-        const description = node("#movie-detail__description");
-        const categoryContainer = node("#movie-detail__category-container");
+        const article = node("#movie-detail__article-details");
+        article.innerHTML = "";
+        
         //Se agrega el src de la imágen 
         movieDetailImg.src = "https://image.tmdb.org/t/p/w500"+movie.data.poster_path;
         movieDetailImg.alt = movie.data.original_title;
+        
+        //Se crean los detalles de la película
+        const title  = document.createElement("h2");
+        const description = document.createElement("p");
+       
+        //Se agregan clases y atributos
+        title.setAttribute("id", "movie-detail__title");
+        description.setAttribute("id", "movie-detail__description");
+        title.classList.add("section-title", "mb-3");
+        description.classList.add("mb-3");
         //Se agrega información de título y descripción
         title.textContent = movie.data.title;
         //Se agrega descripción
         description.textContent = movie.data.overview;
+        //Se agregan al artículo los detalles
+        article.append(title, description);
         /* Se crea un array con las categorías de la película  */
         const genresArray = movie.data.genres;
         /* Esta función creará las categorías y las introducirá en el contenedor */
-        createCategoryContainer(genresArray, categoryContainer);
+        createCategoryContainer(genresArray, article);
         //Se obtiene la url con el id de la pelicula clickeada
         const url =`/movie/${movie.data.id}/similar`;
         //Se llama a la función que crea los poster de las películas relacionadas
@@ -285,16 +297,24 @@ function createMoviePosters(res, cardsContainer){
     cardsContainer.append(...fragment);
 }
 //Crea las categorías de la sección de detalles de peliculas
-function createCategoryContainer(genresArray, categoryContainer){
+function createCategoryContainer(genresArray, article){
+
     const fragment = new DocumentFragment();
-    categoryContainer.innerHTML = "";
+    //Se crean los contenedores de las categorías
+    const ul = document.createElement("ul");
+    const categoryContainer  = document.createElement("div");
+    //Se asignan atributos y clases
+    ul.setAttribute("id", "movie-detail__category");
+    categoryContainer.setAttribute("id", "movie-detail__category-container");
+    categoryContainer.classList.add("d-flex", "flex-column", "align-items-baseline", "flex-wrap");
+
     for (const genre of genresArray) {
         
         //Se crean las categorías de la película
         const li = document.createElement("li");
         const h3 = document.createElement("h3");
         const i = document.createElement("i");
-        //Se agregan algunas clases de bootstrap y también atributos 
+        //Se agregan algunas clases de bootstrap y también atributos  
         h3.classList.add("d-flex", "align-items-center");
         i.classList.add("fa-solid", "fa-circle", "text-dark");
         li.classList.add("nav-item");
@@ -310,9 +330,12 @@ function createCategoryContainer(genresArray, categoryContainer){
         h3.append(i);
         h3.append(genre.name);
         li.append(h3);
-        fragment.appendChild(li);
+        fragment.appendChild(li)
     }
+    ul.innerHTML = "";
     categoryContainer.append(fragment);
+    ul.append(categoryContainer);
+    article.append(ul);
 }
 
 

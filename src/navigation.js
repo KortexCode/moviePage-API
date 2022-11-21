@@ -1,10 +1,10 @@
-if(!(location.hash.startsWith("#trens"))){
+/* if(!(location.hash.startsWith("#trens"))){
     console.log("entró si")
     const trendingView = document.getElementById("trending");
     trendingView.classList.add("d-none");
     const popularView = document.getElementById("popular");
     popularView.classList.add("d-none");
-}
+} */
 window.addEventListener(
     'DOMContentLoaded',
     () => {
@@ -103,11 +103,8 @@ function trendingListPage(){
     popularList.classList.add("d-none");
     searchBar.classList.add("d-none");
     trendingList.classList.remove("d-none");
-   
-    //Si ya hay elementos cargados no hará nuevamente la consulta
-    if(!(trendingCardsContainerList.children.length > 0)){
-        trendingMovieViewMore();
-    }
+    //Se manda a llamar las funciones generadoras de la información  
+    trendingMovieViewMore();   
 }
 function popularListPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
@@ -120,12 +117,8 @@ function popularListPage(){
     searchBar.classList.add("d-none");
     trendingList.classList.add("d-none");
     popularList.classList.remove("d-none");
-    
-   
-    //Si ya hay elementos cargados no hará nuevamente la consulta
-    if(!(popularCardsContainerList.children.length > 0)){
-        popularMovieViewMore();
-    }
+    //Se manda a llamar las funciones generadoras de la información  
+    popularMovieViewMore();   
 }
 function categoryhPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
@@ -146,7 +139,6 @@ function categoryhPage(){
     window.scrollTo(0, 0); 
 }
 function searchPage(){
-    console.log("Search");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
@@ -164,7 +156,6 @@ function searchPage(){
     window.scrollTo(0, 0); 
 }
 function movieDetailPage(){
-    console.log("Movie");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
@@ -175,11 +166,11 @@ function movieDetailPage(){
     category.classList.add("d-none");
     movieDetail.classList.remove("d-none");
     movieDetail.classList.remove("d-md-none");
-
+     //Se obtiene el id de la película clickeada en el hash usando split y join
     let [vista, movieId] = location.hash.split("=");
     let id = movieId.split("-");
     id = id.join(" ");
-    console.log(history);
+    //manda a construir la vista de categorías con las películas a consultar
     getMovieById(id); 
     
 }
