@@ -1,4 +1,19 @@
 
+//INTERCEPTOR OBSERVER PARAMS
+
+//Se crea la instancia del observador y se pasa como parámetro la función callback, se omite options
+//Se usará como raiz el viewport
+let observer = new IntersectionObserver(entries => {
+    /* console.log("todas las entradas", entries); */
+    entries.forEach(entryImg => {
+        /* console.log("entrada", entryImg); */
+        const url = entryImg.target.getAttribute("data-src");
+        entryImg.target.setAttribute("src", url);
+        
+    })
+});
+
+
 //AXIOS INSTANCE
 /* Se crea la instancia de axios con tres propiedades */
 const api = axios.create({
@@ -85,7 +100,7 @@ async function categoryMoviePreview(){
         const dropItemsContainer = document.getElementById("dropdown-items-container");
         const dropdownMobileItems = document.getElementById("dropdown-mobile-items");
 
-        //TO DO: Crear una sola función, hacer uso dela ncho del windows para saber si es mobile o desktop
+        //TO DO: Crear una sola función, hacer uso del ancho del windows para saber si es mobile o desktop
         //el objetivo es dejar un sólo for of. 
         for(const item of data.genres) {
             //Se crean las etiquetas y se agregan atributos y clases
@@ -246,8 +261,6 @@ async function createMovieRelatedPoster(url){
 function createMoviePosters(res, cardsContainer){
     //Se borra todo lo que halla en la sección contenedora antes de volver a realizar construcción de elementos en el html
     cardsContainer.scrollTo(0, 0);
-    console.log(res);
-
     const fragment = [];
 
     for (const item of res.data.results) {
@@ -257,11 +270,14 @@ function createMoviePosters(res, cardsContainer){
         //Creando etiqueta de imagen
         const movieImg = document.createElement("img");
         movieImg.addEventListener("click", () =>{
-            location.hash ="#movie="+item.id;
+            location.hash = "#movie="+item.id;
             window.scrollTo(0, 0);
         },false);
         movieImg.setAttribute("alt", item.original_title);
-        movieImg.src= "https://image.tmdb.org/t/p/w500"+item.poster_path;
+        movieImg.setAttribute("data-src", "https://image.tmdb.org/t/p/w500"+item.poster_path);
+        observer.observe(movieImg);
+ /*        movieImg.src = "https://image.tmdb.org/t/p/w500"+item.poster_path; */
+
         //Creando contenedor de título de película y puntaje
         const div = document.createElement("div");
         div.classList.add("container-fluid", "mt-3","px-0", "d-flex", "justify-content-between");
