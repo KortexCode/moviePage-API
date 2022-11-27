@@ -3,16 +3,25 @@
 
 //Se crea la instancia del observador y se pasa como parámetro la función callback, se omite options
 //Se usará como raiz el viewport
+
 let observer = new IntersectionObserver(entries => {
     /* console.log("todas las entradas", entries); */
-    entries.forEach(entryImg => {
-        /* console.log("entrada", entryImg); */
-        const url = entryImg.target.getAttribute("data-src");
-        entryImg.target.setAttribute("src", url);
-        
+    entries.filter(entry => entry.isIntersecting).forEach(entryImg => {
+        const {src, alt} = entryImg.target.dataset;
+        entryImg.target.setAttribute("alt", alt);
+
+        const isNull = src.substring(src.length - 4);
+        if(isNull == "null"){
+            const emtyImg = "./Assets/img_emty.jpg";
+            entryImg.target.setAttribute("src", emtyImg);
+        }
+        else{
+            entryImg.target.setAttribute("src", src);
+        }
+       
+        observer.unobserve(entryImg.target);       
     })
 });
-
 
 //AXIOS INSTANCE
 /* Se crea la instancia de axios con tres propiedades */
@@ -259,6 +268,7 @@ async function createMovieRelatedPoster(url){
 
 //Se crean las imágenes en cada contenedor de cada sección
 function createMoviePosters(res, cardsContainer){
+    console.log(res);
     //Se borra todo lo que halla en la sección contenedora antes de volver a realizar construcción de elementos en el html
     cardsContainer.scrollTo(0, 0);
     const fragment = [];
@@ -273,8 +283,8 @@ function createMoviePosters(res, cardsContainer){
             location.hash = "#movie="+item.id;
             window.scrollTo(0, 0);
         },false);
-        movieImg.setAttribute("alt", item.original_title);
         movieImg.setAttribute("data-src", "https://image.tmdb.org/t/p/w500"+item.poster_path);
+        movieImg.setAttribute("data-alt", item.original_title);
         observer.observe(movieImg);
  /*        movieImg.src = "https://image.tmdb.org/t/p/w500"+item.poster_path; */
 
