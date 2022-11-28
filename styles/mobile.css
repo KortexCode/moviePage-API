@@ -1,6 +1,6 @@
-#trending .trending__cards-container img:hover, #popular .popular__cards-container img:hover,
-#categories .category__cards-container img:hover, #searching .searching__cards-container img:hover,
-#related-movies .related-movie__cards-container img:hover, #trending-list__cards-container img:hover, 
-#popular-list__cards-container img:hover{
+#trending .trending__cards-container .poster-container:hover, #popular .popular__cards-container .poster-container:hover,
+#categories .category__cards-container .poster-container:hover, #searching .searching__cards-container .poster-container:hover,
+#related-movies .related-movie__cards-container .poster-container:hover, #trending-list__cards-container .poster-container:hover, 
+#popular-list__cards-container .poster-container:hover{
     transform: none;
 }

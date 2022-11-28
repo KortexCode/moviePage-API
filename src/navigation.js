@@ -1,10 +1,3 @@
-/* if(!(location.hash.startsWith("#trens"))){
-    console.log("entró si")
-    const trendingView = document.getElementById("trending");
-    trendingView.classList.add("d-none");
-    const popularView = document.getElementById("popular");
-    popularView.classList.add("d-none");
-} */
 window.addEventListener(
     'DOMContentLoaded',
     () => {
@@ -28,7 +21,6 @@ for (const item of arrowBack) {
         } else {
             history.go(-1);
         }
-        window.scrollTo(0, 0);  
 
     }, false);
 }
@@ -86,13 +78,14 @@ function homePage(){
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
     popular.classList.remove("d-none");
-
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieView();
     popularMovieView(); 
+    window.scrollTo(0, 0);
 
 }
 function trendingListPage(){
+    window.scrollTo(0, 0);
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
@@ -105,6 +98,7 @@ function trendingListPage(){
     trendingList.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieViewMore();   
+    window.scrollTo(0, 0);
 }
 function popularListPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
@@ -119,6 +113,7 @@ function popularListPage(){
     popularList.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
     popularMovieViewMore();   
+    window.scrollTo(0, 0);
 }
 function categoryhPage(){
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
@@ -172,6 +167,7 @@ function movieDetailPage(){
     id = id.join(" ");
     //manda a construir la vista de categorías con las películas a consultar
     getMovieById(id); 
+    window.scrollTo(0, 0);
     
 }
 

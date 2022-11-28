@@ -268,7 +268,6 @@ async function createMovieRelatedPoster(url){
 
 //Se crean las imágenes en cada contenedor de cada sección
 function createMoviePosters(res, cardsContainer){
-    console.log(res);
     //Se borra todo lo que halla en la sección contenedora antes de volver a realizar construcción de elementos en el html
     cardsContainer.scrollTo(0, 0);
     const fragment = [];
@@ -277,13 +276,16 @@ function createMoviePosters(res, cardsContainer){
         //Creando artículo contenedor de imagen e información de película
         const article = document.createElement("article");
         article.classList.add("section-article", "d-flex", "flex-column");
+        const posterContainer = document.createElement("div");
+        posterContainer.classList.add("poster-container");
+
         //Creando etiqueta de imagen
         const movieImg = document.createElement("img");
         movieImg.addEventListener("click", () =>{
             location.hash = "#movie="+item.id;
             window.scrollTo(0, 0);
         },false);
-        movieImg.setAttribute("data-src", "https://image.tmdb.org/t/p/w500"+item.poster_path);
+        movieImg.setAttribute("data-src", "https://image.tmdb.org/t/p/w300"+item.poster_path);
         movieImg.setAttribute("data-alt", item.original_title);
         observer.observe(movieImg);
  /*        movieImg.src = "https://image.tmdb.org/t/p/w500"+item.poster_path; */
@@ -315,7 +317,8 @@ function createMoviePosters(res, cardsContainer){
         //Agregando cada componenete dentro de su padre
         scoreContainer.append(i, score)
         div.append(title, scoreContainer);
-        article.append(movieImg, div);
+        posterContainer.appendChild(movieImg);
+        article.append(posterContainer, div);
         fragment.push(article);
         
     }
