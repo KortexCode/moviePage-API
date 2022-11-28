@@ -12,7 +12,7 @@ let observer = new IntersectionObserver(entries => {
 
         const isNull = src.substring(src.length - 4);
         if(isNull == "null"){
-            const emtyImg = "./Assets/img_emty.jpg";
+            const emtyImg = "./Assets/Charge error.jpg";
             entryImg.target.setAttribute("src", emtyImg);
         }
         else{
