@@ -1,3 +1,8 @@
+/* SCROLLTOP BUTTON */
+const scrollTop = document.getElementById("scroll-button");
+scrollTop.addEventListener("click", () =>{
+    window.scrollTo(0, 0);
+})
 /* PAGINATION */
 let page = 1; //Para las listas de trending y popular
 window.addEventListener("scroll", infinityScroll);
@@ -98,6 +103,8 @@ async function trendingMovieViewMore(page){
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".trending-list__cards-container");
+        if(page <= 1)
+        cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
         createMoviePosters(res, cardsContainer);
     }
@@ -131,6 +138,8 @@ async function popularMovieViewMore(page){
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".popular-list__cards-container");
+        if(page <= 1)
+        cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
         createMoviePosters(res, cardsContainer);
     }
@@ -226,6 +235,8 @@ async function getMovieByCategory({name, id, page} = {}){
         const categoryTitle = document.querySelector("#categories .section-title");
         categoryTitle.textContent = name;
         const cardsContainer = document.querySelector(".category__cards-container");
+        if(page <= 1)
+        cardsContainer.innerHTML = ""; 
          /* se llama a la función que genera las movie cards */   
         createMoviePosters(res, cardsContainer);
     }
@@ -245,6 +256,8 @@ async function getMovieBySearch({query, page}){
         });
         //Se obtienen los elementos del html
         const cardsContainer = document.querySelector(".searching__cards-container");
+        if(page <= 1)
+        cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */   
         createMoviePosters(res, cardsContainer);
     }

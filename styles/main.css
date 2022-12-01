@@ -87,8 +87,9 @@ main{
     overflow: none;
     
 }
-#trending .trending__cards-container .poster-container, 
-#popular .popular__cards-container .poster-container, #categories .category__cards-container .poster-container, #searching .searching__cards-container .poster-container, .trending-list__cards-container .poster-container, .popular-list__cards-container .poster-container{
+#trending .trending__cards-container .poster-container, #popular .popular__cards-container .poster-container,
+#categories .category__cards-container .poster-container, #searching .searching__cards-container .poster-container,
+.trending-list__cards-container .poster-container, .popular-list__cards-container .poster-container{
     height: 315px;
     width:225px;
     filter: drop-shadow(4px 4px 5px #090707);
@@ -253,10 +254,10 @@ main{
 
 /* LOADING SKELETON */
 .cards-container--loading{
-    width:220px;
-    max-width: 220px;
-    min-width: 220px;
-    height: 250px;
+    width:225px;
+    max-width: 225px;
+    min-width: 225px;
+    height: 315px;
     border-radius: 8px;
     background: #C72B2B;
     animation: charge 1.5s infinite;
@@ -309,9 +310,7 @@ main{
 }
 #movie-detail__arrow-icon.section-arrow-icon img{
     width: 24px;
-    height: 24px;   
-    
-   
+    height: 24px;    
 }
 .section-arrow-icon img{
    width: 24px;
@@ -328,26 +327,35 @@ main{
 footer{
     height: 48px;
 }
-/* mobile tag bar buttons */
-#mobile-tag-bar i{
-    -webkit-text-fill-color: #C72B2B; 
 
-    /* Bordes al texto */
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-}
 /* mobile home button */
 #mobile-tag-bar__btn-home:hover{
     -webkit-text-fill-color: #641c1c; 
     color: #C72B2B;
 }
-
-/* MOBILE TAG BAR*/
+/* mobile tag bar*/
 #mobile-tag-bar{
     height: 48px;
     background: var(--background-bars);
 }
+/* mobile tag bar buttons */
 #mobile-tag-bar i{
    font-size: var(--text24);
+   -webkit-text-fill-color: #C72B2B; 
+    /* Bordes al texto */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
-
+/* Scrolltop Button */
+#scroll-button{
+    position: fixed;
+    left: 8px;
+    bottom: 60px;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: #C72B2B;
+}
+#scroll-button i{
+    font-size: 25px;
+}

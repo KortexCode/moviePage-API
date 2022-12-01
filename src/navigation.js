@@ -96,10 +96,8 @@ function trendingListPage(){
     popularList.classList.add("d-none");
     searchBar.classList.add("d-none");
     trendingList.classList.remove("d-none");
-    //Se limpia el html de los contenedores de los poster de película y se reinicia la paginación
+    //Se reinicia la paginación
     page = 1;
-    let containerTrending = document.querySelector(".trending-list__cards-container");
-    containerTrending.innerHTML = ""; 
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieViewMore();   
     window.scrollTo(0, 0);
@@ -115,10 +113,8 @@ function popularListPage(){
     searchBar.classList.add("d-none");
     trendingList.classList.add("d-none");
     popularList.classList.remove("d-none");
-    //Se limpia el html de los contenedores de los poster de película y se reinicia la paginación
+    //Se reinicia la paginación
     page = 1;
-    let containerPopular = document.querySelector(".popular-list__cards-container");
-    containerPopular.innerHTML = ""; 
     //Se manda a llamar las funciones generadoras de la información  
     popularMovieViewMore();   
     window.scrollTo(0, 0);
@@ -133,15 +129,13 @@ function categoryPage(){
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
     category.classList.remove("d-none");
-    //Se limpia el html de los contenedores de los poster de película y se reinicia la paginación
+    //Se reinicia la paginación
     page = 1;
-    let containerPopular = document.querySelector(".category__cards-container");
-    containerPopular.innerHTML = ""; 
     //Se obtiene el id y nombre de categoría del hash usando split
     let [vista, categoryIdName] = location.hash.split("=");
     const [categoryId, categoryName] = categoryIdName.split("_");
     //manda a construir la vista de categorías con las películas a consultar
-    getMovieByCategory({name:categoryName, id:categoryId}); 
+    getMovieByCategory({name:categoryName, id:categoryId, page}); 
     window.scrollTo(0, 0); 
 }
 function searchPage(){
@@ -154,15 +148,13 @@ function searchPage(){
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
     searching.classList.remove("d-none");
-    //Se limpia el html de los contenedores de los poster de película y se reinicia la paginación
+    //Se reinicia la paginación
     page = 1;
-    let containerPopular = document.querySelector(".searching__cards-container");
-    containerPopular.innerHTML = ""; 
     //Se obtiene el nombre de búsqueda en el hash usando split y join
     let [vista, searchName] = location.hash.split("=");
     let query = searchName.split("-");
     query= query.join(" ");
-    getMovieBySearch({query}); 
+    getMovieBySearch({query, page}); 
     window.scrollTo(0, 0); 
 }
 function movieDetailPage(){

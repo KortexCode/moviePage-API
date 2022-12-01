@@ -9,6 +9,12 @@
     background: none;
     box-shadow: none;
 }
+/* Scrolltop Button */
+#scroll-button{
+    
+    bottom: 10px;
+  
+}
 /* DETAIL SECTION */
 #movie-detail__container #movie-detail__category-container img{
     object-position: center;
