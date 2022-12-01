@@ -66,8 +66,7 @@ main{
     margin-bottom: 48px;
 }
 /* Trendings, Popular and searching sections*/
-#trending .trending__cards-container, #popular .popular__cards-container, #categories .category__cards-container,
-#searching .searching__cards-container{
+#trending .trending__cards-container, #popular .popular__cards-container{
     display: flex;
     gap: 16px;
     align-items: center;
@@ -76,6 +75,17 @@ main{
     overflow-x: scroll;
     overflow-y: hidden;
    
+}
+/*category and searching section*/
+#categories .category__cards-container, #searching .searching__cards-container{
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 225px);
+    justify-content: center;
+    gap: 16px;
+    height: auto;
+    overflow: none;
+    
 }
 #trending .trending__cards-container .poster-container, 
 #popular .popular__cards-container .poster-container, #categories .category__cards-container .poster-container, #searching .searching__cards-container .poster-container, .trending-list__cards-container .poster-container, .popular-list__cards-container .poster-container{

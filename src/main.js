@@ -1,9 +1,41 @@
+/* PAGINATION */
+let page = 1; //Para las listas de trending y popular
+window.addEventListener("scroll", infinityScroll);
+function infinityScroll(){
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+    if( (maxScroll === window.scrollY) && (location.hash === "#more-trends")){
+        //Se aumenta la página
+        page++;
+        trendingMovieViewMore(page);
+        
+    }
+    if( (maxScroll === window.scrollY) && (location.hash === "#more-popular")){
+        //Se aumenta la página
+        page++;
+        popularMovieViewMore(page);
+    }
+    if( (maxScroll === window.scrollY) && (location.hash.startsWith("#category"))){
+        //Se obtiene el id y nombre de categoría del hash usando split
+        let [vista, categoryIdName] = location.hash.split("=");
+        const [categoryId, categoryName] = categoryIdName.split("_");
+        //Se aumenta la página
+        page++;
+        getMovieByCategory({name: categoryName, id:categoryId, page});
+    }
+    if( (maxScroll === window.scrollY) && (location.hash.startsWith("#search"))){
+        //Se obtiene el nombre de búsqueda en el hash usando split y join
+        let [vista, searchName] = location.hash.split("=");
+        let query = searchName.split("-");
+        query = query.join(" ");
+        //Se aumenta la página
+        page++;
+        getMovieBySearch({query, page});
+    }   
+}
 
 //INTERCEPTOR OBSERVER PARAMS
-
 //Se crea la instancia del observador y se pasa como parámetro la función callback, se omite options
 //Se usará como raiz el viewport
-
 let observer = new IntersectionObserver(entries => {
     /* console.log("todas las entradas", entries); */
     entries.filter(entry => entry.isIntersecting).forEach(entryImg => {
@@ -34,6 +66,8 @@ const api = axios.create({
       'api_key': API_KEY,
     },
   });
+
+/* FUNCIONES CREADORAS */
 //Se crea la vista de trending en el home
 async function trendingMovieView(){
     try{
@@ -46,6 +80,7 @@ async function trendingMovieView(){
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".trending__cards-container");
+        cardsContainer.innerHTML = "";
         /* se llama a la función que genera las movie cards */
         createMoviePosters(res, cardsContainer);
     }
@@ -54,10 +89,12 @@ async function trendingMovieView(){
     }
 }
 //Se crean la vista en formato grilla al dar click al botón view more
-async function trendingMovieViewMore(){
+async function trendingMovieViewMore(page){
     try{
         //Consulta a la api axios
-        const res = await api("trending/movie/day");
+        const res = await api("trending/movie/day", {params : {
+            page,
+        }});
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".trending-list__cards-container");
@@ -65,7 +102,7 @@ async function trendingMovieViewMore(){
         createMoviePosters(res, cardsContainer);
     }
     catch(error){
-        console.log("Sorry"+error);
+        console.log("Sorry" + error);
     }
 }
 //Se crea la vista de trending en el home
@@ -76,6 +113,7 @@ async function popularMovieView(){
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".popular__cards-container");
+        cardsContainer.innerHTML = "";
         /* se llama a la función que genera las movie cards */
         createMoviePosters(res, cardsContainer);
     }
@@ -83,10 +121,13 @@ async function popularMovieView(){
         console.log("Sorry"+error);
     }
 }
-async function popularMovieViewMore(){
+async function popularMovieViewMore(page){
+    page++;
     try{
         //Consulta a la api axios
-        const res = await api("movie/popular");
+        const res = await api("movie/popular", {params : {
+            page,
+        }});
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".popular-list__cards-container");
@@ -172,12 +213,13 @@ async function categoryMoviePreview(){
        
 }
 //Aquí se genera la insercción de las películas según la categoría seleccionada
-async function getMovieByCategory(name, id){
+async function getMovieByCategory({name, id, page} = {}){
     try{
          //Consulta a la api axios
         const res = await api("discover/movie",{
             params: {
                 with_genres : id,
+                page,
             },
         });
         //Se obtienen los elementos del html
@@ -192,18 +234,17 @@ async function getMovieByCategory(name, id){
     }
 }
 //Aquí se genera la insercción de las películas según la consulta realizada por el usuario
-async function getMovieBySearch(query){
-    console.log("la query", query)
+async function getMovieBySearch({query, page}){
     try{
          //Consulta a la api axios
         const res = await api("search/movie",{
             params: {
                 query,
+                page,
             },
         });
         //Se obtienen los elementos del html
         const cardsContainer = document.querySelector(".searching__cards-container");
-        console.log("buscados", res);
         /* se llama a la función que genera las movie cards */   
         createMoviePosters(res, cardsContainer);
     }
@@ -322,7 +363,7 @@ function createMoviePosters(res, cardsContainer){
         fragment.push(article);
         
     }
-    cardsContainer.innerHTML = "";
+  /*   cardsContainer.innerHTML = ""; */
     cardsContainer.append(...fragment);
 }
 //Crea las categorías de la sección de detalles de peliculas
