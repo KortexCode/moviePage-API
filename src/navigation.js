@@ -135,7 +135,7 @@ function categoryPage(){
     let [vista, categoryIdName] = location.hash.split("=");
     const [categoryId, categoryName] = categoryIdName.split("_");
     //manda a construir la vista de categorías con las películas a consultar
-    getMovieByCategory({name:categoryName, id:categoryId, page}); 
+    getMovieByCategory({name:categoryName, id:categoryId}); 
     window.scrollTo(0, 0); 
 }
 function searchPage(){
@@ -154,7 +154,7 @@ function searchPage(){
     let [vista, searchName] = location.hash.split("=");
     let query = searchName.split("-");
     query= query.join(" ");
-    getMovieBySearch({query, page}); 
+    getMovieBySearch({query}); 
     window.scrollTo(0, 0); 
 }
 function movieDetailPage(){

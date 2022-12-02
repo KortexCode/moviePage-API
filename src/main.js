@@ -5,19 +5,22 @@ scrollTop.addEventListener("click", () =>{
 })
 /* PAGINATION */
 let page = 1; //Para las listas de trending y popular
-window.addEventListener("scroll", infinityScroll);
+window.addEventListener("scroll", infinityScroll, {passive : false});
 function infinityScroll(){
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+    //Se extrae el máximo scroll segúnla vista actual
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     if( (maxScroll === window.scrollY) && (location.hash === "#more-trends")){
         //Se aumenta la página
         page++;
-        trendingMovieViewMore(page);
+        //Se manda a llamar la función de consulta
+        trendingMovieViewMore();
         
     }
     if( (maxScroll === window.scrollY) && (location.hash === "#more-popular")){
         //Se aumenta la página
         page++;
-        popularMovieViewMore(page);
+        //Se manda a llamar la función de consulta
+        popularMovieViewMore();
     }
     if( (maxScroll === window.scrollY) && (location.hash.startsWith("#category"))){
         //Se obtiene el id y nombre de categoría del hash usando split
@@ -25,7 +28,8 @@ function infinityScroll(){
         const [categoryId, categoryName] = categoryIdName.split("_");
         //Se aumenta la página
         page++;
-        getMovieByCategory({name: categoryName, id:categoryId, page});
+        //Se manda a llamar la función de consulta
+        getMovieByCategory({name: categoryName, id:categoryId});
     }
     if( (maxScroll === window.scrollY) && (location.hash.startsWith("#search"))){
         //Se obtiene el nombre de búsqueda en el hash usando split y join
@@ -34,7 +38,8 @@ function infinityScroll(){
         query = query.join(" ");
         //Se aumenta la página
         page++;
-        getMovieBySearch({query, page});
+        //Se manda a llamar la función de consulta
+        getMovieBySearch({query});
     }   
 }
 
@@ -94,7 +99,7 @@ async function trendingMovieView(){
     }
 }
 //Se crean la vista en formato grilla al dar click al botón view more
-async function trendingMovieViewMore(page){
+async function trendingMovieViewMore(){
     try{
         //Consulta a la api axios
         const res = await api("trending/movie/day", {params : {
@@ -103,6 +108,7 @@ async function trendingMovieViewMore(page){
         console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".trending-list__cards-container");
+        console.log("page", page)
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
@@ -128,8 +134,7 @@ async function popularMovieView(){
         console.log("Sorry"+error);
     }
 }
-async function popularMovieViewMore(page){
-    page++;
+async function popularMovieViewMore(){
     try{
         //Consulta a la api axios
         const res = await api("movie/popular", {params : {
@@ -222,7 +227,7 @@ async function categoryMoviePreview(){
        
 }
 //Aquí se genera la insercción de las películas según la categoría seleccionada
-async function getMovieByCategory({name, id, page} = {}){
+async function getMovieByCategory({name, id} = {}){
     try{
          //Consulta a la api axios
         const res = await api("discover/movie",{
@@ -245,7 +250,7 @@ async function getMovieByCategory({name, id, page} = {}){
     }
 }
 //Aquí se genera la insercción de las películas según la consulta realizada por el usuario
-async function getMovieBySearch({query, page}){
+async function getMovieBySearch({query}){
     try{
          //Consulta a la api axios
         const res = await api("search/movie",{
