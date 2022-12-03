@@ -1,10 +1,11 @@
 /* SCROLLTOP BUTTON */
-const scrollTop = document.getElementById("scroll-button");
 scrollTop.addEventListener("click", () =>{
     window.scrollTo(0, 0);
 })
 /* PAGINATION */
-let page = 1; //Para las listas de trending y popular
+let page = 1; //Se inician la primera página a consultar en una vista
+let maxPages = 3;//Se establece el número máximo de páginas a consultar en una vista
+
 window.addEventListener("scroll", infinityScroll, {passive : false});
 function infinityScroll(){
     //Se extrae el máximo scroll segúnla vista actual
@@ -12,15 +13,14 @@ function infinityScroll(){
     if( (maxScroll === window.scrollY) && (location.hash === "#more-trends")){
         //Se aumenta la página
         page++;
-        //Se manda a llamar la función de consulta
-        trendingMovieViewMore();
-        
+        if(page <= maxPages)
+        trendingMovieViewMore();//Se manda a llamar la función de consulta     
     }
     if( (maxScroll === window.scrollY) && (location.hash === "#more-popular")){
         //Se aumenta la página
         page++;
-        //Se manda a llamar la función de consulta
-        popularMovieViewMore();
+        if(page <= maxPages)
+        popularMovieViewMore();//Se manda a llamar la función de consulta
     }
     if( (maxScroll === window.scrollY) && (location.hash.startsWith("#category"))){
         //Se obtiene el id y nombre de categoría del hash usando split
@@ -28,8 +28,9 @@ function infinityScroll(){
         const [categoryId, categoryName] = categoryIdName.split("_");
         //Se aumenta la página
         page++;
-        //Se manda a llamar la función de consulta
-        getMovieByCategory({name: categoryName, id:categoryId});
+        if(page <= maxPages)
+        getMovieByCategory({name: categoryName, id:categoryId});//Se manda a llamar la función de consulta
+        
     }
     if( (maxScroll === window.scrollY) && (location.hash.startsWith("#search"))){
         //Se obtiene el nombre de búsqueda en el hash usando split y join
@@ -38,8 +39,9 @@ function infinityScroll(){
         query = query.join(" ");
         //Se aumenta la página
         page++;
-        //Se manda a llamar la función de consulta
-        getMovieBySearch({query});
+        if(page <= maxPages)
+        getMovieBySearch({query});//Se manda a llamar la función de consulta
+        
     }   
 }
 
@@ -101,14 +103,14 @@ async function trendingMovieView(){
 //Se crean la vista en formato grilla al dar click al botón view more
 async function trendingMovieViewMore(){
     try{
+        
         //Consulta a la api axios
         const res = await api("trending/movie/day", {params : {
             page,
         }});
-        console.log("data", res); 
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".trending-list__cards-container");
-        console.log("page", page)
+        maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
@@ -140,7 +142,7 @@ async function popularMovieViewMore(){
         const res = await api("movie/popular", {params : {
             page,
         }});
-        console.log("data", res); 
+        maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
         //Se obtiene el contenedor de la sección de trending
         const cardsContainer = document.querySelector(".popular-list__cards-container");
         if(page <= 1)
@@ -240,6 +242,7 @@ async function getMovieByCategory({name, id} = {}){
         const categoryTitle = document.querySelector("#categories .section-title");
         categoryTitle.textContent = name;
         const cardsContainer = document.querySelector(".category__cards-container");
+        maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
          /* se llama a la función que genera las movie cards */   
@@ -251,6 +254,7 @@ async function getMovieByCategory({name, id} = {}){
 }
 //Aquí se genera la insercción de las películas según la consulta realizada por el usuario
 async function getMovieBySearch({query}){
+    console.log("Sigue consultado")
     try{
          //Consulta a la api axios
         const res = await api("search/movie",{
@@ -261,6 +265,9 @@ async function getMovieBySearch({query}){
         });
         //Se obtienen los elementos del html
         const cardsContainer = document.querySelector(".searching__cards-container");
+        maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
+        console.log("maximo", maxPages)
+      
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */   
@@ -321,10 +328,10 @@ async function getMovieById(id){
 async function createMovieRelatedPoster(url){
     const res = await api(url);
     const cardsContainer = document.querySelector(".related-movie__cards-container");
+    cardsContainer.innerText = "";
     cardsContainer.scrollTo(0, 0);
     createMoviePosters(res, cardsContainer);
 }
-
 //Se crean las imágenes en cada contenedor de cada sección
 function createMoviePosters(res, cardsContainer){
     //Se borra todo lo que halla en la sección contenedora antes de volver a realizar construcción de elementos en el html

@@ -28,6 +28,7 @@ const btn_view_more = node("#trending__btn-view-more");
 const btn_view_more2 = node("#popular__btn-view-more");
 const tagbar_btnHome = node("#mobile-tag-bar__btn-home");
 const header_btnHome = node("#header-navbar__btn-home");
+const scrollTop = node("#scroll-button");
 /* Inputs */
 const inputMobile = node("#home-search__input-mobile");
 const inputDesktop = node("#home-search__input-desktop");

@@ -58,7 +58,10 @@ window.addEventListener("hashchange", navigator, false);
 
 //Aquí se verifica si cual fue el cambio que sufrió el hash para mandar a llamar la vista deseada
 function navigator(){
-
+    //Se reinicia la cantidad de páginas mínimas en una vista.
+    maxPages = 3;
+    //Se reinicia la paginación
+    page = 1;
     location.hash.startsWith("#trends") ? homePage() :  location.hash.startsWith("#search=") ? searchPage()
     : location.hash.startsWith("#movie") ?  movieDetailPage() : location.hash.startsWith("#category") ? categoryPage() 
     : location.hash.startsWith("#more-trends") ? trendingListPage() : location.hash.startsWith("#more-popular") ? popularListPage()
@@ -78,6 +81,7 @@ function homePage(){
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
     popular.classList.remove("d-none");
+    scrollTop.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieView();
     popularMovieView(); 
@@ -96,8 +100,7 @@ function trendingListPage(){
     popularList.classList.add("d-none");
     searchBar.classList.add("d-none");
     trendingList.classList.remove("d-none");
-    //Se reinicia la paginación
-    page = 1;
+    scrollTop.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieViewMore();   
     window.scrollTo(0, 0);
@@ -113,8 +116,7 @@ function popularListPage(){
     searchBar.classList.add("d-none");
     trendingList.classList.add("d-none");
     popularList.classList.remove("d-none");
-    //Se reinicia la paginación
-    page = 1;
+    scrollTop.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
     popularMovieViewMore();   
     window.scrollTo(0, 0);
@@ -129,8 +131,7 @@ function categoryPage(){
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
     category.classList.remove("d-none");
-    //Se reinicia la paginación
-    page = 1;
+    scrollTop.classList.remove("d-none");
     //Se obtiene el id y nombre de categoría del hash usando split
     let [vista, categoryIdName] = location.hash.split("=");
     const [categoryId, categoryName] = categoryIdName.split("_");
@@ -148,8 +149,7 @@ function searchPage(){
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
     searching.classList.remove("d-none");
-    //Se reinicia la paginación
-    page = 1;
+    scrollTop.classList.remove("d-none");
     //Se obtiene el nombre de búsqueda en el hash usando split y join
     let [vista, searchName] = location.hash.split("=");
     let query = searchName.split("-");
@@ -168,6 +168,7 @@ function movieDetailPage(){
     category.classList.add("d-none");
     movieDetail.classList.remove("d-none");
     movieDetail.classList.remove("d-md-none");
+    scrollTop.classList.add("d-none");
      //Se obtiene el id de la película clickeada en el hash usando split y join
     let [vista, movieId] = location.hash.split("=");
     let id = movieId.split("-");
