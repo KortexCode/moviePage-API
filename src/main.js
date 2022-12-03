@@ -254,7 +254,6 @@ async function getMovieByCategory({name, id} = {}){
 }
 //Aquí se genera la insercción de las películas según la consulta realizada por el usuario
 async function getMovieBySearch({query}){
-    console.log("Sigue consultado")
     try{
          //Consulta a la api axios
         const res = await api("search/movie",{
@@ -266,8 +265,7 @@ async function getMovieBySearch({query}){
         //Se obtienen los elementos del html
         const cardsContainer = document.querySelector(".searching__cards-container");
         maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
-        console.log("maximo", maxPages)
-      
+        //limpia la vista al ser primera vez que entra
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */   
