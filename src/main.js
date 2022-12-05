@@ -80,7 +80,7 @@ const api = axios.create({
   });
 
 /* FUNCIONES CREADORAS */
-//Se crea la vista de trending en el home
+//Se crea la sección de trending en el home
 async function trendingMovieView(){
     try{
         /* Ejemplo de consulta por fecth
@@ -120,7 +120,7 @@ async function trendingMovieViewMore(){
         console.log("Sorry" + error);
     }
 }
-//Se crea la vista de trending en el home
+//Se crea la sección de popular en el home
 async function popularMovieView(){
     try{
         //Consulta a la api axios
@@ -136,6 +136,7 @@ async function popularMovieView(){
         console.log("Sorry"+error);
     }
 }
+//Se crean la vista en formato grilla al dar click al botón view more
 async function popularMovieViewMore(){
     try{
         //Consulta a la api axios
@@ -149,6 +150,21 @@ async function popularMovieViewMore(){
         cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
         createMoviePosters(res, cardsContainer);
+    }
+    catch(error){
+        console.log("Sorry"+error);
+    }
+}
+//Se crea la sección de favoritos
+async function favoriteMovieView(){
+    try{
+        //Consulta a la api axios
+       /*  const res = await api("trending/movie/day"); */
+        //Se obtiene el contenedor de la sección de trending
+        const cardsContainer = document.querySelector(".trending__cards-container");
+       /*  cardsContainer.innerHTML = ""; */
+        /* se llama a la función que genera las movie cards */
+        /* createMoviePosters(res, cardsContainer); */
     }
     catch(error){
         console.log("Sorry"+error);
@@ -342,7 +358,12 @@ function createMoviePosters(res, cardsContainer){
         article.classList.add("section-article", "d-flex", "flex-column");
         const posterContainer = document.createElement("div");
         posterContainer.classList.add("poster-container");
-
+        //Creando botón de agregar a favoritos
+        const btnLike = document.createElement("button");
+        btnLike.addEventListener("click", ()=>{
+            btnLike.classList.toggle("btn-like--selected");
+        });
+        btnLike.classList.add("btn-like");
         //Creando etiqueta de imagen
         const movieImg = document.createElement("img");
         movieImg.addEventListener("click", () =>{
@@ -368,8 +389,11 @@ function createMoviePosters(res, cardsContainer){
         title.setAttribute('id', "section-article__title");
         title.innerText=item.original_title;
         //Creando etiqueta de ícono de puntaje
-        const i = document.createElement("i");
-        i.classList.add("fa-solid", "fa-star", "ms-2", "me-1");
+        const starIcon = document.createElement("i");
+        starIcon.classList.add("fa-solid", "fa-star", "ms-2", "me-1");
+        //Creando etiqueta de ícono de corazón para botón de favoritos
+        const heartIcon = document.createElement("i");
+        heartIcon.classList.add("heart-icon", "fa-solid", "fa-heart");
         //Creando etiqueta de puntaje de película
         const score = document.createElement("p");
         score.classList.add("my-0", "ms-1");
@@ -379,9 +403,10 @@ function createMoviePosters(res, cardsContainer){
         score.innerText = `${scores}`;
 
         //Agregando cada componenete dentro de su padre
-        scoreContainer.append(i, score)
+        scoreContainer.append(starIcon, score)
         div.append(title, scoreContainer);
-        posterContainer.appendChild(movieImg);
+        btnLike.appendChild(heartIcon);
+        posterContainer.append(btnLike, movieImg);
         article.append(posterContainer, div);
         fragment.push(article);
         

@@ -50,8 +50,8 @@ hr{
 .navbarSupported p{
     font-size: var(--text26);
     font-weight: 700;
-    /* color: #EC3232; */
-    color: rgb(151, 146, 146);
+    color: #EC3232;
+    /* color: rgb(151, 146, 146); */
     /* Bordes al texto */
     -webkit-text-stroke-width: 1.3px;
     -webkit-text-stroke-color: black;

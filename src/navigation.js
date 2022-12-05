@@ -28,6 +28,7 @@ for (const item of arrowBack) {
 btn_search_mobile.addEventListener("click", ()=>{
         let inputValue = inputMobile.value.split(" ");
         inputValue = inputValue.join("-");
+        //Se verifica si el input está vacio o no
         if(inputMobile.value.trim()===""){
             inputMobile.value = "insert a query";
         }
@@ -39,6 +40,7 @@ btn_search_mobile.addEventListener("click", ()=>{
 btn_search_desktop.addEventListener("click", ()=>{
     let inputValue = inputDesktop.value.split(" ");
     inputValue = inputValue.join("-");
+    //Se verifica si el input está vacio o no
     if(inputDesktop.value.trim()==="")
        inputDesktop.value = "insert a query"
     else
@@ -107,6 +109,7 @@ function homePage(){
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieView();
     popularMovieView(); 
+    /* favoriteMovieView(); */
     window.scrollTo(0, 0);
 
 }

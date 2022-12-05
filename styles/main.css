@@ -61,12 +61,12 @@ main{
 .main-search-container i{
     font-size: 16px;
 }
-/* POPULAR SECTION */
-#popular{
+/* FAVORITE SECTION */
+#favorite{
     margin-bottom: 48px;
 }
 /* Trendings, Popular and searching sections*/
-#trending .trending__cards-container, #popular .popular__cards-container{
+#trending .trending__cards-container, #popular .popular__cards-container, #favorite .favorite__cards-container{
     display: flex;
     gap: 16px;
     align-items: center;
@@ -76,7 +76,7 @@ main{
     overflow-y: hidden;
    
 }
-/*category and searching section*/
+/*category and searching section like a grid*/
 #categories .category__cards-container, #searching .searching__cards-container{
     
     display: grid;
@@ -90,21 +90,24 @@ main{
 #trending .trending__cards-container .poster-container, #popular .popular__cards-container .poster-container,
 #categories .category__cards-container .poster-container, #searching .searching__cards-container .poster-container,
 .trending-list__cards-container .poster-container, .popular-list__cards-container .poster-container{
+    position: relative;
     height: 315px;
     width:225px;
     filter: drop-shadow(4px 4px 5px #090707);
     transition: all;
     transition-duration: 0.5s; 
 }
-#trending .trending__cards-container .poster-container:hover, #popular .popular__cards-container .poster-container:hover,
-#categories .category__cards-container .poster-container:hover, #searching .searching__cards-container .poster-container:hover,
-#trending-list__cards-container .poster-container:hover, .popular-list__cards-container .poster-container:hover{
+#trending .trending__cards-container .poster-container:hover, #popular .popular__cards-container .poster-container:hover, 
+#categories .category__cards-container .poster-container:hover, #searching .searching__cards-container .poster-container:hover, 
+.trending-list__cards-container .poster-container:hover, .popular-list__cards-container .poster-container:hover{
     cursor: pointer; 
     transform: translateY(-5px);
 }
-#trending .trending__cards-container img, 
-#popular .popular__cards-container img, #categories .category__cards-container img, #searching .searching__cards-container img,
-#trending-list .trending-list__cards-container img, .popular-list__cards-container article img{
+/* posters style */
+#trending .trending__cards-container img, #popular .popular__cards-container img, 
+#favorite .favorite__cards-container img, #categories .category__cards-container img,
+#searching .searching__cards-container img, #trending-list .trending-list__cards-container img,
+#popular .popular-list__cards-container article img{
     height: 100%; 
     min-height: 100%;
     max-height: 100%;
@@ -113,35 +116,12 @@ main{
     min-width: 100%;
     border-radius: 10px;
     object-fit: cover;
-    object-position: top;
-   
+    object-position: top; 
 }
-
-/* #trending .trending__cards-container img, 
-#popular .popular__cards-container img, #categories .category__cards-container img, #searching .searching__cards-container img,
-#trending-list .trending-list__cards-container img, .popular-list__cards-container article img{
-    height: 270px;
-    max-height: 270px;
-    min-height: 270px;
-    width:225px;
-    max-width: 225px;
-    min-width: 225px;
-    border-radius: 8px;
-    object-fit: cover;
-    object-position: top;
-    filter: drop-shadow(4px 4px 5px #090707);
-    transition: all;
-    transition-duration: 0.5s; 
-}
-#trending .trending__cards-container img:hover, #popular .popular__cards-container img:hover,
-#categories .category__cards-container img:hover, #searching .searching__cards-container img:hover,
-#trending-list__cards-container img:hover, .popular-list__cards-container img:hover{
-    cursor: pointer; 
-    transform: translateY(-5px);
-} */
-
+/*scroll hide*/
 .trending__cards-container--sidebar::-webkit-scrollbar,  .popular__cards-container--sidebar::-webkit-scrollbar,
-.category__cards-container--sidebar::-webkit-scrollbar, .searching__cards-container--sidebar::-webkit-scrollbar{
+.favorite__cards-container--sidebar::-webkit-scrollbar, .category__cards-container--sidebar::-webkit-scrollbar,
+.searching__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
 /* Estilos para los detalles de cada poster de película*/
@@ -324,15 +304,6 @@ main{
     font-size: var(--text14);
     font-weight: 600;
 }
-footer{
-    height: 48px;
-}
-
-/* mobile home button */
-#mobile-tag-bar__btn-home:hover{
-    -webkit-text-fill-color: #641c1c; 
-    color: #C72B2B;
-}
 /* mobile tag bar*/
 #mobile-tag-bar{
     height: 48px;
@@ -340,11 +311,17 @@ footer{
 }
 /* mobile tag bar buttons */
 #mobile-tag-bar i{
-   font-size: var(--text24);
-   -webkit-text-fill-color: #C72B2B; 
+    font-size: var(--text24);
+    color: black;
+    -webkit-text-fill-color: #C72B2B; 
     /* Bordes al texto */
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
+}
+/* mobile tag bar - home button */
+#mobile-tag-bar__btn-home:hover{
+    -webkit-text-fill-color: #641c1c; 
+    color: #C72B2B;
 }
 /* Scrolltop Button */
 #scroll-button{
@@ -358,4 +335,31 @@ footer{
 }
 #scroll-button i{
     font-size: 25px;
+}
+/* like button */
+.poster-container .btn-like{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 35px;
+    width: 35px;
+    padding: 0;
+    margin: 0;
+    border: 2px solid black;
+    border-radius: 100%;
+    background-color: var(--background-bars);
+}
+.btn-like .heart-icon{
+    padding-top: 2px;
+    font-size: 16px;
+}
+.poster-container .btn-like--selected{
+    color: black;
+    -webkit-text-fill-color: #C72B2B; 
+    /* Bordes al texto */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+footer{
+    height: 48px;
 }
