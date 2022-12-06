@@ -1,3 +1,4 @@
+
 /* SCROLLTOP BUTTON */
 scrollTop.addEventListener("click", () =>{
     window.scrollTo(0, 0);
@@ -47,6 +48,7 @@ function infinityScroll(){
 function movieLiked(movie){
     //Se verifica si hay elelmentos en la llave "movie liked" de localStorage
     if(localStorage.getItem("movie liked") === null){
+        console.log("Agregando primera película")
         //Se crea un array vacio en la llave "movie liked" de localStorage
         localStorage.setItem("movie liked", "[]");
         //Se guarda el array vacío en moviesInlocalStorage
@@ -56,24 +58,40 @@ function movieLiked(movie){
         moviesInlocalStorage.push(movie);
         //Se agrega a la llave "movie liked" la película que se desea guardar en favoritos
         localStorage.setItem("movie liked", JSON.stringify(moviesInlocalStorage));
+        favoriteMovieView(moviesInlocalStorage);
     }
     else{
+        console.log("Validando pelicula entrante")
+       
         //Se guarda el contenido del localStorage en moviesInlocalStorage
-        const moviesInlocalStorage = JSON.parse(localStorage.getItem("movie liked"));
-        for (let index = 0; index < moviesInlocalStorage.length; index++) {
-            if(moviesInlocalStorage[index].id === movie.id){
-                moviesInlocalStorage.slice(index, 1);
-            }
-           
-            
-        }
+        let moviesInlocalStorage = JSON.parse(localStorage.getItem("movie liked"));
+        //Se guarda el tamaño actual del array que contiene las películas en localStorage
+        let size = moviesInlocalStorage.length;
         
-        //Se agrega la película a guardar en favoritos al array
-        moviesInlocalStorage.push(movie);
+        //Si se marca nuevamente el botón de favoritos, entonces, removerá la película del array
+        let index = 0;
+        moviesInlocalStorage.forEach(element => { 
+            if(element.id === movie.id){
+                console.log("Eliminado una película")
+                console.log("array para eliminar", moviesInlocalStorage)
+                console.log("el indice", index);
+                moviesInlocalStorage.splice(index, 1);
+            }  
+            index++;         
+        });
+        console.log("tamaño", size);
+        console.log("tamaño del array", moviesInlocalStorage.length);
+        //Si no hubo cambios en el tamaño del array se agregará la película nueva al array
+        if(size === moviesInlocalStorage.length){
+            console.log("Agregando otra película")
+            moviesInlocalStorage.push(movie);
+        }
+    
         //Se agrega a la llave "movie liked" la película que se desea guardar en favoritos
         localStorage.setItem("movie liked", JSON.stringify(moviesInlocalStorage));
+        favoriteMovieView(moviesInlocalStorage);
     }
-
+    
 }
 //INTERCEPTOR OBSERVER PARAMS
 //Se crea la instancia del observador y se pasa como parámetro la función callback, se omite options
@@ -124,7 +142,8 @@ async function trendingMovieView(){
         const cardsContainer = document.querySelector(".trending__cards-container");
         cardsContainer.innerHTML = "";
         /* se llama a la función que genera las movie cards */
-        createMoviePosters(res, cardsContainer);
+        const moviesList = res.data.results;
+        createMoviePosters(moviesList, cardsContainer);
     }
     catch(error){
         console.log("Sorry"+error);
@@ -144,7 +163,8 @@ async function trendingMovieViewMore(){
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
-        createMoviePosters(res, cardsContainer);
+        const moviesList = res.data.results;
+        createMoviePosters(moviesList, cardsContainer);
     }
     catch(error){
         console.log("Sorry" + error);
@@ -160,7 +180,8 @@ async function popularMovieView(){
         const cardsContainer = document.querySelector(".popular__cards-container");
         cardsContainer.innerHTML = "";
         /* se llama a la función que genera las movie cards */
-        createMoviePosters(res, cardsContainer);
+        const moviesList = res.data.results;
+        createMoviePosters(moviesList, cardsContainer);
     }
     catch(error){
         console.log("Sorry"+error);
@@ -179,26 +200,21 @@ async function popularMovieViewMore(){
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
-        createMoviePosters(res, cardsContainer);
+        const moviesList = res.data.results;
+        createMoviePosters(moviesList, cardsContainer);
     }
     catch(error){
         console.log("Sorry"+error);
     }
 }
 //Se crea la sección de favoritos
-function favoriteMovieView(){
-    try{
-        //Consulta a la api axios
-       /*  const res = await api("trending/movie/day"); */
-        //Se obtiene el contenedor de la sección de trending
-        const cardsContainer = document.querySelector(".trending__cards-container");
-       /*  cardsContainer.innerHTML = ""; */
-        /* se llama a la función que genera las movie cards */
-        /* createMoviePosters(res, cardsContainer); */
-    }
-    catch(error){
-        console.log("Sorry"+error);
-    }
+function favoriteMovieView(movieList){   
+    //Se obtiene el contenedor de la sección de favoritos
+    const cardsContainer = document.querySelector(".favorite__cards-container");
+    cardsContainer.innerHTML = "";
+    /* se llama a la función que genera las movie cards */
+    if(movieList)
+        createMoviePosters(movieList, cardsContainer);  
 }
 //Cargar las categorías en el menú Desktop y el menú Mobile
 async function categoryMoviePreview(){
@@ -292,7 +308,8 @@ async function getMovieByCategory({name, id} = {}){
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
          /* se llama a la función que genera las movie cards */   
-        createMoviePosters(res, cardsContainer);
+         const moviesList = res.data.results;
+         createMoviePosters(moviesList, cardsContainer);
     }
     catch(error){
         console.log("Sorry"+error);
@@ -315,7 +332,8 @@ async function getMovieBySearch({query}){
         if(page <= 1)
         cardsContainer.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */   
-        createMoviePosters(res, cardsContainer);
+        const moviesList = res.data.results;
+        createMoviePosters(moviesList, cardsContainer);
     }
     catch(error){
         console.log("Sorry"+error);
@@ -382,7 +400,7 @@ function createMoviePosters(res, cardsContainer){
     cardsContainer.scrollTo(0, 0);
     const fragment = [];
 
-    for (const item of res.data.results) {
+    for (const item of res) {
         //Creando artículo contenedor de imagen e información de película
         const article = document.createElement("article");
         article.classList.add("section-article", "d-flex", "flex-column");
@@ -391,7 +409,6 @@ function createMoviePosters(res, cardsContainer){
         //Creando botón de agregar a favoritos
         const btnLike = document.createElement("button");
         btnLike.addEventListener("click", (event)=>{
-            /* console.log(event) */
             btnLike.classList.toggle("btn-like--selected");
             movieLiked(item);
 
@@ -487,7 +504,7 @@ function createCategoryContainer(genresArray, article){
 
 
 categoryMoviePreview();
-
+favoriteMovieView(JSON.parse(localStorage.getItem("movie liked")));
 
 
 

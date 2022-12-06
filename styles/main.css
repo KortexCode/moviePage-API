@@ -88,8 +88,9 @@ main{
     
 }
 #trending .trending__cards-container .poster-container, #popular .popular__cards-container .poster-container,
-#categories .category__cards-container .poster-container, #searching .searching__cards-container .poster-container,
-.trending-list__cards-container .poster-container, .popular-list__cards-container .poster-container{
+#favorite .favorite__cards-container .poster-container, #categories .category__cards-container .poster-container, 
+#searching .searching__cards-container .poster-container, .trending-list__cards-container .poster-container,
+.popular-list__cards-container .poster-container{
     position: relative;
     height: 315px;
     width:225px;
@@ -99,15 +100,16 @@ main{
 }
 #trending .trending__cards-container .poster-container:hover, #popular .popular__cards-container .poster-container:hover, 
 #categories .category__cards-container .poster-container:hover, #searching .searching__cards-container .poster-container:hover, 
-.trending-list__cards-container .poster-container:hover, .popular-list__cards-container .poster-container:hover{
+.trending-list__cards-container .poster-container:hover, .popular-list__cards-container .poster-container:hover,
+#favorite .favorite__cards-container .poster-container:hover{
     cursor: pointer; 
     transform: translateY(-5px);
 }
 /* posters style */
 #trending .trending__cards-container img, #popular .popular__cards-container img, 
 #favorite .favorite__cards-container img, #categories .category__cards-container img,
-#searching .searching__cards-container img, #trending-list .trending-list__cards-container img,
-#popular .popular-list__cards-container article img{
+#searching .searching__cards-container img, #trending-list .trending-list__cards-container img, 
+#popular-list .popular-list__cards-container img{
     height: 100%; 
     min-height: 100%;
     max-height: 100%;
