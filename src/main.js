@@ -5,7 +5,6 @@ scrollTop.addEventListener("click", () =>{
 /* PAGINATION */
 let page = 1; //Se inician la primera página a consultar en una vista
 let maxPages = 3;//Se establece el número máximo de páginas a consultar en una vista
-
 window.addEventListener("scroll", infinityScroll, {passive : false});
 function infinityScroll(){
     //Se extrae el máximo scroll segúnla vista actual
@@ -44,7 +43,38 @@ function infinityScroll(){
         
     }   
 }
+//ALMACENAMIENTO LOCAL
+function movieLiked(movie){
+    //Se verifica si hay elelmentos en la llave "movie liked" de localStorage
+    if(localStorage.getItem("movie liked") === null){
+        //Se crea un array vacio en la llave "movie liked" de localStorage
+        localStorage.setItem("movie liked", "[]");
+        //Se guarda el array vacío en moviesInlocalStorage
+        const moviesInlocalStorage = JSON.parse(localStorage.getItem("movie liked"));
+        console.log("array creado", moviesInlocalStorage);
+        //Se agrega la película a guardar en favoritos al array
+        moviesInlocalStorage.push(movie);
+        //Se agrega a la llave "movie liked" la película que se desea guardar en favoritos
+        localStorage.setItem("movie liked", JSON.stringify(moviesInlocalStorage));
+    }
+    else{
+        //Se guarda el contenido del localStorage en moviesInlocalStorage
+        const moviesInlocalStorage = JSON.parse(localStorage.getItem("movie liked"));
+        for (let index = 0; index < moviesInlocalStorage.length; index++) {
+            if(moviesInlocalStorage[index].id === movie.id){
+                moviesInlocalStorage.slice(index, 1);
+            }
+           
+            
+        }
+        
+        //Se agrega la película a guardar en favoritos al array
+        moviesInlocalStorage.push(movie);
+        //Se agrega a la llave "movie liked" la película que se desea guardar en favoritos
+        localStorage.setItem("movie liked", JSON.stringify(moviesInlocalStorage));
+    }
 
+}
 //INTERCEPTOR OBSERVER PARAMS
 //Se crea la instancia del observador y se pasa como parámetro la función callback, se omite options
 //Se usará como raiz el viewport
@@ -77,7 +107,7 @@ const api = axios.create({
     params: {
       'api_key': API_KEY,
     },
-  });
+});
 
 /* FUNCIONES CREADORAS */
 //Se crea la sección de trending en el home
@@ -156,7 +186,7 @@ async function popularMovieViewMore(){
     }
 }
 //Se crea la sección de favoritos
-async function favoriteMovieView(){
+function favoriteMovieView(){
     try{
         //Consulta a la api axios
        /*  const res = await api("trending/movie/day"); */
@@ -360,8 +390,11 @@ function createMoviePosters(res, cardsContainer){
         posterContainer.classList.add("poster-container");
         //Creando botón de agregar a favoritos
         const btnLike = document.createElement("button");
-        btnLike.addEventListener("click", ()=>{
+        btnLike.addEventListener("click", (event)=>{
+            /* console.log(event) */
             btnLike.classList.toggle("btn-like--selected");
+            movieLiked(item);
+
         });
         btnLike.classList.add("btn-like");
         //Creando etiqueta de imagen
@@ -373,8 +406,6 @@ function createMoviePosters(res, cardsContainer){
         movieImg.setAttribute("data-src", "https://image.tmdb.org/t/p/w300"+item.poster_path);
         movieImg.setAttribute("data-alt", item.original_title);
         observer.observe(movieImg);
- /*        movieImg.src = "https://image.tmdb.org/t/p/w500"+item.poster_path; */
-
         //Creando contenedor de título de película y puntaje
         const div = document.createElement("div");
         div.classList.add("container-fluid", "mt-3","px-0", "d-flex", "justify-content-between");
@@ -398,9 +429,7 @@ function createMoviePosters(res, cardsContainer){
         const score = document.createElement("p");
         score.classList.add("my-0", "ms-1");
         score.setAttribute('id', "section-article__score");
-        let scores = parseInt(item.vote_average); 
-        scores = scores.toFixed(1);
-        score.innerText = `${scores}`;
+        score.innerText = `${item.vote_average}`;
 
         //Agregando cada componenete dentro de su padre
         scoreContainer.append(starIcon, score)
