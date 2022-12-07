@@ -44,56 +44,45 @@ function infinityScroll(){
         
     }   
 }
-//ALMACENAMIENTO LOCAL
-function movieLiked(movie){
+/*ALMACENAMIENTO LOCAL*/
+function movieAddToFavorite(movie){
     //Se verifica si hay elelmentos en la llave "movie liked" de localStorage
     if(localStorage.getItem("movie liked") === null){
-        console.log("Agregando primera película")
         //Se crea un array vacio en la llave "movie liked" de localStorage
         localStorage.setItem("movie liked", "[]");
         //Se guarda el array vacío en moviesInlocalStorage
         const moviesInlocalStorage = JSON.parse(localStorage.getItem("movie liked"));
-        console.log("array creado", moviesInlocalStorage);
         //Se agrega la película a guardar en favoritos al array
         moviesInlocalStorage.push(movie);
         //Se agrega a la llave "movie liked" la película que se desea guardar en favoritos
         localStorage.setItem("movie liked", JSON.stringify(moviesInlocalStorage));
         favoriteMovieView(moviesInlocalStorage);
     }
-    else{
-        console.log("Validando pelicula entrante")
-       
+    else{     
         //Se guarda el contenido del localStorage en moviesInlocalStorage
         let moviesInlocalStorage = JSON.parse(localStorage.getItem("movie liked"));
         //Se guarda el tamaño actual del array que contiene las películas en localStorage
-        let size = moviesInlocalStorage.length;
-        
+        let size = moviesInlocalStorage.length;        
         //Si se marca nuevamente el botón de favoritos, entonces, removerá la película del array
         let index = 0;
         moviesInlocalStorage.forEach(element => { 
             if(element.id === movie.id){
-                console.log("Eliminado una película")
-                console.log("array para eliminar", moviesInlocalStorage)
-                console.log("el indice", index);
                 moviesInlocalStorage.splice(index, 1);
+                trendingMovieView()
+                popularMovieView()
             }  
             index++;         
         });
-        console.log("tamaño", size);
-        console.log("tamaño del array", moviesInlocalStorage.length);
         //Si no hubo cambios en el tamaño del array se agregará la película nueva al array
         if(size === moviesInlocalStorage.length){
-            console.log("Agregando otra película")
             moviesInlocalStorage.push(movie);
         }
-    
-        //Se agrega a la llave "movie liked" la película que se desea guardar en favoritos
+        //Se agrega a la llave "movie liked" la película que se desea guardar en favoritos o se actualiza según los cambios
         localStorage.setItem("movie liked", JSON.stringify(moviesInlocalStorage));
         favoriteMovieView(moviesInlocalStorage);
-    }
-    
+    }    
 }
-//INTERCEPTOR OBSERVER PARAMS
+/*INTERCEPTOR OBSERVER PARAMS*/
 //Se crea la instancia del observador y se pasa como parámetro la función callback, se omite options
 //Se usará como raiz el viewport
 let observer = new IntersectionObserver(entries => {
@@ -392,7 +381,8 @@ async function createMovieRelatedPoster(url){
     const cardsContainer = document.querySelector(".related-movie__cards-container");
     cardsContainer.innerText = "";
     cardsContainer.scrollTo(0, 0);
-    createMoviePosters(res, cardsContainer);
+    const moviesList = res.data.results;
+    createMoviePosters(moviesList, cardsContainer);
 }
 //Se crean las imágenes en cada contenedor de cada sección
 function createMoviePosters(res, cardsContainer){
@@ -410,13 +400,21 @@ function createMoviePosters(res, cardsContainer){
         const btnLike = document.createElement("button");
         btnLike.addEventListener("click", (event)=>{
             btnLike.classList.toggle("btn-like--selected");
-            movieLiked(item);
+            console.log("botón de liked clikeado", event)
+            movieAddToFavorite(item);
 
         });
         btnLike.classList.add("btn-like");
+        //Se verifica las películas guardadas en localStorage como favoritas para luego cambiar los estilos al botón
+        const moviesInlocalStorage = JSON.parse(localStorage.getItem("movie liked"));
+        moviesInlocalStorage.forEach((movieInlocal) => {
+            if(movieInlocal.id === item.id){
+                btnLike.classList.add("btn-like--selected");
+            }
+        });     
         //Creando etiqueta de imagen
         const movieImg = document.createElement("img");
-        movieImg.addEventListener("click", () =>{
+        movieImg.addEventListener("click", ()=>{
             location.hash = "#movie="+item.id;
             window.scrollTo(0, 0);
         },false);
@@ -504,7 +502,7 @@ function createCategoryContainer(genresArray, article){
 
 
 categoryMoviePreview();
-favoriteMovieView(JSON.parse(localStorage.getItem("movie liked")));
+
 
 
 

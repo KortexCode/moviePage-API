@@ -102,6 +102,7 @@ function homePage(){
     searching.classList.add("d-none");
     trendingList.classList.add("d-none");
     popularList.classList.add("d-none");
+    favorite.classList.remove("d-none");
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
     popular.classList.remove("d-none");
@@ -109,6 +110,7 @@ function homePage(){
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieView();
     popularMovieView(); 
+    favoriteMovieView(JSON.parse(localStorage.getItem("movie liked")));
     /* favoriteMovieView(); */
     window.scrollTo(0, 0);
 
@@ -122,6 +124,7 @@ function trendingListPage(){
     searching.classList.add("d-none");
     trending.classList.add("d-none");
     popular.classList.add("d-none");
+    favorite.classList.add("d-none");
     popularList.classList.add("d-none");
     searchBar.classList.add("d-none");
     trendingList.classList.remove("d-none");
@@ -140,6 +143,7 @@ function popularListPage(){
     popular.classList.add("d-none");
     searchBar.classList.add("d-none");
     trendingList.classList.add("d-none");
+    favorite.classList.add("d-none");
     popularList.classList.remove("d-none");
     scrollTop.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
@@ -155,6 +159,7 @@ function categoryPage(){
     searching.classList.add("d-none");
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
+    favorite.classList.add("d-none");
     category.classList.remove("d-none");
     scrollTop.classList.remove("d-none");
     //Se obtiene el id y nombre de categoría del hash usando split
@@ -173,6 +178,7 @@ function searchPage(){
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
     movieDetail.classList.add("d-md-none");
+    favorite.classList.add("d-none");
     searching.classList.remove("d-none");
     scrollTop.classList.remove("d-none");
     //Se obtiene el nombre de búsqueda en el hash usando split y join
@@ -191,6 +197,7 @@ function movieDetailPage(){
     searchBar.classList.add("d-none");
     searching.classList.add("d-none");
     category.classList.add("d-none");
+    favorite.classList.add("d-none");
     movieDetail.classList.remove("d-none");
     movieDetail.classList.remove("d-md-none");
     scrollTop.classList.add("d-none");
