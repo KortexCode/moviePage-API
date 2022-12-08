@@ -10,29 +10,28 @@ window.addEventListener("scroll", infinityScroll, {passive : false});
 function infinityScroll(){
     //Se extrae el máximo scroll segúnla vista actual
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    if( (maxScroll === window.scrollY) && (location.hash === "#more-trends")){
+    if((maxScroll === window.scrollY) && (location.hash === "#more-trends")){
         //Se aumenta la página
         page++;
         if(page <= maxPages)
         trendingMovieViewMore();//Se manda a llamar la función de consulta     
     }
-    if( (maxScroll === window.scrollY) && (location.hash === "#more-popular")){
+    if((maxScroll === window.scrollY) && (location.hash === "#more-popular")){
         //Se aumenta la página
         page++;
         if(page <= maxPages)
         popularMovieViewMore();//Se manda a llamar la función de consulta
     }
-    if( (maxScroll === window.scrollY) && (location.hash.startsWith("#category"))){
+    if((maxScroll === window.scrollY) && (location.hash.startsWith("#category"))){
         //Se obtiene el id y nombre de categoría del hash usando split
         let [vista, categoryIdName] = location.hash.split("=");
         const [categoryId, categoryName] = categoryIdName.split("_");
         //Se aumenta la página
         page++;
         if(page <= maxPages)
-        getMovieByCategory({name: categoryName, id:categoryId});//Se manda a llamar la función de consulta
-        
+        getMovieByCategory({name:categoryName, id:categoryId});//Se manda a llamar la función de consulta  
     }
-    if( (maxScroll === window.scrollY) && (location.hash.startsWith("#search"))){
+    if((maxScroll === window.scrollY) && (location.hash.startsWith("#search"))){
         //Se obtiene el nombre de búsqueda en el hash usando split y join
         let [vista, searchName] = location.hash.split("=");
         let query = searchName.split("-");
@@ -40,11 +39,18 @@ function infinityScroll(){
         //Se aumenta la página
         page++;
         if(page <= maxPages)
-        getMovieBySearch({query});//Se manda a llamar la función de consulta
-        
-    }   
+        getMovieBySearch({query});//Se manda a llamar la función de consulta   
+    }
+    //Esta función controla la aparición del botón de scroll
+    if(window.scrollY < window.innerHeight)
+        scrollTop.classList.replace("d-flex", "d-none");
+    if(window.scrollY >= window.innerHeight)
+        scrollTop.classList.replace("d-none", "d-flex");
+    
+
+
 }
-/*ALMACENAMIENTO LOCAL*/
+/*ALMACENAMIENTO LOCAL DE PELÍCULAS EN FAVORITOS*/
 function movieAddToFavorite(movie){
     //Se verifica si hay elelmentos en la llave "movie liked" de localStorage
     if(localStorage.getItem("movie liked") === null){
@@ -127,12 +133,10 @@ async function trendingMovieView(){
         //Consulta a la api axios
         const res = await api("trending/movie/day");
         console.log("data", res); 
-        //Se obtiene el contenedor de la sección de trending
-        const cardsContainer = document.querySelector(".trending__cards-container");
-        cardsContainer.innerHTML = "";
+        trendingCardsContainer.innerHTML = "";
         /* se llama a la función que genera las movie cards */
         const moviesList = res.data.results;
-        createMoviePosters(moviesList, cardsContainer);
+        createMoviePosters(moviesList, trendingCardsContainer);
     }
     catch(error){
         console.log("Sorry"+error);
@@ -146,14 +150,12 @@ async function trendingMovieViewMore(){
         const res = await api("trending/movie/day", {params : {
             page,
         }});
-        //Se obtiene el contenedor de la sección de trending
-        const cardsContainer = document.querySelector(".trending-list__cards-container");
         maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
         if(page <= 1)
-        cardsContainer.innerHTML = ""; 
+        trendingCardsContainerList.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
         const moviesList = res.data.results;
-        createMoviePosters(moviesList, cardsContainer);
+        createMoviePosters(moviesList, trendingCardsContainerList);
     }
     catch(error){
         console.log("Sorry" + error);
@@ -164,13 +166,10 @@ async function popularMovieView(){
     try{
         //Consulta a la api axios
         const res = await api("movie/popular");
-        console.log("data", res); 
-        //Se obtiene el contenedor de la sección de trending
-        const cardsContainer = document.querySelector(".popular__cards-container");
-        cardsContainer.innerHTML = "";
+        popularCardsContainer.innerHTML = "";
         /* se llama a la función que genera las movie cards */
         const moviesList = res.data.results;
-        createMoviePosters(moviesList, cardsContainer);
+        createMoviePosters(moviesList, popularCardsContainer);
     }
     catch(error){
         console.log("Sorry"+error);
@@ -184,26 +183,39 @@ async function popularMovieViewMore(){
             page,
         }});
         maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
-        //Se obtiene el contenedor de la sección de trending
-        const cardsContainer = document.querySelector(".popular-list__cards-container");
         if(page <= 1)
-        cardsContainer.innerHTML = ""; 
+        popularCardsContainerList.innerHTML = ""; 
         /* se llama a la función que genera las movie cards */
         const moviesList = res.data.results;
-        createMoviePosters(moviesList, cardsContainer);
+        createMoviePosters(moviesList, popularCardsContainerList);
     }
     catch(error){
         console.log("Sorry"+error);
     }
 }
 //Se crea la sección de favoritos
-function favoriteMovieView(movieList){   
-    //Se obtiene el contenedor de la sección de favoritos
-    const cardsContainer = document.querySelector(".favorite__cards-container");
-    cardsContainer.innerHTML = "";
+function favoriteMovieView(movieList){    
     /* se llama a la función que genera las movie cards */
-    if(movieList)
-        createMoviePosters(movieList, cardsContainer);  
+    if(movieList){
+        favoriteCardContainer.innerHTML = "";
+        //Si viene el array vacío, se evita hacer el llamado
+        if(!(movieList === []))
+            createMoviePosters(movieList, favoriteCardContainer);  
+    }
+    //Si en localStorage no hay nada o trae películas guardadas, se crea siempre esta card
+    if(movieList === null || movieList){
+        //Se crea card que contiene indicaciones para agregar a favoritos
+        const emtyFavorite = document.createElement("div");
+        emtyFavorite.setAttribute("id", "emty-favorite");
+        const addTofavorite = document.createElement("div");
+        addTofavorite.classList.add("cards-container--addTofavorite");
+        const p = document.createElement("p");
+        p.innerText = "Add to favorite the movie you like";
+        //Se agregan elementos al contenedor de favoritos
+        emtyFavorite.append(addTofavorite, p);
+        favoriteCardContainer.append(emtyFavorite);
+
+    }
 }
 //Cargar las categorías en el menú Desktop y el menú Mobile
 async function categoryMoviePreview(){
@@ -225,7 +237,7 @@ async function categoryMoviePreview(){
             const h3 = document.createElement("h3");
             const i = document.createElement("i");
             //Evento para cambio de vista
-            h3.addEventListener("click", () => {
+            h3.addEventListener("click", ()=>{
                 //Se usa split y join para solucionar el nombre errado tv%20Movie de la categoría Tv-Movie
                 let movieCatgegoryName = item.name.split(" ");
                 movieCatgegoryName = movieCatgegoryName.join("-");
@@ -402,16 +414,17 @@ function createMoviePosters(res, cardsContainer){
             btnLike.classList.toggle("btn-like--selected");
             console.log("botón de liked clikeado", event)
             movieAddToFavorite(item);
-
         });
         btnLike.classList.add("btn-like");
         //Se verifica las películas guardadas en localStorage como favoritas para luego cambiar los estilos al botón
         const moviesInlocalStorage = JSON.parse(localStorage.getItem("movie liked"));
-        moviesInlocalStorage.forEach((movieInlocal) => {
-            if(movieInlocal.id === item.id){
-                btnLike.classList.add("btn-like--selected");
-            }
-        });     
+        if(moviesInlocalStorage){
+            moviesInlocalStorage.forEach((movieInlocal) => {
+                if(movieInlocal.id === item.id){
+                    btnLike.classList.add("btn-like--selected");
+                }
+            }); 
+        }   
         //Creando etiqueta de imagen
         const movieImg = document.createElement("img");
         movieImg.addEventListener("click", ()=>{

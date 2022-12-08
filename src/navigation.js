@@ -106,7 +106,7 @@ function homePage(){
     searchBar.classList.remove("d-none");
     trending.classList.remove("d-none");
     popular.classList.remove("d-none");
-    scrollTop.classList.remove("d-none");
+    scrollTop.classList.replace("d-flex", "d-none");
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieView();
     popularMovieView(); 
@@ -128,7 +128,7 @@ function trendingListPage(){
     popularList.classList.add("d-none");
     searchBar.classList.add("d-none");
     trendingList.classList.remove("d-none");
-    scrollTop.classList.remove("d-none");
+    scrollTop.classList.replace("d-flex", "d-none");
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieViewMore();   
     window.scrollTo(0, 0);
@@ -145,7 +145,7 @@ function popularListPage(){
     trendingList.classList.add("d-none");
     favorite.classList.add("d-none");
     popularList.classList.remove("d-none");
-    scrollTop.classList.remove("d-none");
+    scrollTop.classList.replace("d-flex", "d-none");
     //Se manda a llamar las funciones generadoras de la información  
     popularMovieViewMore();   
     window.scrollTo(0, 0);
@@ -161,7 +161,7 @@ function categoryPage(){
     movieDetail.classList.add("d-md-none");
     favorite.classList.add("d-none");
     category.classList.remove("d-none");
-    scrollTop.classList.remove("d-none");
+    scrollTop.classList.replace("d-flex", "d-none");
     //Se obtiene el id y nombre de categoría del hash usando split
     let [vista, categoryIdName] = location.hash.split("=");
     const [categoryId, categoryName] = categoryIdName.split("_");
@@ -180,7 +180,7 @@ function searchPage(){
     movieDetail.classList.add("d-md-none");
     favorite.classList.add("d-none");
     searching.classList.remove("d-none");
-    scrollTop.classList.remove("d-none");
+    scrollTop.classList.replace("d-flex", "d-none");
     //Se obtiene el nombre de búsqueda en el hash usando split y join
     let [vista, searchName] = location.hash.split("=");
     let query = searchName.split("-");
@@ -200,8 +200,8 @@ function movieDetailPage(){
     favorite.classList.add("d-none");
     movieDetail.classList.remove("d-none");
     movieDetail.classList.remove("d-md-none");
-    scrollTop.classList.add("d-none");
-     //Se obtiene el id de la película clickeada en el hash usando split y join
+    scrollTop.classList.replace("d-flex", "d-none");
+    //Se obtiene el id de la película clickeada en el hash usando split y join
     let [vista, movieId] = location.hash.split("=");
     let id = movieId.split("-");
     id = id.join(" ");

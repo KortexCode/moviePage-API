@@ -120,6 +120,10 @@ main{
     object-fit: cover;
     object-position: top; 
 }
+#emty-favorite p{
+    font-size: var(--text16);
+    color: white;
+}
 /*scroll hide*/
 .trending__cards-container--sidebar::-webkit-scrollbar,  .popular__cards-container--sidebar::-webkit-scrollbar,
 .favorite__cards-container--sidebar::-webkit-scrollbar, .category__cards-container--sidebar::-webkit-scrollbar,
@@ -233,15 +237,21 @@ main{
 .related-movie__cards-container--sidebar::-webkit-scrollbar{
     -webkit-appearance: none;
 }
-
-/* LOADING SKELETON */
-.cards-container--loading{
+/*FAVORITE SECTION EMTY CARD AND LOADING SKELETON CARDS*/
+.cards-container--addTofavorite, .cards-container--loading{
     width:225px;
     max-width: 225px;
     min-width: 225px;
     height: 315px;
     border-radius: 8px;
     background: #C72B2B;
+}
+.cards-container--addTofavorite{
+   
+    background: var(--background-bars);
+}
+/* LOADING SKELETON ANIMATION*/
+.cards-container--loading{
     animation: charge 1.5s infinite;
 }
 .trending__cards-container--loading:nth-child(odd){

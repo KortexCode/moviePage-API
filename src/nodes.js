@@ -16,6 +16,7 @@ const popularList = node("#popular-list");
 const popularCardsContainerList = node(".popular-list__cards-container");
 /* FAVORITE SECTION */
 const favorite = node("#favorite");
+const favoriteCardContainer = node(".favorite__cards-container")
 /* CATEGORY SECTION*/
 const category = node("#categories");
 /* SEARCHING SECTION*/
