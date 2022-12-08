@@ -119,6 +119,7 @@ const api = axios.create({
     },
     params: {
       'api_key': API_KEY,
+      "lenguage": navigator.language,
     },
 });
 
@@ -356,7 +357,7 @@ async function getMovieById(id){
         article.innerHTML = "";
         
         //Se agrega el src de la imágen 
-        movieDetailImg.src = "https://image.tmdb.org/t/p/w500"+movie.data.poster_path;
+        movieDetailImg.src = "https://image.tmdb.org/t/p/original"+movie.data.poster_path;
         movieDetailImg.alt = movie.data.original_title;
         
         //Se crean los detalles de la película

@@ -47,18 +47,6 @@ btn_search_desktop.addEventListener("click", ()=>{
         location.hash = "#search="+inputValue;    
              
 }, false);
-
-/* btn_search_desktop.addEventListener("click", makeQuery, false);
-function makeQuery(event){
- 
-    let inputValue = inputDesktop.value.split(" ");
-    inputValue = inputValue.join("-");
-          
-    if(inputDesktop.value.trim()==="")
-       inputDesktop.value = "insert a query"
-    else
-        location.hash = "#search="+inputValue;           
-} */
 //Botones de ver más
 btn_view_more.addEventListener("click", ()=>{
     location.hash = "#more-trends";              
@@ -76,11 +64,11 @@ header_btnHome.addEventListener("click", ()=>{
 
 
 /* Se decta el cambio en el hash y la primera carga del Dom al iniciar la aplicación */
-window.addEventListener("DOMContentLoaded", navigator, false);
-window.addEventListener("hashchange", navigator, false);
+window.addEventListener("DOMContentLoaded", navigatorPage, false);
+window.addEventListener("hashchange", navigatorPage, false);
 
 //Aquí se verifica si cual fue el cambio que sufrió el hash para mandar a llamar la vista deseada
-function navigator(){
+function navigatorPage(){
     console.log("navega")
     //Se reinicia la cantidad de páginas mínimas en una vista.
     maxPages = 3;

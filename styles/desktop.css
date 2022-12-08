@@ -14,11 +14,24 @@
     bottom: 10px;
 }
 /* DETAIL SECTION */
+#movie-detail__container{
+    height: 500px;
+}
 #movie-detail__container #movie-detail__category-container img{
     object-position: center;
 }
+#movie-detail__arrow-icon{
+    position: absolute;
+    bottom: 450px;
+}
+#icon-article-container{
+    gap: 0px;
+}
+/* #icon-article-container{
+    gap: 200px;
+} */
 @media(min-width:1028px){
     #movie-detail__dark-layer{
-        height: 55%;           
+        height: 50%;           
     }
 }
