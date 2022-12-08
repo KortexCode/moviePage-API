@@ -247,8 +247,10 @@ main{
     background: #C72B2B;
 }
 .cards-container--addTofavorite{
-   
     background: var(--background-bars);
+}
+#favorite-description{
+    padding-bottom: 12.5px;
 }
 /* LOADING SKELETON ANIMATION*/
 .cards-container--loading{
