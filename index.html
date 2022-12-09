@@ -82,10 +82,20 @@
           </form>
         </div>     
       </div>
+      <!-- LANGUAGE SELECTOR -->
+      <select name="language" id="select-language" class="ms-3 mt-4 p-1">
+       <!--  <option value="" disabled selected>Seleccione un idioma</option> -->
+        <option class="opt" value="en-US">English(en)</option>
+        <option class="opt" value="es">Spanish(es)</option>
+        <option class="opt" value="de">German(de)</option>
+        <option class="opt" value="fr">French(fr)</option>
+        <option class="opt" value="ef">Elf(ef)</option>
+      </select>
+      <!-- /LANGUAGE SELECTOR -->
       <!-- TRENDING SECTION -->
       <section id="trending" class="mx-4 mt-md-4">
         <div class="container-fluid d-flex justify-content-between align-items-center mb-3">
-          <h2 class="section-title mb-0">Trending</h2>
+          <h2 id="trending-title" class="section-title mb-0">Trending</h2>
           <button id="trending__btn-view-more" class="btn btn-outline-danger py-2" type="button">View More</button>
         </div>
         <div class="trending__cards-container trending__cards-container--sidebar">
@@ -245,7 +255,7 @@
       <i class="fa-solid fa-arrow-up"></i>
     </div>
     <!--<footer class="position-relative top-bottom-0 d-md-none">
-
+    
     </footer>-->
     <!-- Tagbar -->
     <div id="mobile-tag-bar" class="position-fixed bottom-0 d-md-none container-fluid px-0 d-flex align-items-center justify-content-around">

@@ -1,9 +1,8 @@
-
-/* SCROLLTOP BUTTON */
+/*SCROLLTOP BUTTON*/
 scrollTop.addEventListener("click", () =>{
     window.scrollTo(0, 0);
-})
-/* PAGINATION */
+});
+/* PAGINACIÓN EN LAS VISTAS CON SCROLL INFINITO */
 let page = 1; //Se inician la primera página a consultar en una vista
 let maxPages = 3;//Se establece el número máximo de páginas a consultar en una vista
 window.addEventListener("scroll", infinityScroll, {passive : false});
@@ -88,7 +87,7 @@ function movieAddToFavorite(movie){
         favoriteMovieView(moviesInlocalStorage);
     }    
 }
-/*INTERCEPTOR OBSERVER PARAMS*/
+/*INTERCEPTOR OBSERVER PARAMS PARA CREAR LAZY LOADING EN LA GENERACIÓN DE IMÁGENES*/
 //Se crea la instancia del observador y se pasa como parámetro la función callback, se omite options
 //Se usará como raiz el viewport
 let observer = new IntersectionObserver(entries => {
@@ -110,7 +109,7 @@ let observer = new IntersectionObserver(entries => {
     })
 });
 
-//AXIOS INSTANCE
+//AXIOS INSTANCE, CONSULTAS A LA API
 /* Se crea la instancia de axios con tres propiedades */
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
@@ -119,7 +118,7 @@ const api = axios.create({
     },
     params: {
       'api_key': API_KEY,
-      "lenguage": navigator.language,
+      "language": lang,
     },
 });
 
@@ -127,12 +126,10 @@ const api = axios.create({
 //Se crea la sección de trending en el home
 async function trendingMovieView(){
     try{
-        /* Ejemplo de consulta por fecth
-        const res = await fetch("https://api.themoviedb.org/3/trending/movie/day?api_key="+API_KEY);
-        const data = await res.json();*/
-
         //Consulta a la api axios
-        const res = await api("trending/movie/day");
+        const res = await api("trending/movie/day",{params: {
+            "language": lang,
+        }});
         console.log("data", res); 
         trendingCardsContainer.innerHTML = "";
         /* se llama a la función que genera las movie cards */
@@ -143,13 +140,14 @@ async function trendingMovieView(){
         console.log("Sorry"+error);
     }
 }
-//Se crean la vista en formato grilla al dar click al botón view more
+//Se crean la vista de trending en formato grilla al dar click al botón view more
 async function trendingMovieViewMore(){
     try{
         
         //Consulta a la api axios
         const res = await api("trending/movie/day", {params : {
             page,
+            language:lang,
         }});
         maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
         if(page <= 1)
@@ -166,7 +164,9 @@ async function trendingMovieViewMore(){
 async function popularMovieView(){
     try{
         //Consulta a la api axios
-        const res = await api("movie/popular");
+        const res = await api("movie/popular",{params: {
+            "language": lang,
+        }});
         popularCardsContainer.innerHTML = "";
         /* se llama a la función que genera las movie cards */
         const moviesList = res.data.results;
@@ -176,12 +176,13 @@ async function popularMovieView(){
         console.log("Sorry"+error);
     }
 }
-//Se crean la vista en formato grilla al dar click al botón view more
+//Se crean la vista de popular en formato grilla al dar click al botón view more
 async function popularMovieViewMore(){
     try{
         //Consulta a la api axios
         const res = await api("movie/popular", {params : {
             page,
+            language:lang,
         }});
         maxPages = res.data.total_pages;//se establce el número máximo de páginas que habrá en esta vista
         if(page <= 1)
@@ -199,7 +200,7 @@ function favoriteMovieView(movieList){
     /* se llama a la función que genera las movie cards */
     if(movieList){
         favoriteCardContainer.innerHTML = "";
-        //Si viene el array vacío, se evita hacer el llamado
+        //Si el array viene vacío, se evita hacer el llamado
         if(!(movieList === []))
             createMoviePosters(movieList, favoriteCardContainer);  
     }
@@ -225,8 +226,13 @@ async function categoryMoviePreview(){
     /*  Se realiza consulta por genéros de películas usando fetch*/
     /*  const res = await fetch("https://api.themoviedb.org/3/genre/movie/list?api_key="+API_KEY);
      const data = await res.json();*/
+     menu.innerText = "";
+     menuMobile.innerText = "";
     try{
-        const {data} = await api("genre/movie/list");//El resultado no necesita de json()
+        const {data} = await api("genre/movie/list", {params:{
+            language:lang,
+        }});
+        //El resultado no necesita de json()
         const categoryDesktop = document.getElementById("category-desktop-menu");
         const categoryMobile = document.getElementById("category-mobile-menu");
         const dropItemsContainer = document.getElementById("dropdown-items-container");
@@ -302,6 +308,7 @@ async function getMovieByCategory({name, id} = {}){
             params: {
                 with_genres : id,
                 page,
+                language:lang,
             },
         });
         //Se obtienen los elementos del html
@@ -327,6 +334,7 @@ async function getMovieBySearch({query}){
             params: {
                 query,
                 page,
+                language:lang,
             },
         });
         //Se obtienen los elementos del html
@@ -345,12 +353,14 @@ async function getMovieBySearch({query}){
 }
 //Aquí se genera la insercción de detalles de una película en la sección de detalles.
 async function getMovieById(id){
-    console.log("El id", id)
     try{
-        
         const node = (node) => document.querySelector(node);
         //Consulta a la api axios
-        const movie = await api("movie/"+id);
+        const movie = await api("movie/"+id,{
+            params: {
+                language:lang,
+            },
+        });
         //Se obtienen los elementos del html como la imagen de fondo y el articulo que encierra los detalles y categorías.
         const movieDetailImg = node("#movie-detail__img");
         const article = node("#movie-detail__article-details");
@@ -435,7 +445,7 @@ function createMoviePosters(res, cardsContainer){
             window.scrollTo(0, 0);
         },false);
         movieImg.setAttribute("data-src", "https://image.tmdb.org/t/p/w300"+item.poster_path);
-        movieImg.setAttribute("data-alt", item.original_title);
+        movieImg.setAttribute("data-alt", item.original_language);
         observer.observe(movieImg);
         //Creando contenedor de título de película y puntaje
         const div = document.createElement("div");
@@ -449,7 +459,7 @@ function createMoviePosters(res, cardsContainer){
         const title = document.createElement("p");
         title.classList.add("my-0");
         title.setAttribute('id', "section-article__title");
-        title.innerText=item.original_title;
+        title.innerText=item.title;
         //Creando etiqueta de ícono de puntaje
         const starIcon = document.createElement("i");
         starIcon.classList.add("fa-solid", "fa-star", "ms-2", "me-1");
@@ -461,15 +471,13 @@ function createMoviePosters(res, cardsContainer){
         score.classList.add("my-0", "ms-1");
         score.setAttribute('id', "section-article__score");
         score.innerText = `${item.vote_average}`;
-
         //Agregando cada componenete dentro de su padre
         scoreContainer.append(starIcon, score)
         div.append(title, scoreContainer);
         btnLike.appendChild(heartIcon);
         posterContainer.append(btnLike, movieImg);
         article.append(posterContainer, div);
-        fragment.push(article);
-        
+        fragment.push(article);     
     }
   /*   cardsContainer.innerHTML = ""; */
     cardsContainer.append(...fragment);
@@ -515,40 +523,5 @@ function createCategoryContainer(genresArray, article){
     ul.append(categoryContainer);
     article.append(ul);
 }
-
-
+//Se llama a la función que crea las categorías en el menú de categorías
 categoryMoviePreview();
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-async function popularMovieView(){
-    const res = await fetch("https://api.themoviedb.org/3/popular/movie/day?api_key="+API_KEY);
-    const data = await res.json();
-    console.log("data", data);
-
-    const popularContainerCards = document.querySelector(".popular__cards-container");
-    const fragment = new DocumentFragment();
-    for (const item of data.results) {
-        
-        const movieImg = document.createElement("img");
-        movieImg.setAttribute("alt", item.original_title);
-        movieImg.src= "https://image.tmdb.org/t/p/w500"+item.poster_path;
-        fragment.appendChild(movieImg);
-    }
-    popularContainerCards.append(fragment);
-    
-
-}
-
-popularMovieView(); */

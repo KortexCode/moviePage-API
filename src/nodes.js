@@ -23,7 +23,12 @@ const category = node("#categories");
 const searching = node("#searching");
 /* MOVIE DETAIL SECTION */
 const movieDetail = node("#movie-detail");
+/* MENUS */
+const menu = node("#dropdown-items-container");
+const menuMobile = node("#dropdown-mobile-items");
+
 /*Buttons*/
+const languageSelector = node("#select-language");
 const arrowBack = document.getElementsByClassName("section-arrow-icon");
 const btn_search_mobile = node("#btn-search-Mobile");
 const btn_search_desktop = node("#btn-search-Desktop");
@@ -36,3 +41,5 @@ const scrollTop = node("#scroll-button");
 const inputMobile = node("#home-search__input-mobile");
 const inputDesktop = node("#home-search__input-desktop");
 
+/* TEXTOS */
+const trendingTitle =  node("#trending-title");

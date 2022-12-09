@@ -1,3 +1,4 @@
+//FUNCIONALIDAD 
 window.addEventListener(
     'DOMContentLoaded',
     () => {
@@ -7,9 +8,53 @@ window.addEventListener(
     },
     false,
 );
+/*SELECTOR DE IDIOMA*/
+/* class languageChange{
+    constructor({trending, popular}){
+        this.trending = trending;
+        this.popular = popular;
+    }
+} */
+//Se crea una variable para el lenguaje por defecto el cual será inglés
+let lang = "en-US";
+/* Evento que detecta el cambio de valor del selector de idioma */
+languageSelector.addEventListener("change", ()=>{
+    /* const langObject = new languageChange(); */
+    lang = languageSelector.value;
+    if(lang != null){
+        categoryMoviePreview()
+        homePage()
+
+        location.hash.startsWith("#search=") ? searchPage() : location.hash.startsWith("#movie") ?  movieDetailPage() 
+        : location.hash.startsWith("#category") ? categoryPage() : location.hash.startsWith("#more-trends") ? trendingListPage() 
+        : location.hash.startsWith("#more-popular") ? popularListPage() : homePage();   
+    } 
+    if(lang == "es"){
+        trendingTitle.innerText = "Tendencias";
+    }
+
+}); 
+
+/*  if(location.hash === "#more-trends"){
+            
+        }
+        if(location.hash === "#more-popular"){
+            
+        }
+        if(location.hash.startsWith("#category")){
+             
+        }
+        if(location.hash.startsWith("#search")){
+              
+        }
+        else{
+    
+        } 
+
+*/
 
 /* Aquí se reciben algunos de los eventos que generan un cambio de vista en el DOM */
-//Botones de flecha atrás
+//FUNCIONALIDADES DEL BOTÓN DE FLECHA PARA IR A ATRÁS
 for (const item of arrowBack) {
     item.addEventListener("click", ()=>{
         //Se guarda el estado de carga inicial en stateLoad y se pregunta si incluye un #, esto se hace para
@@ -24,7 +69,8 @@ for (const item of arrowBack) {
 
     }, false);
 }
-//Click a al botón de busqueda en el home de mobile
+//FUNCIONALIDADES DE LOS BOTONES DE BÚSQUEDA 
+/*Click a al botón de busqueda en el home de mobile*/
 btn_search_mobile.addEventListener("click", ()=>{
         let inputValue = inputMobile.value.split(" ");
         inputValue = inputValue.join("-");
@@ -47,7 +93,7 @@ btn_search_desktop.addEventListener("click", ()=>{
         location.hash = "#search="+inputValue;    
              
 }, false);
-//Botones de ver más
+//FUNCIONALIDADES DE LOS BOTONES DE VER MÁS
 btn_view_more.addEventListener("click", ()=>{
     location.hash = "#more-trends";              
 }, false);
@@ -62,11 +108,10 @@ header_btnHome.addEventListener("click", ()=>{
     location.hash = "#trends";              
 }, false);
 
-
+//DETECCIÓN DE CAMBIOS EN EL HASH
 /* Se decta el cambio en el hash y la primera carga del Dom al iniciar la aplicación */
 window.addEventListener("DOMContentLoaded", navigatorPage, false);
 window.addEventListener("hashchange", navigatorPage, false);
-
 //Aquí se verifica si cual fue el cambio que sufrió el hash para mandar a llamar la vista deseada
 function navigatorPage(){
     console.log("navega")
@@ -79,7 +124,7 @@ function navigatorPage(){
     : location.hash.startsWith("#more-trends") ? trendingListPage() : location.hash.startsWith("#more-popular") ? popularListPage()
     : homePage();
 }
-//Las suientes funciones habilitan e inhabilitan las vistas según se quiera ver u ocultar una
+//Las siguientes funciones habilitan e inhabilitan las vistas según se quiera ver u ocultar una
 //También desde aquí se manda a llamar a las funciones constructoras de cada sección en el archivo main.js
 function homePage(){
     
