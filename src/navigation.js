@@ -9,49 +9,38 @@ window.addEventListener(
     false,
 );
 /*SELECTOR DE IDIOMA*/
-/* class languageChange{
-    constructor({trending, popular}){
-        this.trending = trending;
-        this.popular = popular;
-    }
-} */
 //Se crea una variable para el lenguaje por defecto el cual será inglés
 let lang = "en-US";
 /* Evento que detecta el cambio de valor del selector de idioma */
 languageSelector.addEventListener("change", ()=>{
     /* const langObject = new languageChange(); */
     lang = languageSelector.value;
+    console.log("ahora es",lang);
     if(lang != null){
-        categoryMoviePreview()
-        homePage()
-
+        //la vista de categorías siempre debe actualizarse
+        categoryMoviePreview();
+        //se debe actualizar la vista donde el usuario esté actualmente
         location.hash.startsWith("#search=") ? searchPage() : location.hash.startsWith("#movie") ?  movieDetailPage() 
         : location.hash.startsWith("#category") ? categoryPage() : location.hash.startsWith("#more-trends") ? trendingListPage() 
         : location.hash.startsWith("#more-popular") ? popularListPage() : homePage();   
     } 
-    if(lang == "es"){
-        trendingTitle.innerText = "Tendencias";
+    //Dependiendo del idioma elegido
+    if(lang === "es"){
+        trendingTitle.innerText = spanish.trending;
+        popularTitle.innerText = spanish.popular;
+        trendingListTitle.innerText = spanish.trending;
+        popularListTitle.innerText = spanish.popular;
+        favoriteTitle.innerText = spanish.favorites;
+        resultsTitle.innerText = spanish.results;
+        relatedTitle.innerText = spanish.relatedMovie;
+        viewMoreTrending.innerText = spanish.viewMore;
+        viewMorePopular.innerText = spanish.viewMore;
+        homeTitle.innerText = spanish.home;
+        userTitle.innerText = spanish.user;
+        searchTitle.innerText = spanish.search;
     }
 
 }); 
-
-/*  if(location.hash === "#more-trends"){
-            
-        }
-        if(location.hash === "#more-popular"){
-            
-        }
-        if(location.hash.startsWith("#category")){
-             
-        }
-        if(location.hash.startsWith("#search")){
-              
-        }
-        else{
-    
-        } 
-
-*/
 
 /* Aquí se reciben algunos de los eventos que generan un cambio de vista en el DOM */
 //FUNCIONALIDADES DEL BOTÓN DE FLECHA PARA IR A ATRÁS

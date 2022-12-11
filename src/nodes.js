@@ -43,3 +43,16 @@ const inputDesktop = node("#home-search__input-desktop");
 
 /* TEXTOS */
 const trendingTitle =  node("#trending-title");
+const popularTitle = node("#popular-title");
+const favoriteTitle = node("#favorite-title");
+const trendingListTitle = node("#trending-list-title");
+const popularListTitle = node("#popular-list-title");
+const resultsTitle = node("#results-title");
+const relatedTitle = node("#related-title");
+const viewMoreTrending = node("#trending__btn-view-more");
+const viewMorePopular = node("#popular__btn-view-more");
+const homeTitle = node("#header-navbar__btn-home");
+const userTitle = node("#header-navbar__btn-user");
+const searchTitle = node("#btn-search-Desktop");
+
+

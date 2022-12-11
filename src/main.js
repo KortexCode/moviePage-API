@@ -214,7 +214,7 @@ function favoriteMovieView(movieList){
         addTofavorite.classList.add("cards-container--addTofavorite");
         const p = document.createElement("p");
         p.setAttribute("id", "favorite-description");
-        p.innerText = "Add to favorite the movie you like";
+        lang === "en-US" ? p.innerText = "Add to favorite the movie you like" : p.innerText = "Agrega una película que te guste";
         //Se agregan elementos al contenedor de favoritos
         emtyFavorite.append(addTofavorite, p);
         favoriteCardContainer.append(emtyFavorite);

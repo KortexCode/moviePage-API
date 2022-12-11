@@ -50,10 +50,7 @@
                         <a id="header-navbar__btn-home" class="nav-link" href="#">Home</a>
                       </li>
                       <li class="nav-item d-none d-md-block pe-2">
-                        <a class="nav-link" >Favorites</a>
-                      </li>
-                      <li class="nav-item d-none d-md-block pe-2">
-                        <a class="nav-link" >User</a>
+                        <a id="header-navbar__btn-user" class="nav-link" >User</a>
                       </li>
                       <div id="dropdown-mobile-items" class="container-fluid d-flex flex-column d-md-none flex-wrap align-items-baseline gap-2">
 
@@ -89,7 +86,6 @@
         <option class="opt" value="es">Spanish(es)</option>
         <option class="opt" value="de">German(de)</option>
         <option class="opt" value="fr">French(fr)</option>
-        <option class="opt" value="ef">Elf(ef)</option>
       </select>
       <!-- /LANGUAGE SELECTOR -->
       <!-- TRENDING SECTION -->
@@ -110,7 +106,7 @@
       <!--POPULAR SECTION-->
       <section id="popular" class="mx-4 mt-3">
         <div class="container-fluid d-flex justify-content-between align-items-center mb-3">
-          <h2 class="section-title mb-0">Popular</h2>
+          <h2 id="popular-title" class="section-title mb-0">Popular</h2>
           <button id="popular__btn-view-more" class="btn btn-outline-danger py-2" type="button">View More</button>
         </div>
         <div class="popular__cards-container popular__cards-container--sidebar container-fluid px-0 d-flex align-items-center gap-4">
@@ -126,7 +122,7 @@
       <!--FAVORITE SECTION-->
       <section id="favorite" class="mx-4 mt-3">
         <div class="container-fluid d-flex justify-content-between align-items-center mb-3">
-          <h2 class="section-title mb-0">Favorites</h2>
+          <h2 id="favorite-title" class="section-title mb-0">Favorites</h2>
         </div>
         <div class="favorite__cards-container favorite__cards-container--sidebar container-fluid px-0 d-flex align-items-center gap-4">
           
@@ -138,7 +134,7 @@
       <section id="trending-list" class="mx-4 my-5 mb-md-0 d-none">
         <div id="categories__title-container" class="d-flex gap-2 align-items-center pb-5">
           <i id="categories__arrow-icon" class="section-arrow-icon"><img src="./Assets/chevron-left.svg" alt="back arrow"></i>
-          <h2 class="section-title ps-4 mb-0">Trending</h2>
+          <h2 id="trending-list-title" class="section-title ps-4 mb-0">Trending</h2>
         </div>
         <div class="trending-list__cards-container pb-5">
           <div class="cards-container--loading"></div>
@@ -158,7 +154,7 @@
       <section id="popular-list" class="mx-4 my-5 d-none">
         <div id="categories__title-container" class="d-flex gap-2 align-items-center pb-5">
           <i id="categories__arrow-icon" class="section-arrow-icon"><img src="./Assets/chevron-left.svg" alt="back arrow"></i>
-          <h2 class="section-title ps-4 mb-0">Popular</h2>
+          <h2 id="popular-list-title" class="section-title ps-4 mb-0">Popular</h2>
         </div>
         <div class="popular-list__cards-container pb-5">
           <div class="cards-container--loading"></div>
@@ -199,7 +195,7 @@
       <section id="searching" class="px-4 mt-5 d-none">
         <div id="searching__title-container" class="d-flex gap-2 align-items-center pb-4">
           <i id="searching__arrow-icon" class="section-arrow-icon"><img src="./Assets/chevron-left.svg" alt="back arrow"></i>
-          <h2 class="section-title ps-4 mb-0">Results</h2>
+          <h2 id="results-title" class="section-title ps-4 mb-0">Results</h2>
         </div>
         <div class="searching__cards-container searching__cards-container--sidebar">
           <div class="cards-container--loading"></div>
@@ -238,7 +234,7 @@
         </div>
         <!-- Related-subsection-->
         <div id="related-movies" class="px-4 pt-4">
-          <h2 class="section-title mt-2">Related Movies</h2>
+          <h2 id="related-title" class="section-title mt-2">Related Movies</h2>
           <div class="related-movie__cards-container related-movie__cards-container--sidebar d-flex align-items-center gap-4 pb-0">
             <div class="cards-container--loading"></div>
             <div class="cards-container--loading"></div>
@@ -272,6 +268,7 @@
     <!-- JS -->
     <script src="./src/noView.js" type="text/javascript"></script>
     <script src="./src/nodes.js" type="text/javascript"></script>
+    <script src="./src/language.js" type="text/javascript"></script>
     <script src="./src/navigation.js" type="text/javascript"></script>
   
   </body>
