@@ -54,5 +54,7 @@ const viewMorePopular = node("#popular__btn-view-more");
 const homeTitle = node("#header-navbar__btn-home");
 const userTitle = node("#header-navbar__btn-user");
 const searchTitle = node("#btn-search-Desktop");
+const categoryDropdownDesktop = node("#category-dropdown__desktop");
+const categoryDropdownMobile = node("#category-dropdown__mobile");
 
 

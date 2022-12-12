@@ -128,7 +128,7 @@ async function trendingMovieView(){
     try{
         //Consulta a la api axios
         const res = await api("trending/movie/day",{params: {
-            "language": lang,
+            language: lang,
         }});
         console.log("data", res); 
         trendingCardsContainer.innerHTML = "";
@@ -214,7 +214,10 @@ function favoriteMovieView(movieList){
         addTofavorite.classList.add("cards-container--addTofavorite");
         const p = document.createElement("p");
         p.setAttribute("id", "favorite-description");
-        lang === "en-US" ? p.innerText = "Add to favorite the movie you like" : p.innerText = "Agrega una película que te guste";
+        lang === "en-US" ? p.innerText = "Add to favorite the movie you like" : 
+        lang === "es" ? p.innerText = "Agrega una película que te guste" : 
+        lang === "fr" ? p.innerText = "Ajouter un film aux favoris" :
+        p.innerText = "Fügen Sie einen Film zu den Favoriten hinzu";
         //Se agregan elementos al contenedor de favoritos
         emtyFavorite.append(addTofavorite, p);
         favoriteCardContainer.append(emtyFavorite);

@@ -379,6 +379,14 @@ main{
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
 }
+/* Selector language button  */
+#select-language{
+    border: 1px solid rgb(61, 2, 2);
+    border-radius: 8px;
+    font-size: var(--text14);
+    font-weight: 700;
+    background-color: #C72B2B;
+}
 footer{
     height: 48px;
 }

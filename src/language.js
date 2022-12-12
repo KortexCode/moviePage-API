@@ -1,5 +1,5 @@
 /* Se crea una clase llamada language para crear los diferentes idiomas a los que la aplicación será traducida */
-class language{
+class Language{
     constructor({trending, popular, categories, favorites, relatedMovie, viewMore, results, search, addTo, home, user,}){
         this.trending = trending;
         this.popular = popular;
@@ -14,7 +14,7 @@ class language{
         this.user = user;
     }
 }
-const spanish = new language({ 
+const spanish = new Language({ 
     trending: "Tendencias", 
     popular: "Populares", 
     categories: "Categorías",
@@ -27,7 +27,7 @@ const spanish = new language({
     home: "Inicio",
     user:"Usuario",
 });
-const german = new language({ 
+const german = new Language({ 
     trending: "Tendenzen", 
     popular: "Beliebt", 
     categories: "Kategorien",
@@ -40,7 +40,7 @@ const german = new language({
     home: "Anfang",
     user:"Nutzername",
 });
-const french = new language({ 
+const french = new Language({ 
     trending: "Les tendances", 
     popular: "Populaire", 
     categories: "Catégories",
@@ -52,4 +52,17 @@ const french = new language({
     addTo:"Ajouter un film aux favoris",
     home: "Début",
     user:"Nom d'utilisateur",
+});
+const english = new Language({ 
+    trending: "Trending", 
+    popular: "Popular", 
+    categories: "Categories",
+    favorites: "Favorites",
+    relatedMovie:"Related Movies",
+    viewMore: "view more",
+    results: "Results",
+    search: "search",
+    addTo:"Add to favorite the movie you like",
+    home: "Home",
+    user:"User",
 });

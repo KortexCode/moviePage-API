@@ -17,6 +17,7 @@ languageSelector.addEventListener("change", ()=>{
     lang = languageSelector.value;
     console.log("ahora es",lang);
     if(lang != null){
+        console.log("entro en condicional");
         //la vista de categorías siempre debe actualizarse
         categoryMoviePreview();
         //se debe actualizar la vista donde el usuario esté actualmente
@@ -38,6 +39,56 @@ languageSelector.addEventListener("change", ()=>{
         homeTitle.innerText = spanish.home;
         userTitle.innerText = spanish.user;
         searchTitle.innerText = spanish.search;
+        categoryDropdownDesktop.innerText = spanish.categories;
+        categoryDropdownMobile.innerText = spanish.categories;
+    }
+    if(lang === "fr"){
+        trendingTitle.innerText = french.trending;
+        popularTitle.innerText = french.popular;
+        trendingListTitle.innerText = french.trending;
+        popularListTitle.innerText = french.popular;
+        favoriteTitle.innerText = french.favorites;
+        resultsTitle.innerText = french.results;
+        relatedTitle.innerText = french.relatedMovie;
+        viewMoreTrending.innerText = french.viewMore;
+        viewMorePopular.innerText = french.viewMore;
+        homeTitle.innerText = french.home;
+        userTitle.innerText = french.user;
+        searchTitle.innerText = french.search;
+        categoryDropdownDesktop.innerText = french.categories;
+        categoryDropdownMobile.innerText = french.categories;
+    }
+    if(lang === "de"){
+        trendingTitle.innerText = german.trending;
+        popularTitle.innerText = german.popular;
+        trendingListTitle.innerText = german.trending;
+        popularListTitle.innerText = german.popular;
+        favoriteTitle.innerText = german.favorites;
+        resultsTitle.innerText = german.results;
+        relatedTitle.innerText = german.relatedMovie;
+        viewMoreTrending.innerText = german.viewMore;
+        viewMorePopular.innerText = german.viewMore;
+        homeTitle.innerText = german.home;
+        userTitle.innerText = german.user;
+        searchTitle.innerText = german.search;
+        categoryDropdownDesktop.innerText = german.categories;
+        categoryDropdownMobile.innerText = german.categories;
+    }
+    if(lang === "en-US"){
+        trendingTitle.innerText = english.trending;
+        popularTitle.innerText = english.popular;
+        trendingListTitle.innerText = english.trending;
+        popularListTitle.innerText = english.popular;
+        favoriteTitle.innerText = english.favorites;
+        resultsTitle.innerText = english.results;
+        relatedTitle.innerText = english.relatedMovie;
+        viewMoreTrending.innerText = english.viewMore;
+        viewMorePopular.innerText = english.viewMore;
+        homeTitle.innerText = english.home;
+        userTitle.innerText = english.user;
+        searchTitle.innerText = english.search;
+        categoryDropdownDesktop.innerText = english.categories;
+        categoryDropdownMobile.innerText = english.categories;
     }
 
 }); 
@@ -129,6 +180,7 @@ function homePage(){
     trending.classList.remove("d-none");
     popular.classList.remove("d-none");
     scrollTop.classList.replace("d-flex", "d-none");
+    languageSelector.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieView();
     popularMovieView(); 
@@ -151,6 +203,7 @@ function trendingListPage(){
     searchBar.classList.add("d-none");
     trendingList.classList.remove("d-none");
     scrollTop.classList.replace("d-flex", "d-none");
+    languageSelector.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
     trendingMovieViewMore();   
     window.scrollTo(0, 0);
@@ -168,6 +221,7 @@ function popularListPage(){
     favorite.classList.add("d-none");
     popularList.classList.remove("d-none");
     scrollTop.classList.replace("d-flex", "d-none");
+    languageSelector.classList.remove("d-none");
     //Se manda a llamar las funciones generadoras de la información  
     popularMovieViewMore();   
     window.scrollTo(0, 0);
@@ -184,6 +238,7 @@ function categoryPage(){
     favorite.classList.add("d-none");
     category.classList.remove("d-none");
     scrollTop.classList.replace("d-flex", "d-none");
+    languageSelector.classList.remove("d-none");
     //Se obtiene el id y nombre de categoría del hash usando split
     let [vista, categoryIdName] = location.hash.split("=");
     const [categoryId, categoryName] = categoryIdName.split("_");
@@ -192,6 +247,7 @@ function categoryPage(){
     window.scrollTo(0, 0); 
 }
 function searchPage(){
+    console.log("cargo")
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
@@ -203,6 +259,7 @@ function searchPage(){
     favorite.classList.add("d-none");
     searching.classList.remove("d-none");
     scrollTop.classList.replace("d-flex", "d-none");
+    languageSelector.classList.remove("d-none");
     //Se obtiene el nombre de búsqueda en el hash usando split y join
     let [vista, searchName] = location.hash.split("=");
     let query = searchName.split("-");
@@ -223,6 +280,7 @@ function movieDetailPage(){
     movieDetail.classList.remove("d-none");
     movieDetail.classList.remove("d-md-none");
     scrollTop.classList.replace("d-flex", "d-none");
+    languageSelector.classList.add("d-none");
     //Se obtiene el id de la película clickeada en el hash usando split y join
     let [vista, movieId] = location.hash.split("=");
     let id = movieId.split("-");

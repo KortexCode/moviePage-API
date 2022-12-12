@@ -31,12 +31,12 @@
                 </button>
                 <h1 id="nav-title" class="navbar-brand">Akai Movies</h1>
                 <div class="collapse navbar-collapse navbarSupported z-2 d-md-flex justify-content-md-end pb-3 pb-md-0" id="navbarSupportedContent">                  
-                    <p class="pt-2 mb-1 d-md-none">Category</p>
+                    <p id="category-dropdown__mobile" class="pt-2 mb-1 d-md-none">Category</p>
                     <hr class="border border-dark border-1">
                     <ul id="category-mobile-menu" class="navbar-nav d-md-flex align-items-md-center">
                       <li class="nav-item d-none d-md-block pe-3">
                         <div class="dropdown">
-                          <span class="dropdown-toggle" type="text" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span id="category-dropdown__desktop" class="dropdown-toggle" type="text" data-bs-toggle="dropdown" aria-expanded="false">
                             Categories
                           </span>
                           <ul id="category-desktop-menu" class="dropdown-menu mt-3">
@@ -80,9 +80,9 @@
         </div>     
       </div>
       <!-- LANGUAGE SELECTOR -->
-      <select name="language" id="select-language" class="ms-3 mt-4 p-1">
-       <!--  <option value="" disabled selected>Seleccione un idioma</option> -->
-        <option class="opt" value="en-US">English(en)</option>
+      <select name="language" id="select-language" class="ms-4 mt-4 p-2">
+        <!-- <option class="opt" value="en-US">English(en)</option> -->
+        <option class="opt" value="en-US">English(en-US)</option>
         <option class="opt" value="es">Spanish(es)</option>
         <option class="opt" value="de">German(de)</option>
         <option class="opt" value="fr">French(fr)</option>
