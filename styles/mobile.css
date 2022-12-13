@@ -4,3 +4,6 @@
 #popular-list__cards-container .poster-container:hover{
     transform: none;
 }
+#favorite{
+    margin-bottom: 100px;
+}

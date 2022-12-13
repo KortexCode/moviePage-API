@@ -3,7 +3,7 @@
     --background-bars:rgba(167, 49, 49, 0.92);
     --Background:linear-gradient(359.54deg, rgba(0, 0, 0, 0.94) 8.17%, rgba(0, 0, 0, 0.893) 45.74%, rgba(1, 1, 1, 0.846) 71.8%);
     --Background2: #180d0d;
-    --Background3: #120a0a;
+    --Background3: #1b0f0f;
     --menu-mobile-background:  linear-gradient(180deg, rgba(182, 43, 43, 0.82) 0%, rgba(244, 8, 8, 0.88) 279.41%);
     --mobile-search-input: rgba(160, 65, 65, 0.74); 
     /* fonts*/
@@ -72,7 +72,7 @@ main{
     display: flex;
     gap: 16px;
     align-items: center;
-    height: 400px;
+    height: 420px;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -96,7 +96,7 @@ main{
     position: relative;
     height: 315px;
     width:225px;
-    filter: drop-shadow(4px 4px 5px #090707);
+    filter: drop-shadow(4px 4px 5px #352323);
     transition: all;
     transition-duration: 0.5s; 
 }

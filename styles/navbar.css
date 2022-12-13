@@ -22,7 +22,7 @@ header{
 #nav-title{
     margin: 8px 0;
     padding: 0 16px 0 16px;
-    font-size: 2.2rem;
+    font-size: var(--text24);
     font-weight: 600;
     color: red;
     /* Color de fondo */
@@ -62,7 +62,7 @@ hr{
 .nav-item h3, .nav-item a{
    
     font-size: var(--text16);
-    font-weight: 600;
+    font-weight: 700;
     color: White;
     /* Bordes al texto */
     -webkit-text-stroke-width: 0.5px;
@@ -73,11 +73,11 @@ hr{
 }
 
 .nav-item span{
-    font-size: var(--text16);
-    font-weight: 600;
+    font-size: var(--text18);
+    font-weight: 700;
     color: White;
     /* Bordes al texto */
-    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-width: 0.6px;
     -webkit-text-stroke-color: black;
     transform: color;
     transition: all 200ms;
