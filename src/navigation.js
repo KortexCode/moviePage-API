@@ -167,7 +167,7 @@ function navigatorPage(){
 //Las siguientes funciones habilitan e inhabilitan las vistas según se quiera ver u ocultar una
 //También desde aquí se manda a llamar a las funciones constructoras de cada sección en el archivo main.js
 function homePage(){
-    
+    console.log("entró en home");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
@@ -190,6 +190,7 @@ function homePage(){
 
 }
 function trendingListPage(){
+    console.log("entro en trending");
     window.scrollTo(0, 0);
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
@@ -209,6 +210,7 @@ function trendingListPage(){
     window.scrollTo(0, 0);
 }
 function popularListPage(){
+    console.log("entro en popularlist");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     category.classList.add("d-none");
     movieDetail.classList.add("d-none");
@@ -227,6 +229,7 @@ function popularListPage(){
     window.scrollTo(0, 0);
 }
 function categoryPage(){
+    console.log("entro en category");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
@@ -247,7 +250,7 @@ function categoryPage(){
     window.scrollTo(0, 0); 
 }
 function searchPage(){
-    console.log("cargo")
+    console.log("entró en busqueda")
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");
@@ -268,6 +271,7 @@ function searchPage(){
     window.scrollTo(0, 0); 
 }
 function movieDetailPage(){
+    console.log("entro en detalles");
     //Se quitan las vistas que no se deben mostrar y se deja sólo la deseada
     trending.classList.add("d-none");
     trendingList.classList.add("d-none");

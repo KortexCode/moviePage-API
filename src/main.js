@@ -364,15 +364,25 @@ async function getMovieById(id){
                 language:lang,
             },
         });
+        const movieTrailer = await api("movie/"+id+"/videos",{
+            params: {
+                language:lang,
+            },
+        });
+        const movieTrailerKey = movieTrailer.data.results[0].key;
         //Se obtienen los elementos del html como la imagen de fondo y el articulo que encierra los detalles y categorías.
         const movieDetailImg = node("#movie-detail__img");
+        const trailer = node("#iframe-movie-detail");
+        trailer.src = `https://www.youtube.com/embed/${movieTrailerKey}`;
         const article = node("#movie-detail__article-details");
         article.innerHTML = "";
         
         //Se agrega el src de la imágen 
         movieDetailImg.src = "https://image.tmdb.org/t/p/original"+movie.data.poster_path;
         movieDetailImg.alt = movie.data.original_title;
-        
+        /* conta.style.backgroundImage = `url("https://image.tmdb.org/t/p/original${movie.data.poster_path}")`;
+        conta.style.backgroundSize = "cover"; */
+       
         //Se crean los detalles de la película
         const title  = document.createElement("h2");
         const description = document.createElement("p");
@@ -395,8 +405,7 @@ async function getMovieById(id){
         //Se obtiene la url con el id de la pelicula clickeada
         const url =`/movie/${movie.data.id}/similar`;
         //Se llama a la función que crea los poster de las películas relacionadas
-        createMovieRelatedPoster(url);
-       
+        createMovieRelatedPoster(url); 
    
     }
     catch(error){

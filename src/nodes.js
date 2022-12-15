@@ -23,6 +23,7 @@ const category = node("#categories");
 const searching = node("#searching");
 /* MOVIE DETAIL SECTION */
 const movieDetail = node("#movie-detail");
+
 /* MENUS */
 const menu = node("#dropdown-items-container");
 const menuMobile = node("#dropdown-mobile-items");
